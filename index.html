@@ -48,6 +48,22 @@
       .kpi .item { border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: rgba(0, 0, 0, 0.15); }
       .kpi strong { display: block; font-size: 22px; }
       .kpi span { color: var(--muted); font-size: 13px; }
+      .links {
+        display: grid;
+        gap: 10px;
+      }
+      .links a {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .links small {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+      }
       ul { margin: 0; padding-left: 18px; color: var(--muted); }
       li + li { margin-top: 6px; }
       .footer { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; color: var(--muted); font-size: 13px; }
@@ -80,6 +96,14 @@
       </section>
       <section class="grid">
         <article class="card split">
+          <h3>Current Focus</h3>
+          <ul>
+            <li>Senior SaaS Architecture roles (EU / Remote)</li>
+            <li>Building Hubsays Studio as a long-term systems venture</li>
+            <li>Publishing operational tooling and case-study artifacts continuously</li>
+          </ul>
+        </article>
+        <article class="card split">
           <h3>Revenue Impact</h3>
           <div class="kpi">
             <div class="item"><strong>$6.8M+</strong><span>Net-new ARR contribution at Atlassian (27% of team output)</span></div>
@@ -111,6 +135,23 @@
             <li><strong>CleverTap:</strong> onboarding framework redesign reducing TTV by 22%</li>
             <li><strong>Hubsays Lab:</strong> AI-assisted workflow prototypes for SaaS implementation systems</li>
           </ul>
+        </article>
+        <article class="card split">
+          <h3>Live Systems</h3>
+          <div class="links">
+            <a href="https://github.com/EspressoGuardian/shell-guard" rel="me">
+              <strong>shell-guard</strong>
+              <small>Git safety hooks and local integrity guardrails for release workflows.</small>
+            </a>
+            <a href="https://github.com/EspressoGuardian/state-sentinel" rel="me">
+              <strong>state-sentinel</strong>
+              <small>Determinism and health auditing for simulation-heavy projects.</small>
+            </a>
+            <a href="https://github.com/EspressoGuardian/godot-secrets-scan" rel="me">
+              <strong>godot-secrets-scan</strong>
+              <small>Pre-staging secret and PII scanning for safer commits.</small>
+            </a>
+          </div>
         </article>
         <article class="card">
           <h3>Current Role Target</h3>
