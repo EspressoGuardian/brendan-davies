@@ -1,0 +1,21 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Local secrets and env
+.env
+.env.*
+!.env.example
+secrets.*
+*.pem
+*.key
+
+# Build / temporary output
+dist/
+build/
+*.log
+*.tmp
