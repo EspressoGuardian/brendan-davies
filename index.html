@@ -5,163 +5,227 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Brendan Davies: Senior Solutions Architect focused on enterprise SaaS adoption systems and AI orchestration with measurable revenue impact."
+      content="Brendan Davies: Senior Solutions Architect for enterprise SaaS adoption, AI orchestration, and deterministic systems design."
     />
+    <meta name="theme-color" content="#050505" />
     <title>Brendan Davies | Senior Solutions Architect</title>
     <style>
       :root {
-        --bg: #09111a;
-        --card: #101b28;
-        --line: #24364a;
-        --text: #ecf2f8;
-        --muted: #a9bbce;
-        --accent: #5dc8ff;
-        --accent-soft: rgba(93, 200, 255, 0.18);
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        background: radial-gradient(900px 520px at 82% 8%, rgba(16, 50, 76, 0.8), transparent 70%),
-          radial-gradient(1000px 600px at 12% 14%, rgba(35, 87, 132, 0.4), transparent 62%),
-          var(--bg);
-        color: var(--text);
-        font: 16px/1.55 "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.65;
+        display: flex;
+        justify-content: center;
       }
-      a { color: inherit; text-decoration: none; }
-      .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 64px; }
-      .top { display: flex; gap: 12px; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
-      .name { display: grid; gap: 3px; }
-      .name h1 { margin: 0; font-size: 20px; }
-      .name p { margin: 0; color: var(--muted); font-size: 13px; }
-      .pill { border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; font-size: 13px; background: rgba(0, 0, 0, 0.16); }
-      .hero { margin-top: 26px; display: grid; gap: 16px; }
-      .hero h2 { margin: 0; font-size: 36px; line-height: 1.12; max-width: 22ch; }
-      .hero p { margin: 0; max-width: 72ch; color: var(--muted); }
-      .cta { display: flex; flex-wrap: wrap; gap: 10px; }
-      .btn { border: 1px solid var(--line); border-radius: 12px; padding: 9px 14px; background: rgba(0, 0, 0, 0.18); }
-      .btn.primary { border-color: var(--accent); background: var(--accent-soft); }
-      .grid { margin-top: 24px; display: grid; gap: 12px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-      .card { grid-column: span 12; border: 1px solid var(--line); border-radius: 16px; background: rgba(16, 27, 40, 0.78); padding: 16px; }
-      .card h3 { margin: 0 0 8px; font-size: 16px; }
-      .card p { margin: 0; color: var(--muted); }
-      .kpi { display: grid; gap: 10px; }
-      .kpi .item { border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: rgba(0, 0, 0, 0.15); }
-      .kpi strong { display: block; font-size: 22px; }
-      .kpi span { color: var(--muted); font-size: 13px; }
-      .links {
+      .wrapper {
+        max-width: 840px;
+        width: 100%;
+        padding: 56px 20px 72px;
+      }
+      nav {
+        margin-bottom: 56px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2, h3 {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        line-height: 1.12;
+        letter-spacing: -0.6px;
+        max-width: 24ch;
+      }
+      h2 {
+        font-size: clamp(1.6rem, 4vw, 2.1rem);
+        line-height: 1.2;
+        margin-bottom: 16px;
+        background: linear-gradient(90deg, #ffffff, var(--text-dim));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 14px;
+      }
+      .lead {
+        color: var(--text-dim);
+        font-size: 1.06rem;
+        margin: 18px 0 0;
+        max-width: 72ch;
+      }
+      .entries {
+        margin-top: 48px;
         display: grid;
-        gap: 10px;
+        gap: 26px;
       }
-      .links a {
-        display: block;
-        border: 1px solid var(--line);
-        border-radius: 12px;
+      .entry {
+        border-left: 1px solid var(--line);
+        padding-left: 18px;
+        transition: border-color 0.2s ease;
+      }
+      .entry:hover { border-left-color: var(--accent); }
+      .entry-label {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+      }
+      .entry h3 {
+        margin-top: 6px;
+        font-size: 1.16rem;
+      }
+      .entry p,
+      .entry li {
+        color: var(--text-dim);
+      }
+      .entry ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+      }
+      .entry a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .entry a:hover { color: var(--accent); }
+      .manifesto {
+        margin-top: 52px;
+        max-width: 72ch;
+      }
+      .manifesto-text {
+        font-size: 1.06rem;
+        color: var(--text-main);
+        margin: 0 0 16px;
+        opacity: 0.93;
+      }
+      .highlight-box {
+        margin-top: 14px;
+        display: inline-block;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        background: var(--surface);
         padding: 10px 12px;
-        background: rgba(0, 0, 0, 0.15);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
-      .links small {
-        display: block;
-        margin-top: 4px;
-        color: var(--muted);
-      }
-      ul { margin: 0; padding-left: 18px; color: var(--muted); }
-      li + li { margin-top: 6px; }
-      .footer { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; color: var(--muted); font-size: 13px; }
-      @media (min-width: 900px) {
-        .split { grid-column: span 6; }
-        .hero h2 { font-size: 44px; }
+      .foot {
+        margin-top: 60px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
       }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <header class="top">
-        <div class="name">
-          <h1>Brendan Davies</h1>
-          <p>Senior Solutions Architect | Enterprise SaaS Adoption & AI Orchestration</p>
-        </div>
-        <a class="pill" href="https://hubsays.com/">Hubsays Studio</a>
-      </header>
-      <section class="hero">
-        <h2>Architecture-first SaaS systems that drive adoption and revenue.</h2>
-        <p>
-          I design and operationalize systems across onboarding, adoption, expansion,
-          and technical workflow automation. Over 10+ years across SaaS, Customer Success,
-          Sales, and Solutions roles, I focus on measurable commercial outcomes.
-        </p>
-        <div class="cta">
-          <a class="btn primary" href="mailto:support@hubsays.com">Contact Brendan</a>
-          <a class="btn" href="https://www.linkedin.com/in/brendan-davies/" rel="me">LinkedIn</a>
-        </div>
-      </section>
-      <section class="grid">
-        <article class="card split">
-          <h3>Current Focus</h3>
+    <div class="wrapper">
+      <nav>
+        <a href="/">Index</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="https://www.linkedin.com/in/brendan-davies/" rel="me">LinkedIn</a>
+      </nav>
+
+      <p class="sub">Senior Solutions Architect</p>
+      <h1>Enterprise SaaS Adoption and AI Orchestration With Measurable Outcomes.</h1>
+      <p class="lead">
+        I solve for the system, not isolated tasks. My approach combines
+        commercial context, deterministic implementation, and workflow
+        automation so teams can scale adoption without sacrificing reliability.
+      </p>
+
+      <section class="entries" aria-label="Professional proof">
+        <article class="entry">
+          <div class="entry-label">Current Focus</div>
+          <h3>Dual-Path Execution</h3>
           <ul>
-            <li>Senior SaaS Architecture roles (EU / Remote)</li>
+            <li>Senior SaaS architecture roles across EU and remote teams</li>
             <li>Building Hubsays Studio as a long-term systems venture</li>
-            <li>Publishing operational tooling and case-study artifacts continuously</li>
+            <li>Publishing continuous public artifacts for technical proof</li>
           </ul>
         </article>
-        <article class="card split">
-          <h3>Revenue Impact</h3>
-          <div class="kpi">
-            <div class="item"><strong>$6.8M+</strong><span>Net-new ARR contribution at Atlassian (27% of team output)</span></div>
-            <div class="item"><strong>EUR 1.5M+</strong><span>Enterprise portfolio managed across 40+ accounts</span></div>
-            <div class="item"><strong>22%</strong><span>Time-to-Value reduction via onboarding redesign</span></div>
-          </div>
-        </article>
-        <article class="card split">
-          <h3>Systems Architecture Approach</h3>
+
+        <article class="entry">
+          <div class="entry-label">Commercial Impact</div>
+          <h3>Revenue and Adoption Results</h3>
           <ul>
-            <li>Design adoption systems from first technical milestone to expansion trigger</li>
-            <li>Build health-scoring and operational feedback loops for retention risk control</li>
-            <li>Align Sales, Product, and Support around shared implementation signals</li>
-            <li>Use constraints and clear interfaces to keep systems predictable at scale</li>
+            <li>$6.8M+ net-new ARR contribution at Atlassian (27% team output)</li>
+            <li>EUR 1.5M+ enterprise portfolio managed across 40+ accounts</li>
+            <li>22% Time-to-Value reduction via onboarding system redesign</li>
           </ul>
         </article>
-        <article class="card split">
-          <h3>AI Orchestration & Automation</h3>
-          <ul>
-            <li>Build privacy-aware local + cloud AI workflows for operational leverage</li>
-            <li>Automate repeatable lifecycle tasks without introducing platform lock-in</li>
-            <li>Apply AI as a force multiplier for architecture, validation, and execution</li>
-          </ul>
-        </article>
-        <article class="card split">
-          <h3>Selected Case Studies</h3>
-          <ul>
-            <li><strong>Atlassian:</strong> high-velocity land-and-expand motion delivering $6.8M ARR</li>
-            <li><strong>CleverTap:</strong> onboarding framework redesign reducing TTV by 22%</li>
-            <li><strong>Hubsays Lab:</strong> AI-assisted workflow prototypes for SaaS implementation systems</li>
-          </ul>
-        </article>
-        <article class="card split">
-          <h3>Live Systems</h3>
-          <div class="links">
-            <a href="https://github.com/EspressoGuardian/shell-guard" rel="me">
-              <strong>shell-guard</strong>
-              <small>Git safety hooks and local integrity guardrails for release workflows.</small>
-            </a>
-            <a href="https://github.com/EspressoGuardian/state-sentinel" rel="me">
-              <strong>state-sentinel</strong>
-              <small>Determinism and health auditing for simulation-heavy projects.</small>
-            </a>
-            <a href="https://github.com/EspressoGuardian/godot-secrets-scan" rel="me">
-              <strong>godot-secrets-scan</strong>
-              <small>Pre-staging secret and PII scanning for safer commits.</small>
-            </a>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Current Role Target</h3>
-          <p>Open to Senior Solutions Architect, Solutions Engineer, and Technical CSM roles across EU and global remote teams.</p>
+
+        <article class="entry">
+          <div class="entry-label">Live Systems</div>
+          <h3>Public Tooling and Operational Patterns</h3>
+          <p>
+            <a href="https://github.com/EspressoGuardian/shell-guard" rel="me">shell-guard</a>
+            - Git safety hooks and local integrity guardrails.
+          </p>
+          <p>
+            <a href="https://github.com/EspressoGuardian/state-sentinel" rel="me">state-sentinel</a>
+            - Determinism and health auditing for simulation-heavy projects.
+          </p>
+          <p>
+            <a href="https://github.com/EspressoGuardian/godot-secrets-scan" rel="me">godot-secrets-scan</a>
+            - Pre-staging secret and PII scanning for safer commits.
+          </p>
         </article>
       </section>
-      <footer class="footer">© <span id="y"></span> Brendan Davies</footer>
+
+      <section class="manifesto">
+        <p class="sub">Engineering Philosophy</p>
+        <h2>Systems are architected against entropy.</h2>
+
+        <p class="manifesto-text">
+          My approach is grounded in a simple rule: complexity is expensive and
+          usually avoidable. I design systems where trust is explicit,
+          interfaces are constrained, and failure modes are observable.
+        </p>
+
+        <p class="manifesto-text">
+          Whether I am redesigning SaaS adoption workflows or building
+          deterministic tooling, the target is the same: repeatable outcomes,
+          lower operational drag, and resilience under real business pressure.
+        </p>
+
+        <div class="highlight-box">
+          Core Stack: SaaS Adoption Architecture | Deterministic Workflows | AI Orchestration | Privacy-First Design
+        </div>
+      </section>
+
+      <div class="foot">Contact: <a href="mailto:support@hubsays.com">support@hubsays.com</a></div>
     </div>
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
   </body>
 </html>
