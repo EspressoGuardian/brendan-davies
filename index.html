@@ -8,7 +8,7 @@
       content="Brendan Davies: Senior Solutions Architect for enterprise SaaS adoption, AI orchestration, and deterministic systems design."
     />
     <meta name="theme-color" content="#050505" />
-    <title>Brendan Davies | Senior Solutions Architect</title>
+    <title>Brendan Davies | Systems Architect</title>
     <style>
       :root {
         --bg: #050505;
@@ -26,17 +26,17 @@
         background: var(--bg);
         color: var(--text-main);
         font-family: var(--font-sans);
-        line-height: 1.65;
+        line-height: 1.72;
         display: flex;
         justify-content: center;
       }
       .wrapper {
-        max-width: 840px;
+        max-width: 780px;
         width: 100%;
-        padding: 56px 20px 72px;
+        padding: 72px 24px 92px;
       }
       nav {
-        margin-bottom: 56px;
+        margin-bottom: 72px;
         display: flex;
         gap: 18px;
         flex-wrap: wrap;
@@ -56,9 +56,9 @@
       }
       h1 {
         font-size: clamp(2rem, 5vw, 2.8rem);
-        line-height: 1.12;
+        line-height: 1.15;
         letter-spacing: -0.6px;
-        max-width: 24ch;
+        max-width: 22ch;
       }
       h2 {
         font-size: clamp(1.6rem, 4vw, 2.1rem);
@@ -78,18 +78,18 @@
       }
       .lead {
         color: var(--text-dim);
-        font-size: 1.06rem;
-        margin: 18px 0 0;
-        max-width: 72ch;
+        font-size: 1.1rem;
+        margin: 20px 0 0;
+        max-width: 64ch;
       }
       .entries {
-        margin-top: 48px;
+        margin-top: 60px;
         display: grid;
-        gap: 26px;
+        gap: 32px;
       }
       .entry {
         border-left: 1px solid var(--line);
-        padding-left: 18px;
+        padding-left: 20px;
         transition: border-color 0.2s ease;
       }
       .entry:hover { border-left-color: var(--accent); }
@@ -100,16 +100,20 @@
         text-transform: uppercase;
       }
       .entry h3 {
-        margin-top: 6px;
-        font-size: 1.16rem;
+        margin-top: 8px;
+        font-size: 1.22rem;
+        line-height: 1.35;
       }
       .entry p,
       .entry li {
         color: var(--text-dim);
       }
       .entry ul {
-        margin: 10px 0 0;
+        margin: 12px 0 0;
         padding-left: 18px;
+      }
+      .entry p {
+        max-width: 62ch;
       }
       .entry a {
         color: #ffffff;
@@ -157,8 +161,8 @@
         <a href="https://www.linkedin.com/in/brendan-davies/" rel="me">LinkedIn</a>
       </nav>
 
-      <p class="sub">Senior Solutions Architect</p>
-      <h1>Enterprise SaaS Adoption and AI Orchestration With Measurable Outcomes.</h1>
+      <p class="sub">Systems Architect | Automation Specialist | Linux-First Operator</p>
+      <h1>Enterprise SaaS Adoption and AI Orchestration With Deterministic Execution.</h1>
       <p class="lead">
         I solve for the system, not isolated tasks. My approach combines
         commercial context, deterministic implementation, and workflow
@@ -166,6 +170,22 @@
       </p>
 
       <section class="entries" aria-label="Professional proof">
+        <article class="entry">
+          <div class="entry-label">Origin Story</div>
+          <h3>From Service Systems to Software Systems</h3>
+          <p>
+            My path was not linear. I started in hospitality and customer-facing
+            operations, where I learned journey design, handoff discipline, and
+            how small process failures compound under pressure. Those same
+            lessons now shape how I architect SaaS and automation systems.
+          </p>
+          <p>
+            I run Linux-first environments (Bazzite and TUXEDO OS), test local
+            and cloud AI workflows, and favor infrastructure that is observable,
+            reproducible, and user-respecting.
+          </p>
+        </article>
+
         <article class="entry">
           <div class="entry-label">Current Focus</div>
           <h3>Dual-Path Execution</h3>
@@ -200,6 +220,19 @@
           <p>
             <a href="https://github.com/EspressoGuardian/godot-secrets-scan" rel="me">godot-secrets-scan</a>
             - Pre-staging secret and PII scanning for safer commits.
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">How I Work</div>
+          <h3>AI-First, Human-Verified</h3>
+          <p>
+            If a task is repeatable, I automate it. AI handles high-friction
+            operational steps through scoped API workflows, while I own system
+            boundaries, validation, and reliability decisions.
+          </p>
+          <p>
+            Workflow: Gitea (Local) -> GitHub (Mirror) -> Bazzite/TUXEDO (Execution Environment)
           </p>
         </article>
       </section>
