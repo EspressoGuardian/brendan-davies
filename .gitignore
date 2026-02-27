@@ -6,16 +6,29 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Local secrets and env
+# Security / local secrets
 .env
 .env.*
 !.env.example
 secrets.*
 *.pem
 *.key
+*.p12
+*.pfx
+*.crt
+*.csr
+*_rsa
+id_rsa*
+id_ed25519*
+secrets/
+secret/
+private/
+*.secret
+*.secrets
 
 # Build / temporary output
 dist/
 build/
 *.log
 *.tmp
+*.bak
