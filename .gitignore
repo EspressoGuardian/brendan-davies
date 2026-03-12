@@ -17,9 +17,6 @@ secrets.*
 *.pfx
 *.crt
 *.csr
-*_rsa
-id_rsa*
-id_ed25519*
 secrets/
 secret/
 private/
