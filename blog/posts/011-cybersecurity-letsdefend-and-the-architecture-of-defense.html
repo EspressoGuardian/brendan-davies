@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cybersecurity, LetsDefend, and the architecture of defense: lessons on layered risk, proportional security, and architecture over operations."
+    />    <meta property="og:title" content="Cybersecurity, Let’sDefend, and the Architecture of Defense | Hubsays Studio" />
+    <meta
+      property="og:description"
+      content="Cybersecurity, LetsDefend, and the architecture of defense: lessons on layered risk, proportional security, and architecture over operations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/blog/posts/011-cybersecurity-letsdefend-and-the-architecture-of-defense.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cybersecurity, Let’sDefend, and the Architecture of Defense | Hubsays Studio" />
+    <meta
+      name="twitter:description"
+      content="Cybersecurity, LetsDefend, and the architecture of defense: lessons on layered risk, proportional security, and architecture over operations."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>Cybersecurity, Let’sDefend, and the Architecture of Defense | Hubsays Studio</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.75;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 760px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 68px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1 {
+        font-family: var(--font-mono);
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin: 0;
+        max-width: 26ch;
+      }
+      h2 {
+        font-family: var(--font-mono);
+        font-size: 1.2rem;
+        margin: 30px 0 10px;
+        color: #ffffff;
+      }
+      .meta {
+        margin-top: 12px;
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      article { margin-top: 36px; }
+      p {
+        margin: 0 0 20px;
+        font-size: 1.08rem;
+        max-width: 62ch;
+      }
+      ul {
+        margin: 0 0 20px;
+        padding-left: 20px;
+        max-width: 62ch;
+      }
+      li {
+        margin-bottom: 8px;
+        color: var(--text-main);
+      }
+      .highlight {
+        margin: 28px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--accent);
+        background: var(--surface);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+      }
+      .foot {
+        margin-top: 54px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="/architecture/index.html">Architecture</a>
+      </nav>
+
+      <h1>Cybersecurity, Let’sDefend, and the Architecture of Defense</h1>
+      <div class="meta">Published 2026-02-27 by Brendan Davies</div>
+
+      <article>
+        <p>
+          In 2025, I completed several LetsDefend certifications and became
+          deeply interested in cybersecurity. Blue Team operations, incident
+          response, SOC workflows, and forensic analysis are intellectually
+          compelling.
+        </p>
+
+        <p>
+          The most valuable outcome was not the certificates. It was clearer
+          understanding of where I create the most value inside a technical ecosystem.
+        </p>
+
+        <h2>The Reality of the Cat-and-Mouse Game</h2>
+
+        <p>
+          Security is an uphill battle. There is no permanent state of secure.
+          A motivated actor with enough time and one exploitable weakness can
+          still break through.
+        </p>
+
+        <p>
+          From a systems perspective, security is not binary. It is layered risk
+          reduction. That shifted my focus: architecture should continuously
+          absorb pressure, not pretend to eliminate it.
+        </p>
+
+        <h2>Choosing Architecture Over Operations</h2>
+
+        <p>
+          Operational security work is critical and demanding. Through training,
+          I realized my highest contribution is not continuous alert response,
+          but architectural design.
+        </p>
+
+        <p>
+          I am energized by questions like: how do layers interact, where are
+          single points of failure, what can be automated to reduce human error,
+          and how do we contain blast radius when something breaks?
+        </p>
+
+        <h2>The Overkill Lesson: Lab vs Reality</h2>
+
+        <p>
+          In my home lab, I tested heavily layered controls across edge,
+          network, endpoint, identity, and privacy layers. Technically
+          impressive, but excessive for a personal risk profile.
+        </p>
+
+        <ul>
+          <li>Cloudflare WAF/Zero Trust and DNS controls</li>
+          <li>Segmentation with UDM Pro SE or pfSense</li>
+          <li>Endpoint layers like Malwarebytes/OpenClam</li>
+          <li>Password and secret management patterns</li>
+          <li>Local LLM tooling with Gitea integration</li>
+          <li>VPN and privacy layers</li>
+        </ul>
+
+        <p>
+          The lesson: security must be proportionate to context. Enterprise
+          environments need deeper layering. Smaller environments can suffer
+          from complexity and maintenance drag if over-hardened.
+        </p>
+
+        <h2>Strategic Over-Provisioning</h2>
+
+        <p>
+          Over-engineering is not always wrong. Years ago I chose 64GB RAM when
+          16GB was common guidance. Today, local LLMs, containers, and
+          virtualization make that choice pay off.
+        </p>
+
+        <p>
+          The difference between overkill and foresight is intent.
+          Emotion-driven complexity hurts. Strategic future-proofing compounds.
+        </p>
+
+        <h2>What Cybersecurity Training Changed</h2>
+
+        <p>
+          LetsDefend sharpened how I design systems across domains. I now
+          account more naturally for attack vectors, layered defense, human
+          error, social engineering, secret handling, and programmatic control.
+        </p>
+
+        <p>
+          If configuration cannot be automated through API or script, I treat it
+          as a risk multiplier. Drift and inconsistency usually start in manual
+          paths.
+        </p>
+
+        <div class="highlight">
+          I do not position myself as a security operator. I am a systems
+          architect who designs with security deeply embedded, so the
+          architecture contains damage before 3 AM alerts escalate.
+        </div>
+      </article>
+
+      <div class="foot">Back to <a href="/blog/index.html">Blog Index</a></div>
+    </div>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

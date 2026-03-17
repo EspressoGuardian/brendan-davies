@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Fallback page for missing routes on Hubsays. Attempts safe redirects for extensionless URLs and offers a recovery path to core pages."
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />    <meta property="og:title" content="404 | Hubsays" />
+    <meta
+      property="og:description"
+      content="Fallback page for missing routes on Hubsays. Attempts safe redirects for extensionless URLs and offers a recovery path to core pages."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/404.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="404 | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="Fallback page for missing routes on Hubsays. Attempts safe redirects for extensionless URLs and offers a recovery path to core pages."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>404 | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 760px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--surface);
+        padding: 28px;
+      }
+      h1, h2 {
+        margin: 0;
+        color: #fff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.1;
+      }
+      p {
+        color: var(--text-dim);
+        line-height: 1.7;
+      }
+      .status {
+        margin: 16px 0;
+        padding: 12px 14px;
+        border: 1px solid #25565a;
+        border-radius: 12px;
+        background: #091114;
+        color: #cfecee;
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+      }
+      .links {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .links a {
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-family: var(--font-mono);
+        background: #0d0d0d;
+      }
+      .links a:hover { color: var(--accent); border-color: #11585d; }
+      code {
+        font-family: var(--font-mono);
+        color: #d7f4f6;
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <main class="card">
+      <h1>404</h1>
+      <p>
+        This route does not exist as requested, but the site will first try a
+        safe fallback for extensionless URLs before leaving you here.
+      </p>
+      <div class="status" id="status">Checking for a matching <code>.html</code> or <code>/index.html</code> route...</div>
+      <p>
+        If no fallback resolves, use one of the core paths below.
+      </p>
+      <div class="links">
+        <a href="/index.html">Hubsays Index</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/live-systems.html">Live Systems</a>
+        <a href="/llm-technique-selection.html">LLM Technique Selection</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/brendan-davies/">Brendan Davies</a>
+      </div>
+    </main>
+    <script>
+      (function () {
+        const path = window.location.pathname || "/";
+        const status = document.getElementById("status");
+        const candidates = [];
+        if (!path.endsWith(".html") && !path.endsWith("/")) {
+          candidates.push(path + ".html");
+          candidates.push(path + "/index.html");
+        } else if (path.endsWith("/")) {
+          candidates.push(path + "index.html");
+        }
+
+        const tryNext = (index) => {
+          if (index >= candidates.length) {
+            status.textContent = "No safe fallback route was found for this path.";
+            return;
+          }
+          const candidate = candidates[index];
+          fetch(candidate, { method: "HEAD" })
+            .then((response) => {
+              if (response.ok) {
+                status.textContent = "Redirecting to " + candidate;
+                window.location.replace(candidate);
+                return;
+              }
+              tryNext(index + 1);
+            })
+            .catch(() => tryNext(index + 1));
+        };
+
+        if (!candidates.length) {
+          status.textContent = "No extensionless fallback applies for this route.";
+          return;
+        }
+        tryNext(0);
+      })();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

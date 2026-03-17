@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A compact architecture diagram showing how shell-guard, state-sentinel, and godot-secrets-scan map to the live systems operating loop."
+    />    <meta property="og:title" content="Live Tooling Loop | Hubsays Architecture" />
+    <meta
+      property="og:description"
+      content="A compact architecture diagram showing how shell-guard, state-sentinel, and godot-secrets-scan map to the live systems operating loop."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/architecture/live-tooling-loop.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Live Tooling Loop | Hubsays Architecture" />
+    <meta
+      name="twitter:description"
+      content="A compact architecture diagram showing how shell-guard, state-sentinel, and godot-secrets-scan map to the live systems operating loop."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>Live Tooling Loop | Hubsays Architecture</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(0, 242, 255, 0.06), transparent 30%),
+          #050505;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        display: flex;
+        justify-content: center;
+      }
+      .wrap {
+        max-width: 1040px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 56px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2 {
+        margin: 0;
+        color: #fff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(1.9rem, 4vw, 2.5rem);
+        line-height: 1.15;
+      }
+      h2 {
+        font-size: 1.08rem;
+        margin: 28px 0 10px;
+      }
+      p {
+        margin: 0 0 18px;
+        max-width: 70ch;
+        line-height: 1.7;
+      }
+      .sub {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .panel {
+        margin-top: 24px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+      }
+      .panel svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .links {
+        margin-top: 16px;
+        display: grid;
+        gap: 12px;
+      }
+      .links a {
+        display: block;
+        padding: 12px 14px;
+        border: 1px solid #2b2b2b;
+        border-radius: 12px;
+        text-decoration: none;
+        background: #0c0c0c;
+      }
+      .links a:hover {
+        border-color: #11585d;
+      }
+      .foot {
+        margin-top: 34px;
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/live-systems.html">Live Systems</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/shell-guard.html">shell-guard</a>
+        <a href="/state-sentinel.html">state-sentinel</a>
+        <a href="/godot-secrets-scan.html">godot-secrets-scan</a>
+      </nav>
+
+      <p class="sub">Architecture Diagram</p>
+      <h1>Live Tooling Loop</h1>
+      <p>
+        This is the compact map of how the three public tools fit into the same
+        operating model. They solve different problems, but they all reduce the
+        chance that silent drift becomes accepted system state.
+      </p>
+
+      <section class="panel" aria-label="Live tooling loop diagram">
+        <svg viewBox="0 0 980 360" role="img" aria-label="A loop connecting intent, guardrails, audits, privacy checks, and operator correction">
+          <defs>
+            <linearGradient id="box" x1="0%" x2="100%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="#111c1e" />
+              <stop offset="100%" stop-color="#0b1011" />
+            </linearGradient>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#00f2ff"></path>
+            </marker>
+          </defs>
+          <rect x="40" y="130" width="170" height="84" rx="12" fill="url(#box)" stroke="#25565a" />
+          <rect x="270" y="48" width="200" height="84" rx="12" fill="url(#box)" stroke="#25565a" />
+          <rect x="270" y="228" width="200" height="84" rx="12" fill="url(#box)" stroke="#25565a" />
+          <rect x="530" y="130" width="210" height="84" rx="12" fill="url(#box)" stroke="#25565a" />
+          <rect x="790" y="130" width="150" height="84" rx="12" fill="url(#box)" stroke="#25565a" />
+
+          <text x="125" y="160" fill="#ffffff" font-size="18" font-family="JetBrains Mono, monospace" text-anchor="middle">Developer Intent</text>
+          <text x="125" y="184" fill="#c7d7d8" font-size="13" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">commit, run, ship</text>
+
+          <text x="370" y="78" fill="#ffffff" font-size="18" font-family="JetBrains Mono, monospace" text-anchor="middle">shell-guard</text>
+          <text x="370" y="102" fill="#c7d7d8" font-size="13" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">repo state guardrails</text>
+
+          <text x="370" y="258" fill="#ffffff" font-size="18" font-family="JetBrains Mono, monospace" text-anchor="middle">godot-secrets-scan</text>
+          <text x="370" y="282" fill="#c7d7d8" font-size="13" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">pre-staging privacy checks</text>
+
+          <text x="635" y="160" fill="#ffffff" font-size="18" font-family="JetBrains Mono, monospace" text-anchor="middle">state-sentinel</text>
+          <text x="635" y="184" fill="#c7d7d8" font-size="13" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">runtime health + determinism</text>
+
+          <text x="865" y="160" fill="#ffffff" font-size="18" font-family="JetBrains Mono, monospace" text-anchor="middle">Operator</text>
+          <text x="865" y="184" fill="#c7d7d8" font-size="13" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">accept, fix, retry</text>
+
+          <line x1="210" y1="155" x2="270" y2="90" stroke="#00f2ff" stroke-width="3" marker-end="url(#arrow)" />
+          <line x1="210" y1="190" x2="270" y2="270" stroke="#00f2ff" stroke-width="3" marker-end="url(#arrow)" />
+          <line x1="470" y1="90" x2="530" y2="155" stroke="#00f2ff" stroke-width="3" marker-end="url(#arrow)" />
+          <line x1="470" y1="270" x2="530" y2="190" stroke="#00f2ff" stroke-width="3" marker-end="url(#arrow)" />
+          <line x1="740" y1="172" x2="790" y2="172" stroke="#00f2ff" stroke-width="3" marker-end="url(#arrow)" />
+          <path d="M865,214 C865,300 430,332 120,250 C75,238 58,220 58,214" fill="none" stroke="#52d0d7" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)" />
+          <text x="480" y="338" fill="#89d7dc" font-size="12" font-family="IBM Plex Sans, sans-serif" text-anchor="middle">feedback loop: corrected state becomes the next safe baseline</text>
+        </svg>
+      </section>
+
+      <h2>Interpretation</h2>
+      <p>
+        `shell-guard` reduces obvious local repository mistakes. `godot-secrets-scan`
+        reduces privacy and secret exposure before a commit path hardens. `state-sentinel`
+        audits what happens after the system runs. Together they cover intent,
+        input hygiene, and runtime sanity.
+      </p>
+
+      <div class="links">
+        <a href="/shell-guard.html">Read: shell-guard</a>
+        <a href="/state-sentinel.html">Read: state-sentinel</a>
+        <a href="/godot-secrets-scan.html">Read: godot-secrets-scan</a>
+      </div>
+
+      <div class="foot">
+        Back to <a href="/architecture/index.html">Architecture</a>.
+      </div>
+    </div>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

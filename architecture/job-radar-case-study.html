@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Job Radar case study: architecture, state management, deduplication, rate-limit handling, human approvals, and proof that the system is built as an operating tool, not a demo."
+    />    <meta property="og:title" content="Job Radar Case Study | Hubsays" />
+    <meta
+      property="og:description"
+      content="Job Radar case study: architecture, state management, deduplication, rate-limit handling, human approvals, and proof that the system is built as an operating tool, not a demo."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/architecture/job-radar-case-study.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Job Radar Case Study | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="Job Radar case study: architecture, state management, deduplication, rate-limit handling, human approvals, and proof that the system is built as an operating tool, not a demo."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>Job Radar Case Study | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --surface-soft: #0d0d0d;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --line-strong: #2c2c2c;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.72;
+        display: flex;
+        justify-content: center;
+      }
+      .wrap {
+        max-width: 1120px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 56px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1, h2, h3 {
+        margin: 0;
+        color: #fff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(1.9rem, 4vw, 2.6rem);
+        line-height: 1.15;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+      h3 {
+        font-size: 0.9rem;
+      }
+      .lead {
+        margin: 16px 0 0;
+        color: var(--text-dim);
+        max-width: 78ch;
+      }
+      .grid {
+        margin-top: 30px;
+        display: grid;
+        gap: 16px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 16px;
+      }
+      .card p,
+      .card li {
+        color: var(--text-dim);
+        font-size: 0.94rem;
+      }
+      .meta {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .tag {
+        border: 1px solid #2d2d2d;
+        border-radius: 999px;
+        padding: 4px 8px;
+        background: var(--surface-soft);
+        color: #bdbdbd;
+        font-size: 0.7rem;
+        font-family: var(--font-mono);
+      }
+      .tag.hot {
+        border-color: #11585d;
+        color: var(--accent);
+      }
+      .stats {
+        display: grid;
+        gap: 12px;
+      }
+      .stat {
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        background: var(--surface-soft);
+        padding: 12px;
+      }
+      .stat strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #fff;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      .flow {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+      .step {
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        background: var(--surface-soft);
+        padding: 12px;
+      }
+      .step p { margin: 6px 0 0; }
+      .arrow {
+        text-align: center;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+      }
+      ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+      }
+      .cta {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #2d2d2d;
+        background: var(--surface-soft);
+        color: #d4d4d4;
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+      }
+      .btn.primary {
+        border-color: #11585d;
+        color: var(--accent);
+      }
+      .foot {
+        margin-top: 48px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      .foot a { color: var(--accent); text-decoration: none; }
+      @media (min-width: 900px) {
+        .grid.two {
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 760px) {
+        .wrap { padding: 52px 14px 72px; }
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <p class="eyebrow">Case Study</p>
+      <h1>Job Radar: From Side Project Framing to Operating System Framing</h1>
+      <p class="lead">
+        Job Radar was not built as a novelty bot. It was designed as a live monitoring
+        and decision-support system: structured ingestion, controlled state, human
+        approvals, deterministic checks, and reliable notifications for time-sensitive
+        job discovery work.
+      </p>
+
+      <section class="card">
+        <h2>Executive Summary</h2>
+        <p>
+          The problem was not "can a bot send messages?" The real problem was building a
+          system that could monitor multiple hiring sources, avoid duplicate noise, cope
+          with changing source behavior, preserve operator trust, and keep the state sane
+          across repeated runs. The architecture was shaped around reliability, not novelty.
+        </p>
+        <div class="meta">
+          <span class="tag hot">ATS Monitoring</span>
+          <span class="tag">SQLite State</span>
+          <span class="tag">Deduplication</span>
+          <span class="tag">Rate-Limit Handling</span>
+          <span class="tag">Telegram Delivery</span>
+          <span class="tag">Human-in-the-loop</span>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <div class="card">
+          <h2>What Was Built</h2>
+          <ul>
+            <li>A Telegram-first monitoring workflow across a 27-source wishlist, combining Greenhouse, Lever, Ashby, and direct careers-page discovery.</li>
+            <li>A SQLite-backed state model for jobs, scans, triage outcomes, and operator feedback.</li>
+            <li>Deduplication logic to reduce repeat noise and keep alerts tied to real change.</li>
+            <li>Guardrails for scan locking, short writes, and retry-friendly behavior under concurrent activity.</li>
+            <li>Scheduled scans plus on-demand Telegram `/probe` checks for a single URL, company page, or domain when manual verification is needed.</li>
+            <li>Approval gates before tailoring and export, including resume and cover-letter generation from fixed templates and operator parameters.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Operational Effect</h2>
+          <ul>
+            <li>Search latency matters: a delayed alert can mean a missed application window.</li>
+            <li>Duplicate alerts destroy trust fast and make operators ignore the system.</li>
+            <li>Source changes and partial failures are normal, so the system has to degrade safely.</li>
+            <li>State quality matters more than clever prompts because downstream decisions depend on it.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>High-Level Architecture</h2>
+        <p>
+          This is the operating shape at a glance. The goal is clear boundaries, explicit
+          ownership, and no guessing about where validation happens.
+        </p>
+        <div class="flow" aria-label="Job Radar architecture overview">
+          <div class="step">
+            <h3>1. Source Polling</h3>
+            <p>The default 15-minute timer polls the 27-source watchlist, while Telegram can trigger manual `/probe` scans against a single URL or domain.</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step">
+            <h3>2. Ingress + Normalization</h3>
+            <p>Records are normalized into a consistent shape before they are trusted by the rest of the pipeline.</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step">
+            <h3>3. State + Deduplication</h3>
+            <p>SQLite tracks seen jobs, scan reports, and triage state so repeated detections do not become repeat noise.</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step">
+            <h3>4. Ranking + Human Review</h3>
+            <p>Potential matches are ranked and then reviewed at explicit checkpoints before any resume, cover-letter, tailoring, or export step happens.</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="step">
+            <h3>5. Notification + Follow-Up</h3>
+            <p>Approved results are sent through Telegram, with status visibility and outcome feedback feeding later runs.</p>
+          </div>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="/architecture/job-radar.html">View end-to-end diagram</a>
+          <a class="btn" href="/architecture/job-radar-deep-dive.html">View ops + safety diagram</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Proof That This Is a System, Not a Script</h2>
+        <div class="stats">
+          <div class="stat">
+            <strong>State Ownership</strong>
+            SQLite was used as a deliberate state boundary for lifecycle tracking, not just as a quick local cache.
+          </div>
+          <div class="stat">
+            <strong>Concurrency Discipline</strong>
+            Scan locking, short write patterns, and retry-friendly behavior were used to reduce contention and duplicate work.
+          </div>
+          <div class="stat">
+            <strong>Delivery Trust</strong>
+            Deduplication and explicit triage reduce alert fatigue, which is critical in any notification-driven system.
+          </div>
+          <div class="stat">
+            <strong>Operator Control</strong>
+            Human approval remains part of the system contract, so automation can accelerate work without silently drifting.
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Operational Constraints Addressed</h2>
+        <ul>
+          <li><strong>Rate limits:</strong> the system assumes external sources may throttle, change, or partially fail, so scan behavior must be bounded and retry-aware.</li>
+          <li><strong>Duplicate detection:</strong> multiple sources and repeated scans create noise unless records are normalized and compared consistently.</li>
+          <li><strong>State drift:</strong> if lifecycle state is loose, downstream triage and tailoring become unreliable.</li>
+          <li><strong>Crash recovery:</strong> scan locks, SQLite writes, task logs, and idempotent execution claims reduce duplicate work after refreshes, retries, or interrupted runs.</li>
+          <li><strong>Notification quality:</strong> a "working" alert system is still bad if it sends too much, too often, or without enough confidence.</li>
+          <li><strong>Auditability:</strong> logs, scan reports, and outcome labels matter because they make later tuning evidence-based instead of guesswork.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Runtime Today, Scale Later</h2>
+        <p>
+          Today the desktop machine is the active node, which is why the host needs to stay
+          on for scheduled scans and Telegram interaction. The architecture is already shaped
+          so it can move to a dedicated always-on device later, where multiple agents can run
+          in parallel without changing the core operating model.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>How To Talk About It</h2>
+        <p>
+          The strongest framing is architectural, not hobbyist. This is the concise
+          version I would use in recruiter-facing contexts:
+        </p>
+        <p>
+          Architected a Telegram-first ATS monitoring and decision-support system using
+          SQLite for state management, lifecycle tracking, and deduplication across a
+          27-source watchlist spanning Greenhouse, Lever, Ashby, and direct careers-page
+          discovery. Designed around scheduled plus manual Telegram scans, retry-aware
+          polling, human approval checkpoints, and template-driven resume/cover-letter
+          generation, so the workflow reduced search latency without becoming noisy or brittle.
+        </p>
+      </section>
+
+      <div class="foot">© <span id="y"></span> Hubsays Studio · <a href="/architecture/index.html">architecture index</a></div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

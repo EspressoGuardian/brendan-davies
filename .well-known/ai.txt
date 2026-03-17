@@ -1,0 +1,21 @@
+# Hubsays Studio
+# https://brendan-davies.dev
+
+Description: Indie game studio and open-source tool lab focused on deterministic, offline-first systems.
+Owner: Brendan Davies (EspressoGuardian)
+Contact: support@hubsays.com
+
+# Core Principles
+- Offline-first: No telemetry, privacy by default.
+- Determinism: Reproducible logic; no wall-clock in gameplay.
+- Systems-driven: Explainable consequences.
+
+# Key Locations
+- Main Site: https://brendan-davies.dev (Index of games and philosophy)
+- Studio Tools: https://github.com/HubsaysStudio
+- Dev Profile: https://github.com/EspressoGuardian
+
+# Projects
+- The Amber State: Deterministic survival strategy simulation (Godot 4.6).
+- shell-guard: Git safety hooks.
+- godot-secrets-scan: PII/Secrets scanner.

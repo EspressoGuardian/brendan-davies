@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Decision Latency social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1216"/>
+      <stop offset="100%" stop-color="#1b2127"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7ff6d5"/>
+      <stop offset="100%" stop-color="#f0cb71"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1088" cy="168" r="120" fill="#183238" opacity="0.34"/>
+  <rect x="64" y="72" width="230" height="16" rx="8" fill="url(#accent)"/>
+  <text x="64" y="154" fill="#8fd7dd" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="3">HUBSAYS ARTICLE</text>
+  <text x="64" y="280" fill="#f7fbfc" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="700">Decision Latency</text>
+  <text x="64" y="360" fill="#eef5f6" font-family="Arial, Helvetica, sans-serif" font-size="40">The hidden lag between user action</text>
+  <text x="64" y="410" fill="#eef5f6" font-family="Arial, Helvetica, sans-serif" font-size="40">and system clarity that breaks trust.</text>
+  <g transform="translate(64 522)">
+    <rect x="0" y="0" width="182" height="46" rx="23" fill="#142126" stroke="#2f5158"/>
+    <text x="91" y="30" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="21">State Visibility</text>
+    <rect x="198" y="0" width="186" height="46" rx="23" fill="#142126" stroke="#2f5158"/>
+    <text x="291" y="30" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="21">Trust Systems</text>
+  </g>
+</svg>

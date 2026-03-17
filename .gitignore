@@ -6,10 +6,20 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Security / local secrets
+# Python caches and local env
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Local secrets / deployment inputs
 .env
 .env.*
 !.env.example
+*.local
+.direnv/
 secrets.*
 *.pem
 *.key
@@ -17,15 +27,16 @@ secrets.*
 *.pfx
 *.crt
 *.csr
+*.ovpn
+*.kdbx
+*.age
 secrets/
 secret/
 private/
 *.secret
 *.secrets
 
-# Build / temporary output
-dist/
-build/
+# Logs / temp
 *.log
 *.tmp
 *.bak

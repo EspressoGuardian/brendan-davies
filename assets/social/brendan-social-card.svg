@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Brendan Davies social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081014"/>
+      <stop offset="100%" stop-color="#151c22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7ff6d5"/>
+      <stop offset="100%" stop-color="#76bbff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="64" y="72" width="206" height="16" rx="8" fill="url(#accent)"/>
+  <text x="64" y="154" fill="#8fd7dd" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="3">BRENDAN DAVIES</text>
+  <text x="64" y="272" fill="#f7fbfc" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="700">Systems Architect</text>
+  <text x="64" y="348" fill="#eef5f6" font-family="Arial, Helvetica, sans-serif" font-size="42">Commercially grounded, trust-driven,</text>
+  <text x="64" y="398" fill="#eef5f6" font-family="Arial, Helvetica, sans-serif" font-size="42">and built for senior employee roles.</text>
+  <text x="64" y="482" fill="#bfd0d5" font-family="Arial, Helvetica, sans-serif" font-size="30">Public proof of systems thinking, measurable delivery, and operational design.</text>
+  <g transform="translate(64 530)">
+    <rect x="0" y="0" width="170" height="46" rx="23" fill="#142126" stroke="#2f5158"/>
+    <text x="85" y="30" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="21">Employee Only</text>
+    <rect x="188" y="0" width="176" height="46" rx="23" fill="#142126" stroke="#2f5158"/>
+    <text x="276" y="30" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="21">Human Authored</text>
+  </g>
+</svg>

@@ -1,0 +1,165 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.24));
+  background-size: 40px 40px, 100% 100%;
+  background-attachment: fixed;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --bg-main: #f5f7fb;
+  --background: #f5f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef2ff;
+  --card: #ffffff;
+  --card-bg: #ffffff;
+  --panel: #ffffff;
+  --line: rgba(15, 23, 42, 0.14);
+  --border: rgba(15, 23, 42, 0.14);
+  --text: #0f172a;
+  --text-main: #0f172a;
+  --text-dim: #334155;
+  --muted: #475569;
+  --accent: #0ea5e9;
+}
+
+html[data-theme="light"] body {
+  background: var(--bg-main, var(--bg, #f5f7fb));
+  color: var(--text-main, var(--text, #0f172a));
+}
+
+html[data-theme="light"] body::before {
+  display: none;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] dd,
+html[data-theme="light"] blockquote,
+html[data-theme="light"] .lead,
+html[data-theme="light"] .lede,
+html[data-theme="light"] .subtitle,
+html[data-theme="light"] .sub,
+html[data-theme="light"] .reviewed,
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .chip,
+html[data-theme="light"] .foot,
+html[data-theme="light"] .footer,
+html[data-theme="light"] .callout,
+html[data-theme="light"] .constraint-callout,
+html[data-theme="light"] .cta-note {
+  color: var(--text-dim, #334155);
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] strong,
+html[data-theme="light"] dt {
+  color: var(--text-main, #0f172a);
+}
+
+html[data-theme="light"] a {
+  color: var(--accent, #0ea5e9);
+}
+
+html[data-theme="light"] nav a,
+html[data-theme="light"] .crumbs a,
+html[data-theme="light"] .foot a,
+html[data-theme="light"] .footer a {
+  color: var(--accent, #0ea5e9);
+}
+
+html[data-theme="light"] section,
+html[data-theme="light"] article,
+html[data-theme="light"] aside,
+html[data-theme="light"] .hero-card,
+html[data-theme="light"] .side-card,
+html[data-theme="light"] .rail-card,
+html[data-theme="light"] .entry,
+html[data-theme="light"] .fit-strip,
+html[data-theme="light"] .mini-diagram,
+html[data-theme="light"] .triangle-item,
+html[data-theme="light"] .callout,
+html[data-theme="light"] .constraint-callout,
+html[data-theme="light"] .cta-note {
+  background: var(--surface, #ffffff);
+  border-color: var(--line, rgba(15, 23, 42, 0.14));
+}
+
+html[data-theme="light"] .progress {
+  background: rgba(14, 165, 233, 0.08);
+}
+
+html[data-theme="light"] .progress-bar {
+  background: linear-gradient(90deg, #0ea5e9, #2563eb);
+}
+
+button.global-theme-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.92);
+  color: #ffffff;
+  font: 700 1rem/1 "IBM Plex Mono", "JetBrains Mono", monospace;
+  cursor: pointer;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.24);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.global-theme-toggle:hover,
+button.global-theme-toggle:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  border-color: rgba(14, 165, 233, 0.7);
+}
+
+html[data-theme="light"] button.global-theme-toggle {
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 640px) {
+  body::before {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.2));
+    background-size: 32px 32px, 100% 100%;
+  }
+  button.global-theme-toggle {
+    right: 12px;
+    bottom: 12px;
+    width: 38px;
+    height: 38px;
+    min-height: 38px;
+    font-size: 0.92rem;
+  }
+}

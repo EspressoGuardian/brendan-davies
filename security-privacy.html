@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Security and privacy posture for Hubsays: static pages, no intentional ad trackers, minimal infrastructure, and privacy-first public delivery."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="Security & Privacy | Hubsays" />
+    <meta
+      property="og:description"
+      content="Security and privacy posture for Hubsays: static pages, no intentional ad trackers, minimal infrastructure, and privacy-first public delivery."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/security-privacy.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Security & Privacy | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="Security and privacy posture for Hubsays: static pages, no intentional ad trackers, minimal infrastructure, and privacy-first public delivery."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>Security & Privacy | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text: #e0e0e0;
+        --dim: #888888;
+        --line: #222222;
+        --accent: #00f2ff;
+        --mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(0, 242, 255, 0.05), transparent 28%),
+          var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        display: flex;
+        justify-content: center;
+        line-height: 1.72;
+      }
+      .wrap {
+        max-width: 780px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 56px;
+      }
+      nav a {
+        color: var(--dim);
+        text-decoration: none;
+        font-family: var(--mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover {
+        color: var(--accent);
+      }
+      h1, h2 {
+        margin: 0;
+        font-family: var(--mono);
+        color: #ffffff;
+      }
+      h1 {
+        font-size: clamp(1.9rem, 4vw, 2.5rem);
+        line-height: 1.14;
+        max-width: 22ch;
+      }
+      p {
+        color: var(--dim);
+        margin: 0 0 18px;
+        max-width: 66ch;
+      }
+      .sub {
+        color: var(--accent);
+        font-family: var(--mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
+      }
+      .lead {
+        font-size: 1.05rem;
+      }
+      .reviewed {
+        margin: 12px 0 0;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--mono);
+      }
+      .card {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px 16px;
+        background: var(--surface);
+      }
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 0.98rem;
+      }
+      .foot {
+        margin-top: 44px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        color: var(--dim);
+      }
+      .foot a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/ai-privacy-enterprise.html">AI Privacy</a>
+        <a href="/live-systems.html">Live Systems</a>
+        <a href="/brendan-davies/">Brendan</a>
+        <a href="/architecture/index.html">Architecture</a>
+      </nav>
+      <p class="sub">Public Site Posture</p>
+      <h1>Security &amp; Privacy</h1>
+      <p class="lead">Hubsays pages are built as a static public surface with privacy-first defaults, minimal moving parts, and no intentional ad trackers.</p>
+      <p class="reviewed">Last reviewed: March 2026</p>
+      <section class="card">
+        <h2>Data Handling</h2>
+        <p>No ad trackers are intentionally embedded in site pages. Contact data is user-submitted via email only.</p>
+      </section>
+      <section class="card">
+        <h2>Operational Model</h2>
+        <p>Public artifacts emphasize deterministic workflows, local-first tooling where practical, and explicit guardrails for automation.</p>
+      </section>
+      <section class="card">
+        <h2>Infrastructure Used</h2>
+        <p>The public site is a static HTML surface. Infrastructure currently referenced across the public setup includes Cloudflare at the edge, GitHub for source control, and a minimal publish model designed to avoid third-party trackers or unnecessary embedded scripts.</p>
+      </section>
+      <section class="card">
+        <h2>Reporting</h2>
+        <p>Security concerns: <a href="mailto:support@hubsays.com" style="color:var(--accent)">support@hubsays.com</a></p>
+      </section>
+      <div class="foot">© <span id="y"></span> Hubsays Studio · <a href="/index.html">hubsays.com</a></div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

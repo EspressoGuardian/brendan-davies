@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A practical build guide for designing agents, orchestrators, and automations without skipping contracts, limits, or safety rails."
+    />
+    <meta property="og:title" content="Build Guide | Hubsays" />
+    <meta
+      property="og:description"
+      content="A practical build guide for designing agents, orchestrators, and automations with clear contracts, guardrails, and working examples."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/build/index.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Build Guide | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="A plain-English checklist and workflow for building agents, orchestrators, and automations."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>Build Guide | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #8c8c8c;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.7;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 860px;
+        width: 100%;
+        padding: 72px 24px 96px;
+      }
+      nav {
+        margin-bottom: 64px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2 {
+        margin: 0;
+        color: #fff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        line-height: 1.12;
+      }
+      .lead {
+        margin: 18px 0 0;
+        color: var(--text-dim);
+        font-size: 1.06rem;
+        max-width: 66ch;
+      }
+      .stack {
+        margin-top: 42px;
+        display: grid;
+        gap: 18px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 16px 18px;
+      }
+      .card p {
+        margin: 10px 0 0;
+        color: var(--text-dim);
+      }
+      .card ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+        color: var(--text-dim);
+      }
+      .card li + li {
+        margin-top: 8px;
+      }
+      .mini {
+        margin-top: 8px;
+        color: #b7f9fb;
+        font-size: 0.88rem;
+      }
+      .foot {
+        margin-top: 48px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #fff; }
+      a:hover { color: var(--accent); }
+    </style>
+    <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/glossary/index.html">Glossary</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/agents/index.html">Agents</a>
+        <a href="/build/index.html">Build</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <h1>Build Guide</h1>
+      <p class="lead">
+        A practical checklist and workflow for building agents, orchestrators,
+        and automations without skipping contracts, limits, or safety rails.
+        Use the glossary for definitions. Use this page for the build sequence.
+      </p>
+
+      <div class="stack">
+        <section class="card">
+          <h2>1. Define The Agent</h2>
+          <p>
+            Name the unit clearly. State what it exists to do, what it should
+            never do, and what a successful run looks like.
+          </p>
+          <p class="mini">
+            Ask: what job does this agent own, and what job does it explicitly not own?
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>2. Define Inputs And Outputs</h2>
+          <p>
+            Before tools, define the contract. What data comes in, what shape
+            goes out, and what must be present before the agent is allowed to run?
+          </p>
+          <ul>
+            <li>Input source</li>
+            <li>Required fields</li>
+            <li>Output format</li>
+            <li>Validation rules</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>3. Define Tool Access</h2>
+          <p>
+            Decide which tools the agent may use and keep that allowlist small.
+            Too much access is usually where avoidable risk enters the system.
+          </p>
+          <p class="mini">
+            Good default: narrow command allowlist, bounded network access, no arbitrary shell.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>4. Define Quality Gates</h2>
+          <p>
+            Make pass/fail checks explicit. Do not rely on a vague sense that the
+            output "looks fine" after the fact.
+          </p>
+          <ul>
+            <li>Schema or structure checks</li>
+            <li>Safety or policy checks</li>
+            <li>Tests or smoke checks</li>
+            <li>Approval checkpoints where needed</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>5. Define Fail-Closed Behavior</h2>
+          <p>
+            Decide what happens when inputs are missing, validation fails, a
+            remote system is down, or an answer is uncertain. Good systems stop,
+            escalate, or wait. They do not improvise through unclear state.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>6. Define Runtime Limits</h2>
+          <p>
+            Set caps on time, resource use, retries, and concurrency. An agent
+            that can run forever, retry forever, or consume everything is not a
+            reliable operator.
+          </p>
+          <ul>
+            <li>Time limit per run</li>
+            <li>Retry limit</li>
+            <li>CPU, RAM, and thermal thresholds</li>
+            <li>Queue depth or concurrency cap</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>7. Define Observability</h2>
+          <p>
+            If you cannot inspect what happened later, you do not have a
+            trustworthy system. Log commands, outcomes, failures, and decision points.
+          </p>
+          <p class="mini">
+            Minimum useful record: input summary, action taken, result, exit status, and evidence link.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>8. Start Small, Then Promote</h2>
+          <p>
+            First prove the workflow in a bounded environment. Then add
+            automation, scheduling, and remote control. Promotion without a
+            stable small version usually creates drift instead of leverage.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>Example: Define Agent</h2>
+          <p>
+            A useful first draft is simple: "This agent checks infrastructure
+            health every morning, reports pass/fail status, and escalates only
+            when a threshold is breached. It may run known probes, but it may
+            not execute arbitrary remote commands."
+          </p>
+        </section>
+      </div>
+
+      <p class="foot">
+        Related references: <a href="/glossary/index.html">Glossary</a> for
+        terms and <a href="/agents/index.html">Agents</a> for the live system
+        inventory. Use the glossary to define the language, then use this guide
+        to build the system.
+      </p>
+    </div>
+    <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="How multi-agent chess reinforces systems thinking, constraint navigation, and adaptive architecture decisions."
+    />    <meta property="og:title" content="Multi-Agent Chess and Systems Thinking | Hubsays Studio" />
+    <meta
+      property="og:description"
+      content="How multi-agent chess reinforces systems thinking, constraint navigation, and adaptive architecture decisions."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/blog/posts/012-multi-agent-chess-and-systems-thinking.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Multi-Agent Chess and Systems Thinking | Hubsays Studio" />
+    <meta
+      name="twitter:description"
+      content="How multi-agent chess reinforces systems thinking, constraint navigation, and adaptive architecture decisions."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>Multi-Agent Chess and Systems Thinking | Hubsays Studio</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.75;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 760px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 68px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1 {
+        font-family: var(--font-mono);
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin: 0;
+        max-width: 26ch;
+      }
+      h2 {
+        font-family: var(--font-mono);
+        font-size: 1.2rem;
+        margin: 30px 0 10px;
+        color: #ffffff;
+      }
+      .meta {
+        margin-top: 12px;
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      article { margin-top: 36px; }
+      p {
+        margin: 0 0 20px;
+        font-size: 1.08rem;
+        max-width: 62ch;
+      }
+      ul {
+        margin: 0 0 20px;
+        padding-left: 20px;
+        max-width: 62ch;
+      }
+      li {
+        margin-bottom: 8px;
+        color: var(--text-main);
+      }
+      .highlight {
+        margin: 28px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--accent);
+        background: var(--surface);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+      }
+      .foot {
+        margin-top: 54px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="/architecture/index.html">Architecture</a>
+      </nav>
+
+      <h1>Multi-Agent Chess and Systems Thinking</h1>
+      <div class="meta">Published 2026-02-27 by Brendan Davies</div>
+
+      <article>
+        <p>
+          I use chess as a low-friction way to keep systems judgment sharp
+          outside production hours. It forces structured decision-making under
+          constraints, incomplete information, and shifting
+          incentives&mdash;patterns that mirror real enterprise architecture
+          work.
+        </p>
+
+        <h2>Why 4-Player Chess Is My Preferred Format</h2>
+
+        <p>
+          Standard 1v1 chess is clean and tactical. 4-player chess is messier
+          and more realistic: multiple actors, partially visible intents,
+          temporary alliances that can flip, and local moves that ripple
+          unpredictably across the board. It behaves much more like multi-agent
+          systems than the tidy two-player model.
+        </p>
+
+        <p>
+          I play 4-player online (currently ~2200 rating) as both a way to
+          unwind between deep work sessions or while waiting for long-running
+          tasks (model training, data pipelines, deployments). The format
+          rewards exactly the mental habits I rely on daily:
+        </p>
+
+        <ul>
+          <li>Awareness beyond the "direct opponent" &mdash; scanning the whole system state</li>
+          <li>Balancing short-term tactical gains against long-term positional health</li>
+          <li>Probabilistic reasoning under incomplete information</li>
+          <li>Navigating constraint interactions without overfitting to one variable</li>
+        </ul>
+
+        <p>
+          Those are the same muscles used in platform design, vendor trade-offs,
+          rollout sequencing, failure-mode anticipation, and orchestration
+          reliability. A strong local optimization can quietly degrade another
+          part of the system; recognizing that early is what separates robust
+          architectures from fragile ones.
+        </p>
+
+        <h2>Transfer to Architecture Practice</h2>
+
+        <p>The game trains:</p>
+
+        <ul>
+          <li>Long-horizon planning with branch-risk awareness</li>
+          <li>Adaptive replanning when assumptions break mid-execution</li>
+          <li>Pattern recognition across noisy, unrelated-looking states</li>
+          <li>Patience and structural reading over rote memorization</li>
+        </ul>
+
+        <p>
+          I don't grind 1v1 opening theory much (~1200 casual rating
+          there)&mdash;my interest is in the adaptive, multi-actor dynamics
+          that 4-player forces. It's deliberate practice disguised as downtime.
+        </p>
+
+        <h2>Why It Belongs in the Evidence Stack</h2>
+
+        <p>
+          Chess isn't a credential; it's a quiet signal of how I maintain
+          decision quality and systems intuition when not billing hours. In a
+          field where context drift, stakeholder misalignment, and cascading
+          effects are constant, keeping that judgment calibrated matters.
+        </p>
+
+        <p>
+          If you're hiring for roles involving complex orchestration,
+          deterministic workflows, or enterprise-scale systems thinking, this
+          is one small window into how I stay sharp.
+        </p>
+
+        <p>
+          <a href="/brendan-davies/">More context on my path &rarr;</a><br />
+          <a href="/evidence/">Quantified outcomes &rarr;</a><br />
+          <a href="/architecture/">Architecture diagrams &rarr;</a>
+        </p>
+      </article>
+
+      <div class="foot">Back to <a href="/blog/index.html">Blog Index</a></div>
+    </div>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

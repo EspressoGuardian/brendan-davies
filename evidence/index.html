@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Quantified outcomes for Brendan Davies: $6.8M+ ARR contribution, EUR 1.5M+ enterprise portfolio management, 22% Time-to-Value reduction, and systems architecture proof."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="Evidence and Impact | Hubsays Studio" />
+    <meta
+      property="og:description"
+      content="Quantified outcomes for Brendan Davies: $6.8M+ ARR contribution, EUR 1.5M+ enterprise portfolio management, 22% Time-to-Value reduction, and systems architecture proof."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/evidence//" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Evidence and Impact | Hubsays Studio" />
+    <meta
+      name="twitter:description"
+      content="Quantified outcomes for Brendan Davies: $6.8M+ ARR contribution, EUR 1.5M+ enterprise portfolio management, 22% Time-to-Value reduction, and systems architecture proof."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>Evidence and Impact | Hubsays Studio</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --surface-soft: #0d0d0d;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --line-strong: #2c2c2c;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.72;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 1080px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 56px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2, h3 {
+        margin: 0;
+        color: #fff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(1.95rem, 4vw, 2.7rem);
+        line-height: 1.14;
+        max-width: 22ch;
+      }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
+      }
+      .lead {
+        margin: 18px 0 0;
+        color: var(--text-dim);
+        max-width: 74ch;
+      }
+      .reviewed {
+        margin: 12px 0 0;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      .recruiter-cta {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border: 1px solid #25565a;
+        border-radius: 12px;
+        background: #091114;
+        color: #cfecee;
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+      }
+      .keywords {
+        margin-top: 10px;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      .headline-grid {
+        margin-top: 28px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .headline-metric {
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        background: var(--surface);
+        padding: 14px;
+      }
+      .headline-value {
+        margin: 0;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: clamp(1.3rem, 3vw, 1.7rem);
+      }
+      .headline-label {
+        margin: 6px 0 0;
+        color: var(--text-dim);
+        font-size: 0.88rem;
+      }
+      .sections {
+        margin-top: 24px;
+        display: grid;
+        gap: 14px;
+      }
+      .section {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+        padding: 14px;
+      }
+      .section h2 {
+        font-size: 1.03rem;
+      }
+      .items {
+        margin: 12px 0 0;
+        display: grid;
+        gap: 8px;
+      }
+      .item {
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: var(--surface-soft);
+        padding: 9px 10px;
+      }
+      .item strong {
+        color: #fff;
+      }
+      .item span {
+        color: var(--text-dim);
+      }
+      .item a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .item a:hover { color: var(--accent); }
+      .foot {
+        margin-top: 46px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      .foot a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      @media (max-width: 900px) {
+        .headline-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 760px) {
+        .wrapper { padding: 52px 14px 72px; }
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/time-to-value-enterprise-saas.html">TTV</a>
+        <a href="/ai-orchestration-reliability.html">AI Reliability</a>
+        <a href="/ai-privacy-enterprise.html">AI Privacy</a>
+        <a href="/llm-structured-outputs.html">LLM Outputs</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <p class="sub">Evidence and Impact</p>
+      <h1>Quantified Outcomes Across SaaS, Systems Design, and Automation.</h1>
+      <p class="lead">
+        Signal-first metrics focused on measurable commercial impact, architecture execution,
+        and operational reliability. This page is intentionally concise for recruiter and
+        hiring-manager scan speed.
+      </p>
+      <p class="reviewed">Last reviewed: March 2026</p>
+      <div class="recruiter-cta">
+        Open to senior systems / AI architecture roles. Current hiring status:
+        <a href="/availability.html">Availability</a>.
+      </div>
+      <p class="keywords">Enterprise SaaS | AI Orchestration | Systems Architecture | Workflow Automation | Revenue Impact</p>
+
+      <section class="headline-grid" aria-label="Headline metrics">
+        <article class="headline-metric">
+          <p class="headline-value">$6.8M</p>
+          <p class="headline-label">Net-new ARR generated</p>
+        </article>
+        <article class="headline-metric">
+          <p class="headline-value">22%</p>
+          <p class="headline-label">Time-to-Value reduction</p>
+        </article>
+        <article class="headline-metric">
+          <p class="headline-value">750+</p>
+          <p class="headline-label">Enterprise accounts managed</p>
+        </article>
+      </section>
+
+      <section class="sections" aria-label="Detailed evidence">
+        <article class="section">
+          <h2>Commercial Impact</h2>
+          <div class="items">
+            <div class="item"><strong>$6.8M net-new ARR generated</strong> <span>(Atlassian).</span></div>
+            <div class="item"><strong>27% of total team output</strong> <span>(EMEA segment).</span></div>
+            <div class="item"><strong>€1.5M ARR portfolio ownership</strong> <span>(CleverTap).</span></div>
+            <div class="item"><strong>18% churn reduction</strong> <span>through structured adoption systems.</span></div>
+            <div class="item"><strong>15% sales friction reduction</strong> <span>via internal enablement tooling.</span></div>
+            <div class="item"><strong>€280K+ expansion deal</strong> <span>as an individual record close.</span></div>
+            <div class="item"><strong>Top performer and contributor</strong> <span>across multiple roles for multiple years.</span></div>
+            <div class="item"><strong>Deep dive:</strong> <span><a href="/time-to-value-enterprise-saas.html">Reducing Time-to-Value by 22% in Enterprise SaaS</a>.</span></div>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Systems and Architecture</h2>
+          <div class="items">
+            <div class="item"><strong>40% audit friction reduction</strong> <span>with EspressoGuardian tooling, benchmarked against the same release-audit checklist before and after automation.</span></div>
+            <div class="item"><strong>Benchmark basis:</strong> <span>routine branch-state, staging, ignored-file, and secret-scan verification dropped from roughly 10 manual checks to 6 repeated checks during local release passes.</span></div>
+            <div class="item"><strong>Deterministic, privacy-first workflows</strong> <span>for local-first system operation.</span></div>
+            <div class="item"><strong>Job Radar architecture</strong> <span>reducing opportunity detection latency from days to hours.</span></div>
+            <div class="item"><strong>Multi-stage Human-in-the-Loop tailoring</strong> <span>with fail-closed quality gates.</span></div>
+            <div class="item"><strong>Atomic artifact generation</strong> <span>with checksums and reproducibility validation.</span></div>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Operational Discipline</h2>
+          <div class="items">
+            <div class="item"><strong>Roadmap execution</strong> <span>across multi-year initiatives and constraints.</span></div>
+            <div class="item"><strong>Deterministic rewrite gates</strong> <span>for AI-generated artifacts.</span></div>
+            <div class="item"><strong>Idempotent tracking systems</strong> <span>to prevent duplication drift.</span></div>
+            <div class="item"><strong>SQLite WAL and lock contention mitigation</strong> <span>in automation workflows.</span></div>
+            <div class="item"><strong>systemd service hardening</strong> <span>and resilient local operations.</span></div>
+            <div class="item"><strong>Zero-telemetry lab environments</strong> <span>for controlled experimentation.</span></div>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Cognitive Signals: Chess as Systems Training</h2>
+          <div class="items">
+            <div class="item"><strong>~2200+ rating in 4-player chess</strong> <span>(online multi-agent format).</span></div>
+            <div class="item"><strong>Applied value:</strong> <span>constraint navigation, long-horizon planning, probabilistic modeling, adaptive decision-making, and dynamic systems awareness.</span></div>
+            <div class="item"><strong>Further reading:</strong> <span><a href="/blog/posts/012-multi-agent-chess-and-systems-thinking.html">Multi-Agent Chess and Systems Thinking</a>.</span></div>
+          </div>
+        </article>
+      </section>
+
+      <div class="foot">© <span id="y"></span> Hubsays Studio · <a href="/index.html">hubsays.com</a></div>
+    </div>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

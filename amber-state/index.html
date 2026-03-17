@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="The Amber State: deterministic offline-first survival simulation by Hubsays Studio."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="The Amber State | Hubsays Studio" />
+    <meta
+      property="og:description"
+      content="The Amber State: deterministic offline-first survival simulation by Hubsays Studio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/amber-state//" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Amber State | Hubsays Studio" />
+    <meta
+      name="twitter:description"
+      content="The Amber State: deterministic offline-first survival simulation by Hubsays Studio."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>The Amber State | Hubsays Studio</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.72;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 780px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 72px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2, h3 {
+        font-family: var(--font-mono);
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        line-height: 1.15;
+        letter-spacing: -0.6px;
+        max-width: 22ch;
+      }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 14px;
+      }
+      .lead {
+        color: var(--text-dim);
+        font-size: 1.1rem;
+        margin: 20px 0 0;
+        max-width: 64ch;
+      }
+      .badge-row {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .badge {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: #bfbfbf;
+        border: 1px solid #2d2d2d;
+        background: #0d0d0d;
+        border-radius: 999px;
+        padding: 4px 10px;
+      }
+      .badge.highlight {
+        color: var(--accent);
+        border-color: #11585d;
+      }
+      .entries {
+        margin-top: 62px;
+        display: grid;
+        gap: 34px;
+      }
+      .entry {
+        border-left: 1px solid var(--line);
+        padding-left: 20px;
+        transition: border-color 0.2s ease;
+      }
+      .entry:hover { border-left-color: var(--accent); }
+      .entry-label {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+      }
+      .entry h3 {
+        margin-top: 8px;
+        font-size: 1.2rem;
+        line-height: 1.35;
+      }
+      .entry p {
+        margin: 10px 0 0;
+        color: var(--text-dim);
+        max-width: 62ch;
+      }
+      .entry ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--text-dim);
+      }
+      .entry a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .entry a:hover { color: var(--accent); }
+      .callout {
+        margin-top: 12px;
+        border: 1px solid #25565a;
+        border-radius: 10px;
+        background: #091114;
+        color: #b9e7ea;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+      .foot {
+        margin-top: 60px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="/architecture/index.html">Architecture</a>
+      </nav>
+
+      <p class="sub">Current Game</p>
+      <h1>The Amber State</h1>
+      <p class="lead">
+        A deterministic systems simulation in development. Amber State is my
+        long-form creative laboratory where I build games while applying
+        practical architecture, AI orchestration, and automation patterns in a
+        real product context.
+      </p>
+      <div class="badge-row" aria-label="Current status">
+        <span class="badge highlight">In active development</span>
+        <span class="badge">Ongoing research and iteration</span>
+        <span class="badge">Reproducible, privacy-first workflows</span>
+      </div>
+
+      <section class="entries" aria-label="Amber State overview">
+        <article class="entry">
+          <div class="entry-label">What It Is</div>
+          <h3>For Future Players</h3>
+          <p>
+            Amber State is a 1-D deterministic colony simulation focused on
+            resource tension, survival logic, and structural constraints. The
+            design philosophy prioritizes reproducibility, system clarity, and
+            strategic depth over visual spectacle.
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Why This Exists</div>
+          <h3>Creative Outlet and Systems Laboratory</h3>
+          <p>
+            This project is where I pressure-test architectural thinking
+            end-to-end. Every feature forces decisions around deterministic
+            state, memory limits, data modeling, and user feedback loops.
+          </p>
+          <ul>
+            <li>Tests architectural decisions in a controlled build context</li>
+            <li>Creates practical learning loops from real trade-offs</li>
+            <li>Strengthens automation and validation discipline</li>
+            <li>Applies lessons back into enterprise workflows</li>
+          </ul>
+          <div class="callout">
+            Amber State is a creative outlet and systems sandbox. My primary
+            professional focus remains enterprise SaaS architecture, AI
+            orchestration, and workflow automation.
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Applied System Design</div>
+          <h3>Architecture Learnings in Practice</h3>
+          <ul>
+            <li>Deterministic state modeling and explainable outcomes</li>
+            <li>Constraint-driven design under performance and scope limits</li>
+            <li>Event-driven simulation loops and validation checks</li>
+            <li>Reproducible builds and local-first automation</li>
+            <li>Separation between simulation logic and interface layer</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Current Status</div>
+          <h3>Active Development by Design</h3>
+          <ul>
+            <li>Core simulation loop implemented</li>
+            <li>Architectural boundaries defined and iterating</li>
+            <li>Economic model and balance tuning in progress</li>
+            <li>Tooling automation and integrity checks expanding</li>
+          </ul>
+          <p>
+            Development is ongoing by design. The goal is not speed, it is
+            depth and structural integrity.
+          </p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Roadmap</div>
+          <h3>Next Milestones</h3>
+          <ul>
+            <li>Simulation stability hardening</li>
+            <li>Systems expansion across core loops</li>
+            <li>Playtest instrumentation and debrief quality</li>
+            <li>Public build timing to be announced</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Transferable Skills</div>
+          <h3>What This Demonstrates Professionally</h3>
+          <ul>
+            <li>Long-horizon roadmap planning</li>
+            <li>Structured iteration cycles</li>
+            <li>Toolchain automation and reliability guardrails</li>
+            <li>Deterministic debugging practices</li>
+            <li>Performance-aware systems modeling</li>
+            <li>Documentation and architecture discipline</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-label">Related Logs</div>
+          <h3><a href="/blog/posts/001-vibe-coding.html">Vibe Coding and System Integrity</a></h3>
+          <p>Why deterministic checks and constraints matter in AI-assisted workflows.</p>
+          <p><a href="/blog/posts/002-the-crossroads.html">The Crossroads</a>: the dual-path build strategy behind Hubsays Studio.</p>
+        </article>
+      </section>
+
+      <div class="foot">© <span id="y"></span> Hubsays Studio</div>
+    </div>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

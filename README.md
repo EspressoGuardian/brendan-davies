@@ -1,37 +1,34 @@
-# Brendan Davies - Recruiter Profile Site
+# Brendan Davies
 
-Focused, static profile site for hiring managers and recruiters.
+Static site for `brendan-davies.dev`.
 
-Live destination:
-- `https://hubsays.com/brendan-davies/`
+- `/` -> Brendan Davies public proof of work
+- `/brendan-davies/` -> deeper profile and background
+- `/blog/` -> writing and case-study archive
+- live companion surface -> `https://jobs.hubsays.media/`
 
-Primary positioning:
-- Senior Solutions Architect
-- Enterprise SaaS adoption systems
-- AI orchestration and workflow automation
+## Stack
 
-## What This Repo Contains
-
-- `index.html`: recruiter-focused landing page
-- clean, no-build static implementation
-- metrics-first content and concise case-study framing
+- Plain HTML/CSS/JS (no build system required)
+- GitHub Pages-compatible static deployment
+- No auth, no tracking scripts
 
 ## Local Preview
 
+Serve the directory with any static server, for example:
+
 ```bash
 python -m http.server 8080
+# open http://localhost:8080
 ```
 
-Then open `http://localhost:8080`.
+## Structure
 
-## Deployment
+- `index.html` - personal landing page
+- `brendan-davies/index.html` - deeper profile page
+- `blog/index.html` - Blog index
+- `blog/posts/*.html` - Post pages
 
-This repo is static and can be deployed to any static host:
-- Cloudflare Pages
-- GitHub Pages
-- Netlify
-- Vercel (static)
+## Deployment Notes
 
-## Content Policy
-
-The source is published for hosting convenience. The written content, narrative structure, and branding are proprietary.
+Keep links root-relative so routing stays stable in production.

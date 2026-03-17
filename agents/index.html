@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A public-safe inventory of Brendan Davies' agent system: what is live, what is bounded, and how the work stays observable without exposing private operator details."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https://brendan-davies.dev; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    />
+    <meta property="og:title" content="Agents | Hubsays" />
+    <meta
+      property="og:description"
+      content="Live agent inventory, orchestration flow, guardrails, and system design notes built in public."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/agents/index.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Agents | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="A recruiter-friendly but technically precise overview of the agents Brendan Davies is building and operating."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>Agents | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #101214;
+        --surface-strong: #0c1719;
+        --text-main: #e4e7e7;
+        --text-dim: #8d9496;
+        --accent: #00f2ff;
+        --accent-soft: #89fbff;
+        --line: #23282b;
+        --line-strong: #2f7b81;
+        --good: #85f7bc;
+        --warn: #ffd37e;
+        --plan: #9bb6ff;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(0, 242, 255, 0.12), transparent 28%),
+          radial-gradient(circle at 20% 20%, rgba(98, 251, 255, 0.06), transparent 24%),
+          var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.68;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 1080px;
+        width: 100%;
+        padding: 72px 24px 96px;
+      }
+      nav {
+        margin-bottom: 60px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+      .hero {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: 1.5fr 1fr;
+        align-items: start;
+      }
+      .hero-card,
+      .panel,
+      .agent-card {
+        border: 1px solid var(--line);
+        background: rgba(16, 18, 20, 0.94);
+        border-radius: 16px;
+      }
+      .hero-card {
+        padding: 22px;
+      }
+      .hero-card h1,
+      .section-title,
+      .agent-card h2 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      .hero-card h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.08;
+        max-width: 12ch;
+      }
+      .eyebrow,
+      .meta,
+      .status {
+        font-family: var(--font-mono);
+      }
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--accent);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .lead {
+        margin: 18px 0 0;
+        color: var(--text-dim);
+        font-size: 1.06rem;
+        max-width: 64ch;
+      }
+      .meta {
+        margin-top: 18px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .meta span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        color: var(--text-dim);
+      }
+      .hero-side {
+        display: grid;
+        gap: 14px;
+      }
+      .panel {
+        padding: 18px;
+      }
+      .panel h2,
+      .panel h3 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      .panel p,
+      .panel li,
+      .agent-card p,
+      .agent-card li {
+        color: var(--text-dim);
+      }
+      .panel ul,
+      .agent-card ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+      .stack {
+        margin-top: 44px;
+        display: grid;
+        gap: 16px;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+      .agents-grid {
+        margin-top: 16px;
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .agent-card {
+        grid-column: span 12;
+        padding: 18px;
+      }
+      .agent-card h2 {
+        font-size: 1.04rem;
+      }
+      .card-top {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 5px 9px;
+        font-size: 0.72rem;
+        border: 1px solid var(--line);
+      }
+      .status.live {
+        color: var(--good);
+        border-color: rgba(133, 247, 188, 0.35);
+      }
+      .status.runnable {
+        color: var(--warn);
+        border-color: rgba(255, 211, 126, 0.35);
+      }
+      .status.planned {
+        color: var(--plan);
+        border-color: rgba(155, 182, 255, 0.35);
+      }
+      .diagram {
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(12, 23, 25, 0.85), rgba(7, 11, 12, 0.95));
+        padding: 16px;
+        overflow-x: auto;
+      }
+      .diagram pre {
+        margin: 0;
+        color: #c9fcff;
+        font-size: 0.79rem;
+        line-height: 1.5;
+        font-family: var(--font-mono);
+      }
+      .facts {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(12, 1fr);
+      }
+      .fact {
+        grid-column: span 12;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+        background: rgba(16, 18, 20, 0.92);
+      }
+      .fact h3 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+        font-size: 0.94rem;
+      }
+      .foot {
+        margin-top: 44px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      @media (min-width: 860px) {
+        .agent-card { grid-column: span 6; }
+        .fact { grid-column: span 4; }
+      }
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 760px) {
+        .wrapper { padding: 56px 16px 80px; }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/agents/index.html">Agents</a>
+        <a href="/build/index.html">Build</a>
+        <a href="/glossary/index.html">Glossary</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-card">
+          <p class="eyebrow">Live System Inventory</p>
+          <h1>Agents with real boundaries, not vague hype.</h1>
+          <p class="lead">
+            This page is the public operating map for the agent lanes I am
+            building. It separates what is live now, what is already runnable,
+            and what is still planned. The goal is simple: show actual systems
+            architecture, not inflated claims.
+          </p>
+          <div class="meta">
+            <span>Primary surface: Anchor Desk</span>
+            <span>Relay surface: Relay Desk</span>
+            <span>Operator access: private briefings + local tools</span>
+            <span>Current state: actively iterating</span>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <section class="panel">
+            <h2>What recruiters should see</h2>
+            <ul>
+              <li>Narrow agent scopes instead of one giant vague bot</li>
+              <li>Explicit guardrails, allowlists, and fail-closed behavior</li>
+              <li>Observable runtime checks before trust is assumed</li>
+              <li>Evidence of iteration from local scripts to controlled automation</li>
+            </ul>
+          </section>
+
+          <section class="panel">
+            <h2>Current live path</h2>
+            <p>
+              The current build runs from one main control surface with a
+              separate review relay for bounded checks. The rule stays the
+              same: prove the contract locally first, then promote only the
+              stable parts.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">Execution Topology</h2>
+        <div class="diagram">
+          <pre>Anchor Desk
+  |
+  +-- global manager
+  |     |
+  |     +-- RouterAgent -> queue + dispatch
+  |     +-- GuardianAgent -> policy + maintenance
+  |     +-- DebuggerAgent -> bounded verification
+  |
+  +-- Operator briefing surface
+  +-- Internal forge -> primary git remote
+  +-- Governed credentials
+  |
+  +-- review relay
+                      |
+                      +-- supervised lane
+                            +-- bounded health checks
+                            +-- bounded worker lanes</pre>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">Public Mirror Of The Control Tower</h2>
+        <section class="panel">
+          <p>
+            I run a private governed operations stack that tracks queues,
+            handoffs, approvals, and safety state. This page is the public-safe
+            mirror of that system: real structure, real operating rules, and
+            enough detail to show the work without mapping the private setup.
+          </p>
+          <ul>
+            <li>Inventory and policy are visible because system design should be legible</li>
+            <li>Operational controls stay private because production safety matters</li>
+            <li>Runtime data is intentionally redacted where it would expose private infrastructure</li>
+          </ul>
+        </section>
+
+        <div class="facts">
+          <section class="fact">
+            <h3>What is mirrored</h3>
+            <p>
+              Agent roles, execution boundaries, promotion rules, and the way
+              the work is structured from intake to verification.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>What is redacted</h3>
+            <p>
+              Private node names, internal addresses, credentials, exact access
+              paths, and implementation detail that would create unnecessary
+              exposure.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>Why it matters</h3>
+            <p>
+              It shows real agent-system work in progress: observable,
+              governed automation with visible safety mechanisms and an
+              operating model that can scale.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">Current Agent Lanes</h2>
+        <div class="agents-grid">
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Signal Desk</h2>
+              <span class="status live">Live</span>
+            </div>
+            <p>
+              The private operator briefing surface. It handles free-text
+              intake, explicit quick actions, and status updates without
+              becoming the execution engine itself.
+            </p>
+            <ul>
+              <li>Plain-language requests can become tracked intake tickets</li>
+              <li>Pushes updates back when state changes matter</li>
+              <li>Acts as the operator surface, not the execution engine itself</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Router + Guardrails</h2>
+              <span class="status live">Live</span>
+            </div>
+            <p>
+              The pair that decides what may run, when it may run, and when the
+              system should stop instead of improvising.
+            </p>
+            <ul>
+              <li>Router manages queue admission and bounded dispatch</li>
+              <li>Guardian enforces maintenance mode and preflight checks</li>
+              <li>Together they form the deterministic operating backbone</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Briefing Desk</h2>
+              <span class="status live">Live</span>
+            </div>
+            <p>
+              Private operator messaging surface. It is the human interface
+              layer, not a catch-all execution lane.
+            </p>
+            <ul>
+              <li>Receives commands and sends private updates</li>
+              <li>Restricted to allowlisted chats</li>
+              <li>Best for remote visibility and controlled triggers</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Platform Preflight</h2>
+              <span class="status runnable">Runnable</span>
+            </div>
+            <p>
+              Runs the daily platform preflight: tools, credentials, APIs,
+              local services, and relay reachability.
+            </p>
+            <ul>
+              <li>Checks key CLIs, auth, and secrets before normal work</li>
+              <li>Verifies internal forge and operator-briefing health</li>
+              <li>Confirms the relay path is behaving</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Relay Lane</h2>
+              <span class="status runnable">Runnable</span>
+            </div>
+            <p>
+              Controlled remote lane for the always-on relay. Today it performs
+              allowlisted health checks only.
+            </p>
+            <ul>
+              <li>No arbitrary shell by default</li>
+              <li>Bounded access path only</li>
+              <li>Reports CPU, RAM, uptime, and thermal data</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>DebuggerAgent</h2>
+              <span class="status runnable">Runnable</span>
+            </div>
+            <p>
+              Focused verification lane for fast local checks. It exists to
+              shorten feedback loops and keep failures explicit.
+            </p>
+            <ul>
+              <li>Runs `pytest` and `ruff` in a bounded window</li>
+              <li>Summarizes pass/fail instead of hiding behind noise</li>
+              <li>Feeds the same guardrail mindset as the other lanes</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>LinkedIn Engine</h2>
+              <span class="status runnable">Runnable</span>
+            </div>
+            <p>
+              A bounded content engine for evidence-anchored drafting,
+              deterministic review gates, and operator approval before anything
+              is promoted.
+            </p>
+            <ul>
+              <li>Generates multiple draft variants under explicit constraints</li>
+              <li>Uses evidence and gate checks before approval</li>
+              <li>Built as a supervised worker, not an unsandboxed autoposter</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>TrackerAgent</h2>
+              <span class="status live">Live</span>
+            </div>
+            <p>
+              The record-keeping lane for job opportunities, statuses, notes,
+              and operational context.
+            </p>
+            <ul>
+              <li>Local-first CLI around a SQLite tracker</li>
+              <li>Designed for deterministic writes and compact auditability</li>
+              <li>Acts as the durable system-of-record layer</li>
+            </ul>
+          </article>
+
+          <article class="agent-card">
+            <div class="card-top">
+              <h2>Triage, Scanner, Tailor, Intake</h2>
+              <span class="status planned">Planned</span>
+            </div>
+            <p>
+              These lanes are defined because the ownership is clear, but they
+              are intentionally not overclaimed as finished products.
+            </p>
+            <ul>
+              <li>Triage: normalize and claim intake before execution</li>
+              <li>Scanner: discovery and queueing</li>
+              <li>Tailor: role-specific artifact generation</li>
+              <li>Intake: turn rough ideas into structured next actions</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">System Design Signals</h2>
+        <div class="facts">
+          <section class="fact">
+            <h3>Guardrails</h3>
+            <p>
+              Small allowlists, bounded commands, and explicit human approval
+              for higher-risk actions.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>Observability</h3>
+            <p>
+              Startup checks, remote health probes, service checks, visible
+              failure states, and a private control tower before trust is assumed.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>Promotion Model</h3>
+            <p>
+              Build locally, prove the workflow, then move reliable pieces to
+              scheduled or remote execution.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">Model And Cost Posture</h2>
+        <div class="facts">
+          <section class="fact">
+            <h3>Commercial reasoning lane</h3>
+            <p>
+              A paid baseline reasoning subscription is kept available, with
+              short premium bursts only when a higher-capacity sprint is worth
+              the spend.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>Free and promotional coverage</h3>
+            <p>
+              Secondary model families are kept in free-tier or promotional
+              lanes where practical, so comparison and redundancy stay available
+              without unnecessary fixed cost.
+            </p>
+          </section>
+          <section class="fact">
+            <h3>Local-first fallback</h3>
+            <p>
+              Local open-weight models remain part of the stack so private
+              workflows and no-API experiments do not depend entirely on hosted
+              services.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="stack">
+        <h2 class="section-title">How this page should be read</h2>
+        <section class="panel">
+          <p>
+            This is not meant to imply a giant autonomous platform already runs
+            unattended. It is meant to show how I structure automation work:
+            define boundaries, separate responsibilities, keep the safety model
+            legible, and add control surfaces gradually.
+          </p>
+          <p>
+            If you want the build sequence, go to the
+            <a href="/build/index.html">Build guide</a>. If you want the system
+            map, browse the <a href="/architecture/index.html">Architecture</a>
+            pages. This page sits in the middle: it is the operational
+            inventory.
+          </p>
+        </section>
+      </section>
+
+      <p class="foot">
+        This page is a living inventory. It should stay honest: live means live,
+        runnable means implemented but not always-on, and planned means the
+        contract exists but the lane is not promoted yet.
+      </p>
+    </div>
+    <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Architecture diagrams for AI orchestration, workflow safety, live tooling loops, and systems design built in public." />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />    <meta property="og:title" content="Architecture | Hubsays" />
+    <meta
+      property="og:description"
+      content="Architecture diagrams for AI orchestration, workflow safety, live tooling loops, and systems design built in public."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/architecture//" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Architecture | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="Architecture diagrams for AI orchestration, workflow safety, live tooling loops, and systems design built in public."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>Architecture | Hubsays</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text-main);
+        display: flex;
+        justify-content: center;
+      }
+      .wrap { max-width: 1100px; width: 100%; padding: 72px 24px 92px; }
+      nav { margin-bottom: 56px; display: flex; gap: 18px; flex-wrap: wrap; }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      h1 { margin: 0; color: #fff; font-size: clamp(1.8rem, 4vw, 2.4rem); font-family: var(--font-mono); }
+      .sub { margin: 0; color: var(--text-dim); font-size: 0.95rem; max-width: 760px; line-height: 1.45; }
+      .reviewed {
+        margin: 10px 0 0;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; margin-top: 18px; }
+      .card {
+        grid-column: span 12;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+        transition: transform .15s ease, border-color .15s ease;
+      }
+      .card:hover { transform: translateY(-1px); border-color: #333; }
+      .titleRow { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+      .title { margin: 0; font-size: 1.05rem; color: #fff; font-family: var(--font-mono); }
+      .tagRow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .tag {
+        font-size: 0.68rem;
+        color: #bdbdbd;
+        border: 1px solid #2d2d2d;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: #0d0d0d;
+        font-family: var(--font-mono);
+      }
+      .tag.highlight { color: var(--accent); border-color: #11585d; }
+      .desc { margin: 10px 0 0; color: var(--text-dim); font-size: 0.92rem; line-height: 1.45; }
+      .ctaRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 11px;
+        border-radius: 10px;
+        border: 1px solid #2d2d2d;
+        background: #0d0d0d;
+        font-size: 0.78rem;
+        color: #d4d4d4;
+        text-decoration: none;
+        font-family: var(--font-mono);
+      }
+      .btn:hover { border-color: #3f3f3f; }
+      .btnPrimary { border-color: #11585d; color: var(--accent); }
+      .footer {
+        margin-top: 28px;
+        color: #6f6f6f;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        font-family: var(--font-mono);
+      }
+      @media (min-width: 860px) { .card { grid-column: span 6; } }
+      @media (max-width: 760px) { .wrap { padding: 52px 14px 72px; } }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/agents/index.html">Agents</a>
+        <a href="/build/index.html">Build</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <div class="top">
+        <div>
+          <h1>Architecture</h1>
+          <p class="sub">
+            A gallery of system diagrams built in public, focused on adoption, automation,
+            AI orchestration, and operational safety.
+          </p>
+          <p class="reviewed">Last reviewed: March 2026</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="titleRow">
+            <h2 class="title">AI Job Radar - End-to-End Architecture</h2>
+            <span class="tag highlight">Animated</span>
+          </div>
+          <div class="tagRow">
+            <span class="tag">Telegram</span>
+            <span class="tag">ATS/APIs</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">LLM Orchestration</span>
+            <span class="tag">Human-in-the-loop</span>
+            <span class="tag">Quality Gates</span>
+          </div>
+          <p class="desc">
+            Secure ingress -> discovery scan/probe/track -> segmented HITL tailoring -> deterministic quality gates
+            -> artifact integrity + outputs -> outcome feedback + observability.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="/architecture/job-radar.html">View diagram</a>
+            <a class="btn" href="/architecture/job-radar-case-study.html">Read case study</a>
+            <a class="btn" href="/blog/posts/001-vibe-coding.html">Read related write-up</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="titleRow">
+            <h2 class="title">AI Job Radar - Deep Dive (Ops + Safety)</h2>
+            <span class="tag highlight">Animated</span>
+          </div>
+          <div class="tagRow">
+            <span class="tag">Content Firewall</span>
+            <span class="tag">Idempotency</span>
+            <span class="tag">Atomic Writes</span>
+            <span class="tag">Task Queue</span>
+            <span class="tag">/status</span>
+            <span class="tag">systemd</span>
+          </div>
+          <p class="desc">
+            Production rails: prompt-injection defense, scan locks, WAL contention handling,
+            approval gating, manifests/checksums, and traceability.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="/architecture/job-radar-deep-dive.html">View diagram</a>
+            <a class="btn" href="/blog/posts/004-architecture-first-scalable-security.html">Read ops and safety write-up</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="titleRow">
+            <h2 class="title">Live Tooling Loop</h2>
+            <span class="tag highlight">Diagram</span>
+          </div>
+          <div class="tagRow">
+            <span class="tag">Git Safety</span>
+            <span class="tag">Privacy Checks</span>
+            <span class="tag">Determinism</span>
+            <span class="tag">Operator Feedback</span>
+          </div>
+          <p class="desc">
+            A compact map of how shell-guard, godot-secrets-scan, and
+            state-sentinel fit the same runtime safety loop.
+          </p>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="/architecture/live-tooling-loop.html">View diagram</a>
+            <a class="btn" href="/live-systems.html">Read Live Systems</a>
+          </div>
+        </article>
+      </div>
+
+    </div>
+    <script>
+      if (window.location.pathname === "/architecture/") {
+        window.location.replace("/architecture/index.html");
+      }
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="How I evaluate a SaaS vendor in 60 minutes: ownership, compliance, portability, sentiment, licensing, and pricing reality."
+    />    <meta property="og:title" content="How I Evaluate a SaaS Vendor in 60 Minutes | Hubsays Studio" />
+    <meta
+      property="og:description"
+      content="How I evaluate a SaaS vendor in 60 minutes: ownership, compliance, portability, sentiment, licensing, and pricing reality."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/blog/posts/007-how-i-evaluate-a-saas-vendor-in-60-minutes.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How I Evaluate a SaaS Vendor in 60 Minutes | Hubsays Studio" />
+    <meta
+      name="twitter:description"
+      content="How I evaluate a SaaS vendor in 60 minutes: ownership, compliance, portability, sentiment, licensing, and pricing reality."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>How I Evaluate a SaaS Vendor in 60 Minutes | Hubsays Studio</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.75;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 760px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 68px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1 {
+        font-family: var(--font-mono);
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin: 0;
+        max-width: 25ch;
+      }
+      h2 {
+        font-family: var(--font-mono);
+        font-size: 1.2rem;
+        margin: 30px 0 10px;
+        color: #ffffff;
+      }
+      .meta {
+        margin-top: 12px;
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      article { margin-top: 36px; }
+      p {
+        margin: 0 0 20px;
+        font-size: 1.08rem;
+        max-width: 62ch;
+      }
+      ul {
+        margin: 0 0 20px;
+        padding-left: 20px;
+        max-width: 62ch;
+      }
+      li {
+        margin-bottom: 8px;
+        color: var(--text-main);
+      }
+      .highlight {
+        margin: 28px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--accent);
+        background: var(--surface);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+      }
+      .foot {
+        margin-top: 54px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="/architecture/index.html">Architecture</a>
+      </nav>
+
+      <h1>How I Evaluate a SaaS Vendor in 60 Minutes</h1>
+      <div class="meta">Published 2026-02-27 by Brendan Davies</div>
+
+      <article>
+        <p>
+          When I evaluate a SaaS vendor, I focus on the ecosystem around the
+          product, not just the interface. This is the structured pass I use.
+        </p>
+
+        <h2>1) Ownership and Jurisdiction</h2>
+        <ul>
+          <li>Where is the company legally based?</li>
+          <li>Who owns it?</li>
+          <li>VC-backed, bootstrapped, or part of a larger group?</li>
+          <li>Who are the listed subprocessors?</li>
+        </ul>
+        <p>
+          Trust pages are often revealing. If data crosses multiple legal
+          regimes, risk posture changes early in the process.
+        </p>
+
+        <h2>2) Compliance Posture</h2>
+        <ul>
+          <li>SOC reports</li>
+          <li>GDPR statements and DPA availability</li>
+          <li>HIPAA support where relevant</li>
+          <li>AI Act positioning</li>
+          <li>Whether compliance is gated behind enterprise tiers</li>
+        </ul>
+        <p>
+          If a product claims SMB fit but places DPA access behind enterprise
+          pricing, that is immediate friction for regulated buyers.
+        </p>
+
+        <h2>3) Data Portability and Account Exit</h2>
+        <ul>
+          <li>Can I import cleanly?</li>
+          <li>Can I export fully?</li>
+          <li>Is the API usable in practice?</li>
+          <li>Can account deletion be done transparently in the dashboard?</li>
+        </ul>
+        <p>
+          I prefer mature deletion flows with explicit confirmations (for
+          example, typing the account name). If exit requires emailing support,
+          integration risk increases.
+        </p>
+
+        <h2>4) Community and Sentiment</h2>
+        <ul>
+          <li>Official docs</li>
+          <li>Reddit</li>
+          <li>Glassdoor</li>
+          <li>Trustpilot</li>
+          <li>LinkedIn leadership and tenure patterns</li>
+        </ul>
+        <p>
+          Every source has bias. I treat them as signals. Leadership churn, for
+          example, can suggest roadmap instability.
+        </p>
+
+        <h2>5) Alternatives and Open Source</h2>
+        <p>
+          If open source alternatives exist, I assess license fit (MIT, Apache
+          2.0, GPL variants) against operational context. The goal is clarity,
+          not ideology.
+        </p>
+
+        <h2>6) Pricing Reality</h2>
+        <ul>
+          <li>Post-intro pricing behavior</li>
+          <li>Tier feature gaps</li>
+          <li>Automation limits</li>
+          <li>API rate caps</li>
+        </ul>
+
+        <div class="highlight">
+          Final test: would I trust this vendor at 10x scale? If yes, integrate.
+          If uncertain, use abstraction layers and keep optionality.
+        </div>
+      </article>
+
+      <div class="foot">Back to <a href="/blog/index.html">Blog Index</a></div>
+    </div>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

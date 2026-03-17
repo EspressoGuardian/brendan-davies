@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A practical decision framework for choosing between prompting, tool use, RAG, structured outputs, LoRA/QLoRA, and full fine-tuning in LLM systems."
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="LLM Technique Selection: Prompting, Tools, RAG, LoRA, and Fine-Tuning | Hubsays" />
+    <meta
+      property="og:description"
+      content="A practical decision framework for choosing between prompting, tool use, RAG, structured outputs, LoRA/QLoRA, and full fine-tuning in LLM systems."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/llm-technique-selection.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LLM Technique Selection: Prompting, Tools, RAG, LoRA, and Fine-Tuning | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="A practical decision framework for choosing between prompting, tool use, RAG, structured outputs, LoRA/QLoRA, and full fine-tuning in LLM systems."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>LLM Technique Selection: Prompting, Tools, RAG, LoRA, and Fine-Tuning | Hubsays</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "LLM Technique Selection: Prompting, Tools, RAG, LoRA, and Fine-Tuning",
+        "description": "A practical decision framework for choosing between prompting, tool use, RAG, structured outputs, LoRA/QLoRA, and full fine-tuning in LLM systems.",
+        "author": {
+          "@type": "Person",
+          "name": "Brendan Davies",
+          "url": "https://brendan-davies.dev/brendan-davies/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hubsays",
+          "url": "https://brendan-davies.dev/"
+        },
+        "mainEntityOfPage": "https://brendan-davies.dev/llm-technique-selection.html"
+      }
+    </script>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.74;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 860px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 68px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2, h3 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(1.95rem, 4vw, 2.7rem);
+        line-height: 1.15;
+        max-width: 24ch;
+      }
+      h2 {
+        font-size: 1.15rem;
+        margin: 32px 0 10px;
+      }
+      h3 {
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      p {
+        margin: 0 0 18px;
+        max-width: 68ch;
+      }
+      ul {
+        margin: 0 0 18px;
+        padding-left: 20px;
+        max-width: 68ch;
+      }
+      li { margin-bottom: 8px; }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
+      }
+      .lead {
+        color: var(--text-dim);
+        font-size: 1.08rem;
+        margin-top: 18px;
+      }
+      .reviewed {
+        margin: 12px 0 0;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      .callout,
+      .choice {
+        margin: 24px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+      }
+      .callout strong,
+      .choice strong {
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      .matrix {
+        margin-top: 22px;
+        display: grid;
+        gap: 12px;
+      }
+      .choice p {
+        margin: 8px 0 0;
+        color: var(--text-dim);
+      }
+      .foot {
+        margin-top: 52px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/time-to-value-enterprise-saas.html">TTV</a>
+        <a href="/ai-orchestration-reliability.html">AI Reliability</a>
+        <a href="/ai-privacy-enterprise.html">AI Privacy</a>
+        <a href="/llm-structured-outputs.html">LLM Outputs</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/glossary/index.html">Glossary</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <p class="sub">Decision Framework</p>
+      <h1>LLM Technique Selection: Prompting, Tools, RAG, LoRA, and Fine-Tuning</h1>
+      <p class="lead">
+        Most LLM discussions get noisy because people treat every technique like
+        a badge of sophistication. I use a simpler rule: choose the lightest
+        technique that solves the real problem with acceptable reliability.
+      </p>
+      <p class="reviewed">Last reviewed: March 2026</p>
+
+      <div class="callout">
+        <strong>Short version:</strong> start with prompting and explicit
+        contracts. Add tools, retrieval, or adaptation only when the failure
+        mode proves you need them.
+      </div>
+
+      <h2>The Order I Would Evaluate</h2>
+      <ul>
+        <li>Prompting</li>
+        <li>Structured outputs and validation</li>
+        <li>Tool use</li>
+        <li>RAG</li>
+        <li>LoRA or QLoRA</li>
+        <li>Full fine-tuning</li>
+      </ul>
+
+      <p>
+        That order is intentional. Each step increases complexity, cost, and
+        operational burden. The burden is only worth it if the simpler layer is
+        clearly insufficient.
+      </p>
+
+      <div class="matrix">
+        <div class="choice">
+          <h3>Prompting</h3>
+          <p><strong>Use it when:</strong> the model already knows enough and you mainly need better framing, role clarity, or response style.</p>
+          <p><strong>Good for:</strong> summarization, drafting, classification, light transformation.</p>
+          <p><strong>Limit:</strong> prompting does not create new knowledge or guaranteed structure by itself.</p>
+        </div>
+
+        <div class="choice">
+          <h3>Structured Outputs + Validation</h3>
+          <p><strong>Use it when:</strong> downstream systems need reliable fields, bounded enums, or machine-readable artifacts.</p>
+          <p><strong>Good for:</strong> extraction, routing, workflow state, artifact generation.</p>
+          <p><strong>Limit:</strong> the model can still drift, so the validator becomes the real trust anchor.</p>
+        </div>
+
+        <div class="choice">
+          <h3>Tool Use</h3>
+          <p><strong>Use it when:</strong> the model must trigger real actions, fetch live data, or hand work to deterministic systems.</p>
+          <p><strong>Good for:</strong> API calls, search, database actions, file operations.</p>
+          <p><strong>Limit:</strong> tool access expands blast radius, so permissions and guardrails matter more than prompt cleverness.</p>
+        </div>
+
+        <div class="choice">
+          <h3>RAG (Retrieval-Augmented Generation)</h3>
+          <p><strong>Use it when:</strong> the problem is missing or changing knowledge, not model behavior.</p>
+          <p><strong>Good for:</strong> policy lookup, product knowledge, document-grounded answers, changing source material.</p>
+          <p><strong>Limit:</strong> bad retrieval gives bad answers; retrieval quality becomes part of the system design problem.</p>
+        </div>
+
+        <div class="choice">
+          <h3>LoRA / QLoRA</h3>
+          <p><strong>Use it when:</strong> you need to adapt a base model to a narrower domain behavior or style and prompting is not enough.</p>
+          <p><strong>Good for:</strong> repeatable domain phrasing, narrower task specialization, local adaptation without full retraining.</p>
+          <p><strong>Limit:</strong> it adds training, evaluation, versioning, and drift-management overhead. QLoRA reduces compute cost by fine-tuning a quantized base model, but it does not remove the operational burden.</p>
+        </div>
+
+        <div class="choice">
+          <h3>Full Fine-Tuning</h3>
+          <p><strong>Use it when:</strong> the business case is strong enough to justify the highest cost, control, and evaluation burden.</p>
+          <p><strong>Good for:</strong> specialized, repeated workloads where adaptation itself becomes a product capability.</p>
+          <p><strong>Limit:</strong> it is the most expensive option in both engineering time and governance complexity.</p>
+        </div>
+      </div>
+
+      <h2>Where LoRA and QLoRA Actually Fit</h2>
+      <p>
+        LoRA and QLoRA are not first-line architecture choices. They are model
+        adaptation techniques. That means they become relevant only after you
+        have already learned something important: the base model plus prompting,
+        retrieval, and validation still do not meet the requirement.
+      </p>
+      <p>
+        In other words, LoRA is not a substitute for system design. It is one
+        possible layer inside a larger system.
+      </p>
+
+      <h2>What I Would Prioritize In Real Work</h2>
+      <p>
+        In most business workflows, the highest return usually comes from better
+        contracts, cleaner inputs, stronger validators, and better task
+        boundaries before it comes from custom model training.
+      </p>
+      <ul>
+        <li>Constrain the task first</li>
+        <li>Validate outputs before trusting them</li>
+        <li>Use tools for deterministic actions</li>
+        <li>Use retrieval when the knowledge changes</li>
+        <li>Only then consider model adaptation</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Practical bias:</strong> I would rather ship a well-bounded
+        workflow with strong validation than a more impressive-sounding stack
+        that is harder to operate, debug, and trust.
+      </div>
+
+      <div class="foot">Back to <a href="/index.html">Hubsays Index</a></div>
+    </div>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

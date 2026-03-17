@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Hubsays social preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#091014"/>
+      <stop offset="100%" stop-color="#151c21"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7ff6d5"/>
+      <stop offset="100%" stop-color="#84baff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1080" cy="96" r="168" fill="#143237" opacity="0.22"/>
+  <circle cx="1170" cy="158" r="88" fill="#71571d" opacity="0.18"/>
+  <rect x="64" y="72" width="190" height="16" rx="8" fill="url(#glow)"/>
+  <text x="64" y="152" fill="#8fd7dd" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="3">HUBSAYS STUDIO</text>
+  <text x="64" y="284" fill="#f7fbfc" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700">Systems Architecture</text>
+  <text x="64" y="360" fill="#f7fbfc" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700">&amp; Trust-Driven Ops</text>
+  <text x="64" y="434" fill="#bfd0d5" font-family="Arial, Helvetica, sans-serif" font-size="34">Public proof of systems thinking, operational design, and measurable execution.</text>
+  <g transform="translate(64 510)">
+    <rect x="0" y="0" width="178" height="50" rx="25" fill="#142126" stroke="#2f5158"/>
+    <text x="89" y="32" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="22">Human Authored</text>
+    <rect x="196" y="0" width="182" height="50" rx="25" fill="#142126" stroke="#2f5158"/>
+    <text x="287" y="32" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="22">Metrics First</text>
+    <rect x="396" y="0" width="232" height="50" rx="25" fill="#142126" stroke="#2f5158"/>
+    <text x="512" y="32" text-anchor="middle" fill="#d8f6f8" font-family="Arial, Helvetica, sans-serif" font-size="22">Platform &amp; Internal Ops</text>
+  </g>
+</svg>

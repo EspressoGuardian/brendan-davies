@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="How Brendan Davies designs contract-first LLM reliability: probabilistic models, deterministic acceptance, fail-closed validation, and bounded repair loops."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:title" content="LLM Reliability Patterns: Contract-First Structured Output Design | Hubsays" />
+    <meta
+      property="og:description"
+      content="How Brendan Davies designs contract-first LLM reliability: probabilistic models, deterministic acceptance, fail-closed validation, and bounded repair loops."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/llm-structured-outputs.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LLM Reliability Patterns: Contract-First Structured Output Design | Hubsays" />
+    <meta
+      name="twitter:description"
+      content="How Brendan Davies designs contract-first LLM reliability: probabilistic models, deterministic acceptance, fail-closed validation, and bounded repair loops."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>LLM Reliability Patterns: Contract-First Structured Output Design | Hubsays</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "LLM Reliability Patterns: Contract-First Structured Output Design",
+        "description": "How Brendan Davies designs contract-first LLM reliability: probabilistic models, deterministic acceptance, fail-closed validation, and bounded repair loops.",
+        "author": {
+          "@type": "Person",
+          "name": "Brendan Davies",
+          "url": "https://brendan-davies.dev/brendan-davies/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Hubsays",
+          "url": "https://brendan-davies.dev/"
+        },
+        "mainEntityOfPage": "https://brendan-davies.dev/llm-structured-outputs.html"
+      }
+    </script>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.74;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 840px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 68px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      h1, h2, h3 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(1.95rem, 4vw, 2.7rem);
+        line-height: 1.15;
+        max-width: 24ch;
+      }
+      h2 {
+        font-size: 1.15rem;
+        margin: 32px 0 10px;
+      }
+      h3 {
+        font-size: 0.96rem;
+        margin: 24px 0 8px;
+      }
+      p {
+        margin: 0 0 18px;
+        max-width: 68ch;
+      }
+      ul {
+        margin: 0 0 18px;
+        padding-left: 20px;
+        max-width: 68ch;
+      }
+      li { margin-bottom: 8px; }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
+      }
+      .lead {
+        color: var(--text-dim);
+        font-size: 1.08rem;
+        margin-top: 18px;
+      }
+      .reviewed {
+        margin: 12px 0 0;
+        color: #9a9a9a;
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+      }
+      .callout,
+      .example {
+        margin: 24px 0;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface);
+      }
+      .callout strong,
+      .example strong {
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      .recruiter-cta {
+        margin: 28px 0 0;
+        padding: 14px 16px;
+        border: 1px solid #25565a;
+        border-radius: 12px;
+        background: #091114;
+        color: #cfecee;
+        font-family: var(--font-mono);
+        font-size: 0.86rem;
+      }
+      pre {
+        margin: 12px 0 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #0b0b0b;
+        overflow-x: auto;
+        color: #d7f4f6;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+      code {
+        font-family: var(--font-mono);
+      }
+      .foot {
+        margin-top: 52px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      a { color: #ffffff; }
+      a:hover { color: var(--accent); }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/time-to-value-enterprise-saas.html">TTV</a>
+        <a href="/ai-orchestration-reliability.html">AI Reliability</a>
+        <a href="/ai-privacy-enterprise.html">AI Privacy</a>
+        <a href="/llm-structured-outputs.html">LLM Outputs</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/glossary/index.html">Glossary</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <p class="sub">Recruiter Reference</p>
+      <h1>LLM Reliability Patterns: Contract-First Structured Output Design</h1>
+      <p class="lead">
+        Large language models are probabilistic systems. Production workflows
+        should not be. My approach is to design the surrounding system so only
+        structured, validated artifacts are allowed to move downstream.
+      </p>
+      <p class="reviewed">Last reviewed: March 2026</p>
+
+      <div class="callout">
+        <strong>Short version:</strong> the model may be stochastic. The
+        acceptance layer should not be. I use constrained prompting, explicit
+        schemas, deterministic validation, bounded repair, and fail-closed
+        rejection when structure cannot be proven.
+      </div>
+
+      <h2>Core Design Principle</h2>
+      <p>
+        I treat LLM output as untrusted input until it passes an explicit
+        contract. Reliability comes from architectural controls, not from
+        assuming the model will behave perfectly under pressure.
+      </p>
+      <ul>
+        <li>Constrained prompts with explicit output shape and examples</li>
+        <li>Small, well-defined schemas with bounded enums</li>
+        <li>Deterministic validation gates</li>
+        <li>Narrow repair-or-reject loops</li>
+        <li>Fail-closed behavior if structure cannot be proven</li>
+      </ul>
+
+      <h2>Operational Effect</h2>
+      <p>
+        In automation-heavy pipelines, bad structured output does not just look
+        messy. It corrupts ranking logic, misroutes workflows, and introduces
+        silent inconsistencies that compound over time. The risk is not ugly
+        JSON. The risk is downstream automation corruption.
+      </p>
+      <p>
+        This matters commercially because unreliable structure increases manual
+        cleanup, breaks trust in automation, and poisons systems that are meant
+        to move faster with less supervision.
+      </p>
+
+      <div class="example">
+        <strong>Example: simple extraction contract</strong>
+        <pre><code>{
+  "role_title": "string",
+  "seniority": "enum[junior, mid, senior, lead, principal, unknown]",
+  "remote_policy": "enum[remote, hybrid, onsite, unknown]",
+  "must_have_skills": ["string"]
+}</code></pre>
+      </div>
+
+      <p>
+        The schema is intentionally small. The smaller the contract, the easier
+        it is to detect drift, reject invalid output, and prevent bad data from
+        entering later stages.
+      </p>
+
+      <h2>Deterministic Acceptance Loop</h2>
+      <p>
+        The objective is not aesthetic output quality. The objective is
+        structural integrity.
+      </p>
+
+      <h2>Local Models: Useful, But Not My Primary Trust Anchor</h2>
+      <p>
+        I do run local model experiments through Ollama, and the broader stack
+        around Hubsays includes local-first testing. But I do not currently
+        position local open models as the sole trusted source for strict
+        machine-critical structured outputs in public workflows.
+      </p>
+      <p>
+        The reason is simple: local models are useful for control and privacy,
+        but strict structure-following can degrade quickly once schemas become
+        deep, responses become long, or context gets noisy. So the real trust
+        anchor is the validator, not the model brand.
+      </p>
+
+      <h2>Provider Features vs. Architecture</h2>
+      <p>
+        Strict hosted structured-output modes are useful when available, but I
+        do not anchor reliability to vendor-specific features. The foundation is
+        still the contract:
+      </p>
+      <ul>
+        <li>explicit schema</li>
+        <li>clear field requirements</li>
+        <li>bounded enums</li>
+        <li>independent validator</li>
+        <li>provider-agnostic control layer</li>
+      </ul>
+      <p>
+        That keeps the workflow portable if providers change and keeps the
+        guarantee anchored in architecture rather than product marketing.
+      </p>
+
+      <div class="example">
+        <strong>Example: deterministic recovery path</strong>
+        <pre><code>1. Generate structured draft
+2. Validate keys, types, and enums
+3. If invalid, retry with tighter prompt and temperature 0
+4. If still invalid, apply narrow deterministic repair
+5. Re-validate
+6. If still invalid, fail closed and require review</code></pre>
+      </div>
+
+      <h2>Tool Calling vs. Structured Data</h2>
+      <p>
+        If the model must choose and invoke an action, tool calling is
+        appropriate. If the task is structured extraction or artifact
+        generation, explicit schema validation is often the more reliable
+        control. I choose the control mechanism based on workflow intent, not
+        novelty.
+      </p>
+
+      <h2>Common Failure Modes I Design Around</h2>
+      <ul>
+        <li>Hallucinated keys not in the contract</li>
+        <li>Missing required fields</li>
+        <li>Enum drift such as "remote-first hybrid-ish" instead of a valid value</li>
+        <li>Truncated nested structures on longer outputs</li>
+        <li>Commentary wrapped around otherwise usable JSON</li>
+      </ul>
+      <p>
+        These are exactly why I prefer small, explicit contracts and staged
+        pipelines instead of large "just give me everything" responses.
+      </p>
+
+      <h2>Where Structured Outputs Matter Most in My Workflows</h2>
+      <p>
+        The value appears when one step feeds the next. That includes:
+      </p>
+      <ul>
+        <li>extract -&gt; validate -&gt; rewrite style pipelines</li>
+        <li>recruiter-facing content generation with fail-closed review gates</li>
+        <li>job or opportunity parsing where inconsistent fields break downstream ranking</li>
+        <li>artifact generation where metadata, links, and claims must stay consistent</li>
+      </ul>
+      <p>
+        Once a workflow becomes multi-stage, probabilistic parsing becomes a tax.
+        I would rather pay for tighter contracts upfront than let every later
+        step guess what the previous one meant.
+      </p>
+      <p>
+        This is where the business case becomes obvious: a broken structured
+        output does not just fail locally. It can poison ranking, tailoring,
+        routing, and review systems that depend on consistent machine-readable
+        state.
+      </p>
+
+      <h2>Trade-Offs I Would State Directly</h2>
+      <ul>
+        <li>Strict structure improves reliability, but can reduce expressive output quality</li>
+        <li>Retries and validation add latency, but save downstream cleanup time</li>
+        <li>Cloud-native structured features are often faster to implement, but increase provider dependency</li>
+        <li>Local-first models improve control, but usually need simpler schemas and tighter prompts</li>
+      </ul>
+      <p>
+        This ties directly into my deterministic philosophy: I do not want
+        probabilistic ambiguity leaking into downstream systems that expect
+        contracts.
+      </p>
+
+      <h2>What I Already Use as Source of Truth</h2>
+      <p>
+        I already work with prompt archives, context packs, schemas, templates,
+        and validation rules across the broader stack. That means the building
+        blocks already exist:
+      </p>
+      <ul>
+        <li>prompt files and system prompts</li>
+        <li>JSON schema files and content contracts</li>
+        <li>validation tooling and fail-closed checks</li>
+        <li>context and rules documents that constrain generation</li>
+      </ul>
+      <p>
+        The next logical additions for structured-output-heavy work would be:
+      </p>
+      <ul>
+        <li><code>output_schemas/</code> for task-specific structured contracts</li>
+        <li><code>repair_patterns.md</code> for common failure cases and deterministic fixes</li>
+        <li><code>llm_profiles.md</code> for notes on which models behave well under structure pressure</li>
+        <li><code>chaining_patterns.md</code> for repeatable extract -&gt; validate -&gt; refine flows</li>
+      </ul>
+
+      <h2>How I Would Summarize It in an Interview</h2>
+      <p>
+        I ensure reliable LLM outputs the same way I design any reliable
+        system: narrow the contract, validate aggressively, repair only within
+        bounded rules, and reject anything that cannot prove structural
+        integrity. Models can remain probabilistic. Production systems should
+        not.
+      </p>
+
+      <p>
+        <a href="/ai-privacy-enterprise.html">Related: Data Privacy, Isolation, and Zero-Retention in Enterprise AI &rarr;</a><br />
+        <a href="/blog/posts/013-ai-orchestration-privacy-and-hybrid-systems.html">Related: AI Orchestration, Privacy, and Hybrid Systems &rarr;</a><br />
+        <a href="/evidence/">Evidence and quantified outcomes &rarr;</a>
+      </p>
+
+      <div class="recruiter-cta">
+        Open to senior systems / AI architecture roles. Current hiring status:
+        <a href="/availability.html">Availability</a>.
+      </div>
+
+      <div class="foot">© <span id="y"></span> Hubsays Studio · <a href="/index.html">hubsays.com</a></div>
+    </div>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

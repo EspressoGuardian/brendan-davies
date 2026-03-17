@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="AI Job Radar architecture: secure ingress, deterministic discovery, segmented HITL tailoring, quality gates, artifact integrity, and outcome feedback."
+    />    <meta property="og:title" content="AI Job Radar | Architecture" />
+    <meta
+      property="og:description"
+      content="AI Job Radar architecture: secure ingress, deterministic discovery, segmented HITL tailoring, quality gates, artifact integrity, and outcome feedback."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/architecture/job-radar.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Job Radar | Architecture" />
+    <meta
+      name="twitter:description"
+      content="AI Job Radar architecture: secure ingress, deterministic discovery, segmented HITL tailoring, quality gates, artifact integrity, and outcome feedback."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+
+    <title>AI Job Radar | Architecture</title>
+    <style>
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --surface-soft: #0d0d0d;
+        --text-main: #e0e0e0;
+        --text-dim: #888888;
+        --accent: #00f2ff;
+        --line: #222222;
+        --line-strong: #2c2c2c;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.72;
+        display: flex;
+        justify-content: center;
+      }
+      .wrapper {
+        max-width: 1360px;
+        width: 100%;
+        padding: 72px 24px 92px;
+      }
+      nav {
+        margin-bottom: 56px;
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.92rem;
+      }
+      nav a:hover { color: var(--accent); }
+      .sub {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 10px;
+      }
+      h1 {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        line-height: 1.18;
+        color: #fff;
+      }
+      .lead {
+        margin: 16px 0 0;
+        color: var(--text-dim);
+        max-width: 76ch;
+      }
+      .card {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 14px;
+      }
+      .card-title {
+        margin: 0;
+        color: #fff;
+        font-size: 0.96rem;
+        font-family: var(--font-mono);
+      }
+      .card-copy {
+        margin: 8px 0 0;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+      }
+      .flow-board {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+      }
+      .lane {
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        background: #0b0b0b;
+        padding: 12px;
+      }
+      .lane-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .lane-title {
+        margin: 0;
+        color: #fff;
+        font-size: 0.88rem;
+        font-family: var(--font-mono);
+      }
+      .lane-tag {
+        color: var(--accent);
+        font-size: 0.68rem;
+        border: 1px solid #11585d;
+        border-radius: 999px;
+        padding: 3px 8px;
+        font-family: var(--font-mono);
+      }
+      .steps {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 9px;
+      }
+      .steps li {
+        position: relative;
+        border: 1px solid var(--line);
+        background: var(--surface-soft);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+      .steps li:not(:last-child)::after {
+        content: "↓";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -14px;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-family: var(--font-mono);
+      }
+      .step-title {
+        margin: 0;
+        color: #fff;
+        font-size: 0.83rem;
+        font-family: var(--font-mono);
+      }
+      .step-copy {
+        margin: 4px 0 0;
+        color: var(--text-dim);
+        font-size: 0.84rem;
+        line-height: 1.4;
+      }
+      .handoff {
+        border: 1px dashed #25565a;
+        border-radius: 10px;
+        padding: 9px 10px;
+        color: #9ddde1;
+        background: #091114;
+        font-size: 0.76rem;
+        font-family: var(--font-mono);
+      }
+      .flow-note {
+        margin-top: 10px;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+      }
+      .workflow-steps {
+        margin-top: 10px;
+      }
+      .glossary {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+      }
+      .term {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px;
+        background: #0d0d0d;
+      }
+      .term h3 {
+        margin: 0;
+        color: #fff;
+        font-size: 0.86rem;
+        font-family: var(--font-mono);
+      }
+      .term p {
+        margin: 6px 0 0;
+        color: var(--text-dim);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+      .foot {
+        margin-top: 48px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      .foot a { color: var(--accent); text-decoration: none; }
+      @media (min-width: 980px) {
+        .flow-board { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      @media (min-width: 1220px) {
+        .flow-board {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.35fr);
+          gap: 14px;
+        }
+        .lane { padding: 14px; }
+        .steps li { padding: 11px 13px; }
+      }
+      @media (max-width: 760px) {
+        .wrapper { padding: 52px 14px 72px; }
+      }
+    </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <a href="/index.html">Index</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/amber-state/">Amber State</a>
+        <a href="/brendan-davies/">Bio</a>
+      </nav>
+
+      <p class="sub">Architecture Diagram A</p>
+      <h1>AI Job Radar - End-to-End Flow</h1>
+      <p class="lead">
+        BPMN-style process lanes for mobile-safe readability: secure ingress, deterministic discovery,
+        segmented HITL tailoring, quality gates, integrity checks, and outcome feedback.
+      </p>
+
+      <section class="card" aria-label="Process flow diagram">
+        <h2 class="card-title">Process Flow (BPMN-style Lanes)</h2>
+        <p class="card-copy">Same flow on all devices, no overlapping nodes, and clear handoff points between lanes.</p>
+
+        <div class="flow-board">
+          <section class="lane" aria-label="Ingress and discovery lane">
+            <div class="lane-header">
+              <h3 class="lane-title">Lane 1: Ingress + Discovery</h3>
+              <span class="lane-tag">ScannerAgent</span>
+            </div>
+            <ol class="steps">
+              <li>
+                <p class="step-title">Command Ingress</p>
+                <p class="step-copy">Telegram or CLI command enters the system.</p>
+              </li>
+              <li>
+                <p class="step-title">Security Gate</p>
+                <p class="step-copy">Allowlist and rate-limit checks; policy routes non-command noise.</p>
+              </li>
+              <li>
+                <p class="step-title">Discovery Scan</p>
+                <p class="step-copy">Adapters fetch openings, dedupe, score, and apply ghost-risk downgrade.</p>
+              </li>
+              <li>
+                <p class="step-title">State Persist</p>
+                <p class="step-copy">`RadarJob`, `RadarTriage`, `ScanReport`, and outcomes stored in SQLite.</p>
+              </li>
+            </ol>
+            <div class="handoff">handoff -> Router lane</div>
+          </section>
+
+          <section class="lane" aria-label="Routing and tailoring lane">
+            <div class="lane-header">
+              <h3 class="lane-title">Lane 2: Routing + Tailor</h3>
+              <span class="lane-tag">Tracker/Tailor</span>
+            </div>
+            <ol class="steps">
+              <li>
+                <p class="step-title">Command Router</p>
+                <p class="step-copy">Deterministically routes `/probe`, `/track`, `/tailor`.</p>
+              </li>
+              <li>
+                <p class="step-title">/probe + /track</p>
+                <p class="step-copy">Derive URLs and idempotently promote a radar item to tracked job state.</p>
+              </li>
+              <li>
+                <p class="step-title">Tailor Step 1 (HITL)</p>
+                <p class="step-copy">Generate value hypotheses preview and wait for user edit/approval.</p>
+              </li>
+              <li>
+                <p class="step-title">Tailor Step 2</p>
+                <p class="step-copy">On approval, generate resume and cover letter artifacts.</p>
+              </li>
+            </ol>
+            <div class="handoff">handoff -> Guardrails lane</div>
+          </section>
+
+          <section class="lane" aria-label="Quality and outputs lane">
+            <div class="lane-header">
+              <h3 class="lane-title">Lane 3: Guardrails + Outputs</h3>
+              <span class="lane-tag">Debugger/Notifier</span>
+            </div>
+            <ol class="steps">
+              <li>
+                <p class="step-title">Content Firewall</p>
+                <p class="step-copy">Treat JD as untrusted input: sanitize, extract schema, ignore embedded instructions.</p>
+              </li>
+              <li>
+                <p class="step-title">Quality Gate</p>
+                <p class="step-copy">Deterministic checks + rewrite loop with fail-closed behavior.</p>
+              </li>
+              <li>
+                <p class="step-title">Output Integrity</p>
+                <p class="step-copy">Temp write -> atomic move with manifest checksums.</p>
+              </li>
+              <li>
+                <p class="step-title">Ops + Feedback</p>
+                <p class="step-copy">`/status` for observability and `/outcome` labels for local learning loop.</p>
+              </li>
+            </ol>
+          </section>
+        </div>
+
+        <p class="flow-note">
+          Result: no horizontal overflow dependency, stable readability on mobile, and explicit phase transitions.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Diagram workflow">
+        <h2 class="card-title">How This Diagram Is Produced</h2>
+        <p class="card-copy">
+          This architecture page is assembled directly in code. The lanes, nodes, spacing,
+          and responsive behavior are defined in HTML and CSS so the structure stays versioned,
+          reviewable, and easy to refine without a separate export step.
+        </p>
+        <ol class="steps workflow-steps">
+          <li><p class="step-copy">Each lane is authored as semantic HTML sections with ordered step lists.</p></li>
+          <li><p class="step-copy">CSS grid controls desktop/mobile layout, spacing, and readable handoff flow.</p></li>
+          <li><p class="step-copy">Labels and glossary text are updated in-source so changes stay diffable in git.</p></li>
+          <li><p class="step-copy">The page ships as static HTML, then publishes through GitHub Pages behind Cloudflare.</p></li>
+        </ol>
+      </section>
+
+      <section class="card" aria-label="Diagram glossary">
+        <h2 class="card-title">Node Glossary</h2>
+        <p class="card-copy">Plain-language meaning of each node in the flow.</p>
+        <div class="glossary">
+          <article class="term"><h3>BPMN-style Process Lanes</h3><p>A diagram layout that separates responsibilities into clear lanes so handoffs, ownership, and checkpoints stay readable on desktop and mobile.</p></article>
+          <article class="term"><h3>Security Gate</h3><p>Validates chat IDs, applies rate limits, and routes non-command noise by policy.</p></article>
+          <article class="term"><h3>Discovery Scan</h3><p>Collects openings from ATS/APIs/pages, then deduplicates and triages them.</p></article>
+          <article class="term"><h3>Command Router</h3><p>Deterministically executes `/probe`, `/track`, and `/tailor` workflows.</p></article>
+          <article class="term"><h3>SQLite State</h3><p>Stores jobs, triage, scans, outcomes, and task observability records.</p></article>
+          <article class="term"><h3>Tailor Step 1 (HITL)</h3><p>Shows hypotheses preview for human review before any full artifact generation.</p></article>
+          <article class="term"><h3>Content Firewall</h3><p>Sanitizes JD content and extracts structured signals from untrusted source text.</p></article>
+          <article class="term"><h3>Quality Gate</h3><p>Applies deterministic writing constraints and rewrites when policy fails.</p></article>
+          <article class="term"><h3>Output Integrity</h3><p>Publishes artifact files atomically and tracks checksums in manifest metadata.</p></article>
+          <article class="term"><h3>Ops + Feedback</h3><p>Provides runtime status and outcome labels for iterative local improvement.</p></article>
+        </div>
+      </section>
+
+      <div class="foot">© <span id="y"></span> Hubsays Studio · <a href="/index.html">hubsays.com</a></div>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

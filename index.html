@@ -5,10 +5,123 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Brendan Davies: Senior Solutions Architect for enterprise SaaS adoption, AI orchestration, and deterministic systems design."
+      content="Brendan Davies is a systems architect focused on AI orchestration, platform/internal ops, trust-driven operating design, and local-first product delivery. Hubsays is his public proof of work for senior employee roles, including the live jobs.hubsays.media surface."
     />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data: https://brendan-davies.dev; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="theme-color" content="#050505" />
-    <title>Brendan Davies | Systems Architect</title>
+    <meta property="og:title" content="Brendan Davies | Public Proof of Work for Employment" />
+    <meta
+      property="og:description"
+      content="Brendan Davies' public proof of work for senior employee roles in systems architecture, trust-driven ops, deterministic workflow design, and local-first product delivery."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="Brendan Davies public proof of work social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Brendan Davies | Public Proof of Work" />
+    <meta
+      name="twitter:description"
+      content="Public proof of systems architecture, trust-driven ops, local-first product delivery, and measurable execution."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>Brendan Davies | Public Proof of Work</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://brendan-davies.dev/",
+        "name": "Brendan Davies | Public Proof of Work for Employment",
+        "description": "Candidate-first proof of work for Brendan Davies: systems architecture, AI orchestration, deterministic workflow design, platform/internal ops leadership, and local-first product delivery.",
+        "about": {
+          "@type": "Person",
+          "name": "Brendan Davies",
+          "url": "https://brendan-davies.dev/brendan-davies/",
+          "jobTitle": "Systems Architect",
+          "sameAs": [
+            "https://github.com/EspressoGuardian",
+            "https://www.linkedin.com/in/brendan-davies/"
+          ]
+        },
+        "hasPart": [
+          {
+            "@type": "ProfilePage",
+            "name": "Brendan Davies",
+            "url": "https://brendan-davies.dev/brendan-davies/"
+          },
+          {
+            "@type": "WebPage",
+            "name": "AI Orchestration Reliability",
+            "url": "https://brendan-davies.dev/ai-orchestration-reliability.html"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Live Systems",
+            "url": "https://brendan-davies.dev/live-systems.html"
+          },
+          {
+            "@type": "CollectionPage",
+            "name": "Architecture",
+            "url": "https://brendan-davies.dev/architecture/index.html"
+          },
+          {
+            "@type": "CollectionPage",
+            "name": "Glossary",
+            "url": "https://brendan-davies.dev/glossary/index.html"
+          },
+          {
+            "@type": "CollectionPage",
+            "name": "Build Guide",
+            "url": "https://brendan-davies.dev/build/index.html"
+          },
+          {
+            "@type": "CollectionPage",
+            "name": "Agents",
+            "url": "https://brendan-davies.dev/agents/index.html"
+          },
+          {
+            "@type": "WebPage",
+            "name": "jobs.hubsays.media",
+            "url": "https://jobs.hubsays.media/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Brendan Davies",
+        "url": "https://brendan-davies.dev/",
+        "mainEntityOfPage": "https://brendan-davies.dev/",
+        "jobTitle": "Systems Architect",
+        "description": "Systems architect focused on AI orchestration, platform/internal ops, trust-driven operating design, deterministic workflow reliability, and local-first product delivery.",
+        "sameAs": [
+          "https://github.com/EspressoGuardian",
+          "https://steamcommunity.com/id/hubsays-studio/",
+          "https://www.linkedin.com/in/brendan-davies/"
+        ],
+        "knowsAbout": [
+          "Systems architecture",
+          "AI orchestration",
+          "Platform and internal operations",
+          "Deterministic workflow design",
+          "Privacy-first operational systems",
+          "Local-first product delivery",
+          "Sovereign web architecture",
+          "Relocation intelligence"
+        ]
+      }
+    </script>
     <style>
       :root {
         --bg: #050505;
@@ -16,7 +129,9 @@
         --text-main: #e0e0e0;
         --text-dim: #888888;
         --accent: #00f2ff;
+        --accent-strong: #62fbff;
         --line: #222222;
+        --focus-ring: #8bf8ff;
         --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
         --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
       }
@@ -42,12 +157,60 @@
         flex-wrap: wrap;
       }
       nav a {
-        color: var(--text-dim);
+        color: var(--accent);
         text-decoration: none;
         font-family: var(--font-mono);
         font-size: 0.92rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
       }
-      nav a:hover { color: var(--accent); }
+      nav a:hover { color: #ffffff; }
+      a:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .cta-strip {
+        margin-top: 18px;
+        border: 1px solid #2f7b81;
+        background: linear-gradient(180deg, #0b171a, #081113);
+        border-radius: 12px;
+        padding: 12px;
+        box-shadow: inset 0 1px 0 rgba(139, 248, 255, 0.06);
+      }
+      .cta-strip p {
+        margin: 0;
+        color: #d5f4f6;
+        font-size: 0.9rem;
+      }
+      .cta-actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .cta-actions a {
+        border: 1px solid #3a8f96;
+        background: #0c1719;
+        border-radius: 10px;
+        padding: 8px 10px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.78rem;
+        font-family: var(--font-mono);
+        color: var(--accent);
+        text-decoration: none;
+        transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+      }
+      .cta-actions a:hover,
+      .cta-actions a:focus-visible {
+        color: #041114;
+        background: var(--accent-strong);
+        border-color: var(--accent-strong);
+        transform: translateY(-1px);
+      }
       h1, h2, h3 {
         font-family: var(--font-mono);
         font-weight: 700;
@@ -60,14 +223,6 @@
         letter-spacing: -0.6px;
         max-width: 22ch;
       }
-      h2 {
-        font-size: clamp(1.6rem, 4vw, 2.1rem);
-        line-height: 1.2;
-        margin-bottom: 16px;
-        background: linear-gradient(90deg, #ffffff, var(--text-dim));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
       .sub {
         color: var(--accent);
         font-family: var(--font-mono);
@@ -78,21 +233,181 @@
       }
       .lead {
         color: var(--text-dim);
-        font-size: 1.1rem;
+        font-size: 1.12rem;
         margin: 20px 0 0;
         max-width: 64ch;
       }
-      .entries {
-        margin-top: 60px;
+      .positioning-note {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+      .positioning-note p {
+        margin: 0;
+        color: #d5d5d5;
+        font-size: 0.98rem;
+        max-width: 66ch;
+      }
+      .key-facts {
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+      .key-facts h2 {
+        font-size: 0.94rem;
+        margin-bottom: 10px;
+      }
+      .key-facts ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .key-facts li {
+        color: var(--text-dim);
+        margin-bottom: 6px;
+      }
+      .craft-strip {
+        margin-top: 18px;
+        border: 1px dashed #2f7b81;
+        border-radius: 12px;
+        background: rgba(9, 17, 20, 0.52);
+        padding: 14px 16px;
+      }
+      .craft-strip strong,
+      .craft-strip b {
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      .craft-strip p {
+        margin: 0;
+        color: #cdebed;
+        max-width: 66ch;
+      }
+      .proof-grid {
+        margin-top: 22px;
         display: grid;
-        gap: 32px;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .proof-card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: linear-gradient(180deg, #0d0d0d, #101214);
+        padding: 14px;
+      }
+      .proof-card h2 {
+        font-size: 0.94rem;
+        margin-bottom: 8px;
+      }
+      .proof-card p {
+        margin: 0;
+        color: #c8c8c8;
+        font-size: 0.92rem;
+        line-height: 1.58;
+      }
+      .proof-card a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .proof-card a:hover { color: #ffffff; }
+      .project-strip {
+        margin-top: 22px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, #0b0f10, #0f1416);
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .project-strip h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .project-strip p {
+        margin: 0;
+        color: #c9d3d5;
+        max-width: 66ch;
+      }
+      .project-grid {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .project-card {
+        border: 1px solid #223238;
+        border-radius: 12px;
+        background: #0b1214;
+        padding: 14px;
+      }
+      .project-card h3 {
+        font-size: 0.96rem;
+        margin-bottom: 8px;
+      }
+      .project-card p {
+        margin: 0;
+        color: #b9c4c7;
+        font-size: 0.92rem;
+        line-height: 1.58;
+      }
+      .current-brief {
+        margin-top: 22px;
+        border: 1px solid #183137;
+        background: linear-gradient(180deg, rgba(6, 19, 23, 0.94), rgba(10, 15, 18, 0.96));
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .current-brief h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .current-brief p {
+        margin: 0;
+        color: #cde8ea;
+        max-width: 66ch;
+      }
+      .current-brief ul {
+        margin: 14px 0 0;
+        padding-left: 18px;
+      }
+      .current-brief li {
+        color: #b8c8cb;
+        margin-bottom: 8px;
+      }
+      .entries {
+        margin-top: 64px;
+        display: grid;
+        gap: 34px;
       }
       .entry {
         border-left: 1px solid var(--line);
-        padding-left: 20px;
-        transition: border-color 0.2s ease;
+        padding-left: 0;
+        transition: border-color 0.2s ease, transform 0.2s ease;
       }
-      .entry:hover { border-left-color: var(--accent); }
+      .entry:hover,
+      .entry:focus-within {
+        border-left-color: var(--accent);
+        transform: translateX(3px);
+      }
+      .entry-link {
+        display: block;
+        padding-left: 20px;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+      .entry-link::after {
+        content: "Open ->";
+        display: inline-block;
+        margin-top: 12px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.04em;
+      }
+      .entry-link:hover::after,
+      .entry-link:focus-visible::after { color: #9af9ff; }
       .entry-label {
         font-family: var(--font-mono);
         font-size: 0.78rem;
@@ -103,45 +418,20 @@
         margin-top: 8px;
         font-size: 1.22rem;
         line-height: 1.35;
-      }
-      .entry p,
-      .entry li {
-        color: var(--text-dim);
-      }
-      .entry ul {
-        margin: 12px 0 0;
-        padding-left: 18px;
+        transition: color 0.18s ease;
       }
       .entry p {
+        margin: 10px 0 0;
+        color: var(--text-dim);
         max-width: 62ch;
       }
       .entry a {
-        color: #ffffff;
+        color: var(--accent);
         text-decoration: none;
       }
       .entry a:hover { color: var(--accent); }
-      .manifesto {
-        margin-top: 52px;
-        max-width: 72ch;
-      }
-      .manifesto-text {
-        font-size: 1.06rem;
-        color: var(--text-main);
-        margin: 0 0 16px;
-        opacity: 0.93;
-      }
-      .highlight-box {
-        margin-top: 14px;
-        display: inline-block;
-        border: 1px solid var(--accent);
-        color: var(--accent);
-        background: var(--surface);
-        padding: 10px 12px;
-        font-family: var(--font-mono);
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
+      .entry-link:hover h3,
+      .entry-link:focus-visible h3 { color: var(--accent); }
       .foot {
         margin-top: 60px;
         padding-top: 16px;
@@ -150,116 +440,374 @@
         font-family: var(--font-mono);
         font-size: 0.82rem;
       }
+      .foot a,
+      .foot a:visited {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .foot a:hover { color: #ffffff; }
+      @media (max-width: 640px) {
+        body { line-height: 1.6; }
+        .wrapper { padding: 56px 20px 72px; }
+        .lead,
+        .positioning-note p,
+        .craft-strip p,
+        .proof-card p,
+        .entry p,
+        .cta-strip p {
+          line-height: 1.6;
+        }
+      }
     </style>
+      <link rel="stylesheet" href="/assets/ui/theme.css" />
   </head>
   <body>
     <div class="wrapper">
       <nav>
-        <a href="/index.html">Index</a>
+        <a href="/brendan-davies/">Start Here</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/architecture/index.html">Architecture</a>
+        <a href="/agents/index.html">Agents</a>
+        <a href="/build/index.html">Build</a>
+        <a href="/learning-lab.html">Learning Lab</a>
         <a href="/blog/index.html">Blog</a>
-        <a href="/amber-state/">Amber State</a>
         <a href="/brendan-davies/">Bio</a>
-        <a href="https://www.linkedin.com/in/brendan-davies/" rel="me">LinkedIn</a>
       </nav>
 
-      <p class="sub">Systems Architect | Automation Specialist | Linux-First Operator</p>
-      <h1>Enterprise SaaS Adoption and AI Orchestration With Deterministic Execution.</h1>
-      <p class="lead">
-        I solve for the system, not isolated tasks. My approach combines
-        commercial context, deterministic implementation, and workflow
-        automation so teams can scale adoption without sacrificing reliability.
-      </p>
-
-      <section class="entries" aria-label="Professional proof">
-        <article class="entry">
-          <div class="entry-label">Origin Story</div>
-          <h3>From Service Systems to Software Systems</h3>
-          <p>
-            My path was not linear. I started in hospitality and customer-facing
-            operations, where I learned journey design, handoff discipline, and
-            how small process failures compound under pressure. Those same
-            lessons now shape how I architect SaaS and automation systems.
-          </p>
-          <p>
-            I run Linux-first environments (Bazzite and TUXEDO OS), test local
-            and cloud AI workflows, and favor infrastructure that is observable,
-            reproducible, and user-respecting.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-label">Current Focus</div>
-          <h3>Dual-Path Execution</h3>
-          <ul>
-            <li>Senior SaaS architecture roles across EU and remote teams</li>
-            <li>Building Hubsays Studio as a long-term systems venture</li>
-            <li>Publishing continuous public artifacts for technical proof</li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry-label">Commercial Impact</div>
-          <h3>Revenue and Adoption Results</h3>
-          <ul>
-            <li>$6.8M+ net-new ARR contribution at Atlassian (27% team output)</li>
-            <li>EUR 1.5M+ enterprise portfolio managed across 40+ accounts</li>
-            <li>22% Time-to-Value reduction via onboarding system redesign</li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry-label">Live Systems</div>
-          <h3>Public Tooling and Operational Patterns</h3>
-          <p>
-            <a href="https://github.com/EspressoGuardian/shell-guard" rel="me">shell-guard</a>
-            - Git safety hooks and local integrity guardrails.
-          </p>
-          <p>
-            <a href="https://github.com/EspressoGuardian/state-sentinel" rel="me">state-sentinel</a>
-            - Determinism and health auditing for simulation-heavy projects.
-          </p>
-          <p>
-            <a href="https://github.com/EspressoGuardian/godot-secrets-scan" rel="me">godot-secrets-scan</a>
-            - Pre-staging secret and PII scanning for safer commits.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-label">How I Work</div>
-          <h3>AI-First, Human-Verified</h3>
-          <p>
-            If a task is repeatable, I automate it. AI handles high-friction
-            operational steps through scoped API workflows, while I own system
-            boundaries, validation, and reliability decisions.
-          </p>
-          <p>
-            Workflow: Gitea (Local) -> GitHub (Mirror) -> Bazzite/TUXEDO (Execution Environment)
-          </p>
-        </article>
-      </section>
-
-      <section class="manifesto">
-        <p class="sub">Engineering Philosophy</p>
-        <h2>Systems are architected against entropy.</h2>
-
-        <p class="manifesto-text">
-          My approach is grounded in a simple rule: complexity is expensive and
-          usually avoidable. I design systems where trust is explicit,
-          interfaces are constrained, and failure modes are observable.
+      <p class="sub">Brendan Davies | Public Proof of Work for Employment</p>
+      <h1>Systems Architecture and Trust-Driven Ops, Built for Senior Employee Roles.</h1>
+      <section class="cta-strip" aria-label="Recruiter and hiring CTA">
+        <p>
+          Start with the shortest path to fit, evidence, and architecture depth.
         </p>
-
-        <p class="manifesto-text">
-          Whether I am redesigning SaaS adoption workflows or building
-          deterministic tooling, the target is the same: repeatable outcomes,
-          lower operational drag, and resilience under real business pressure.
-        </p>
-
-        <div class="highlight-box">
-          Core Stack: SaaS Adoption Architecture | Deterministic Workflows | AI Orchestration | Privacy-First Design
+        <div class="cta-actions">
+          <a href="/brendan-davies/">Start Here: Brendan Davies</a>
+          <a href="/availability.html">Current Availability</a>
+          <a href="/evidence/">Quantified Outcomes</a>
+          <a href="https://jobs.hubsays.media/">Visit: jobs.hubsays.media</a>
+          <a href="/trust-tax-marketplace-conversion.html">Read: The Trust Tax</a>
+          <a href="/decision-latency-systems.html">Read: Decision Latency</a>
+          <a href="/learning-lab.html">See: Learning Lab</a>
+          <a href="/architecture/index.html">Systems Architecture Diagrams</a>
         </div>
       </section>
+      <section class="project-strip" aria-label="Current operator projects">
+        <h2>Current Operator Projects</h2>
+        <p>
+          Three live tracks currently define how I build and verify systems in practice: the local-first operating system for work, the jobs and relocation product surface, and the home lab that runs the stack.
+        </p>
+        <div class="project-grid">
+          <article class="project-card">
+            <h3>Building My Own Operating System</h3>
+            <p>
+              Mission Control, governed tickets, bounded agent lanes, local dashboards, and deterministic overnight execution across Anchor and Relay. This is the public proof behind how I think about platform/internal ops and AI orchestration reliability.
+            </p>
+          </article>
+          <article class="project-card">
+            <h3>Upgrading The Home Lab</h3>
+            <p>
+              I am turning the home setup into a monitored local-first lab with better networking, node expansion, Home Assistant surfaces, energy telemetry, and low-cost deployment paths that stay privacy-conscious by default.
+            </p>
+          </article>
+          <article class="project-card">
+            <h3>Shipping jobs.hubsays.media</h3>
+            <p>
+              A static-first jobs and relocation surface for English-friendly EU roles, salary-after-rent realism, and public-data decision support. It is where I test product judgment, trust-first UX, and low-cloud delivery constraints in public.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="current-brief" aria-label="Current build focus">
+        <h2>Current Build Focus</h2>
+        <p>
+          The public work is current again because the operating model is now visible in three places: the website, the jobs surface, and the governed operating layer that keeps both honest.
+        </p>
+        <ul>
+          <li>Anchor and Relay now run bounded persistent lanes, including a private review loop that feeds morning, midday, and night handovers.</li>
+          <li><a href="https://jobs.hubsays.media/">jobs.hubsays.media</a> is the live action surface for English-friendly roles, relocation realism, and privacy-conscious product decisions.</li>
+          <li>The home stack is being pushed toward a sovereign-web posture: local-first datasets, minimal-cloud delivery, and deterministic operator tooling instead of black-box sprawl.</li>
+        </ul>
+      </section>
+      <p class="lead">
+        This site is my public working surface for how I design systems:
+        clear constraints, reliable automation, and architecture that holds up
+        when real state changes happen.
+      </p>
+      <p class="lead">
+        If you are hiring, this site is the fastest way to see how I think,
+        what I have built, and the quality bar I use when shipping operational
+        tooling in public.
+      </p>
+      <p class="lead">
+        Right now that public surface includes a live jobs product, a local-first operator stack, and the infrastructure work required to keep both useful without defaulting to heavy cloud dependence.
+      </p>
+      <section class="positioning-note" aria-label="Career transition framing">
+        <p>
+          My background includes commercial, operational, and technical work.
+          The through-line is systems thinking: turning messy workflows into
+          clearer, safer, and more repeatable operating models.
+        </p>
+      </section>
+      <section class="key-facts" aria-label="Key facts">
+        <h2>Key Facts</h2>
+        <ul>
+          <li>Focus: systems architecture, AI orchestration, and platform/internal ops.</li>
+          <li>Operating style: constraint-first, measurable, reliability-led.</li>
+          <li>Best fit: senior employee roles, not freelance or agency work.</li>
+          <li>Proof surface: quantified outcomes, public tooling, and architecture writeups.</li>
+        </ul>
+      </section>
+      <section class="positioning-note" aria-label="Employment-only note">
+        <p>
+          Seeking full-time employment as a senior architect or platform/internal ops operator. Not available for freelance, consulting, or agency work.
+        </p>
+      </section>
+      <section class="craft-strip" aria-label="Proof of craft">
+        <p>
+          <strong>Designed &amp; Authored by a Human.</strong> This site is a proof surface for operational thinking, not prompt sludge. I show the constraint, the trade-off, and the business consequence, then link it to measurable outcomes.
+        </p>
+      </section>
+      <section class="proof-grid" aria-label="Principal-level proof points">
+        <article class="proof-card">
+          <h2>Business Impact</h2>
+          <p>$6.8M net-new ARR generated, 27% of team output, with operational redesign tied to lower friction and faster expansion motion.</p>
+        </article>
+        <article class="proof-card">
+          <h2>Constraint-Driven Delivery</h2>
+          <p>22% faster Time-to-Value by redesigning onboarding around actual handoff constraints instead of adding more process.</p>
+        </article>
+        <article class="proof-card">
+          <h2>Cross-Functional Reality</h2>
+          <p>My strongest work sits between Product, Sales, Support, and technical implementation, where ambiguous ownership usually slows deployment.</p>
+        </article>
+        <article class="proof-card">
+          <h2>Hiring CTA</h2>
+          <p><a href="https://www.linkedin.com/in/brendan-davies/" rel="me">Contact for employment discussions on LinkedIn</a>.</p>
+        </article>
+      </section>
 
-      <div class="foot">Contact: hubsays.com</div>
+      <section class="entries" aria-label="Studio index">
+        <article class="entry">
+          <a class="entry-link" href="https://jobs.hubsays.media/">
+            <div class="entry-label">Live Product</div>
+            <h3>jobs.hubsays.media - English-Friendly Live + Work Beta</h3>
+            <p>
+              The public jobs and relocation surface: English-friendly roles, salary-after-rent realism, and a trust-first static delivery model that avoids account-heavy job-board sludge.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/agents/index.html">
+            <div class="entry-label">Current Operating Model</div>
+            <h3>Anchor, Relay, and the Bounded Agent Surface</h3>
+            <p>
+              The current operator stack behind this site: deterministic queues, persistent worker lanes, private briefings, and governance that keeps automation useful instead of theatrical.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/brendan-davies/">
+            <div class="entry-label">Start Here</div>
+            <h3>Brendan Davies - Candidate Profile</h3>
+            <p>
+              The direct hiring path: role fit, commercial impact, technical
+              positioning, and the clearest summary of why I am a strong employee
+              candidate for senior architecture work.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/availability.html">
+            <div class="entry-label">Hiring Status</div>
+            <h3>Availability for Employee Roles</h3>
+            <p>
+              A direct, transparent note for recruiters and hiring managers:
+              current role fit, what I am open to, and what this site is actually for.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/trust-tax-marketplace-conversion.html">
+            <div class="entry-label">Thought Leadership</div>
+            <h3>The Trust Tax: Why Internal Ops Debt Kills Marketplace Conversion</h3>
+            <p>
+              A principal-level systems piece on trust, state transparency, operational debt,
+              and why marketplace conversion breaks long before the dashboard admits it.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/decision-latency-systems.html">
+            <div class="entry-label">Thought Leadership</div>
+            <h3>Decision Latency: The Hidden Lag That Breaks Trust</h3>
+            <p>
+              A follow-on systems piece on how unclear state transitions create trust decay,
+              support drag, and slower platform decision quality.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/ai-orchestration-reliability.html">
+            <div class="entry-label">Recruiter FAQ</div>
+            <h3>AI Orchestration Reliability: Guardrails for Agentic Workflows</h3>
+            <p>
+              How I design trust-preserving AI workflows: explicit contracts,
+              deterministic validation, fail-closed behavior, and human review
+              when the blast radius is real.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/live-systems.html">
+            <div class="entry-label">Operating Model</div>
+            <h3>Live Systems: Runtime Guardrails, Audits, and Public Tooling</h3>
+            <p>
+              The practical model behind the glossary terms: how I think about
+              runtime integrity, feedback loops, health checks, and why some small
+              reliability tools are worth shipping in public.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/llm-structured-outputs.html">
+            <div class="entry-label">Recruiter FAQ</div>
+            <h3>Ensuring Structured, Reliable Outputs from LLMs</h3>
+            <p>
+              How I keep AI-assisted workflows usable: constrained prompts,
+              explicit examples, deterministic validation, and fail-closed
+              acceptance.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/llm-technique-selection.html">
+            <div class="entry-label">Decision Framework</div>
+            <h3>Choosing Between Prompting, RAG, Tools, LoRA, and Fine-Tuning</h3>
+            <p>
+              A practical guide to picking the lightest LLM technique that solves
+              the real problem, without adding unnecessary stack complexity.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/ai-privacy-enterprise.html">
+            <div class="entry-label">Recruiter FAQ</div>
+            <h3>Data Privacy, Isolation, and Zero-Retention in Enterprise AI</h3>
+            <p>
+              A direct, recruiter-facing explanation of my real AI privacy posture:
+              hybrid local-first execution, deterministic redaction, and pragmatic
+              isolation choices.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/time-to-value-enterprise-saas.html">
+            <div class="entry-label">Business Proof</div>
+            <h3>Reducing Time-to-Value by 22% in Enterprise SaaS</h3>
+            <p>
+              A concrete systems example: reducing adoption friction through role
+              redesign, clearer success contracts, and lower-friction operating
+              boundaries.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/evidence/">
+            <div class="entry-label">Evidence</div>
+            <h3>Quantified Outcomes and Signal Density</h3>
+            <p>
+              Commercial, systems, and operational metrics presented for fast recruiter
+              and hiring-manager scan speed.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/blog/index.html">
+            <div class="entry-label">Studio Logs</div>
+            <h3>Architecture Notes and Build Updates</h3>
+            <p>
+              Public notes on deterministic design, AI-assisted workflows, and the
+              operational decisions shaping the studio.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/glossary/index.html">
+            <div class="entry-label">Reference</div>
+            <h3>Glossary for Systems and AI Terms</h3>
+            <p>
+              A plain-English reference for recurring architecture, privacy, and
+              orchestration language used across the site.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/shell-guard.html">
+            <div class="entry-label">Tooling Cluster</div>
+            <h3>Public Reliability Tooling Notes</h3>
+            <p>
+              Focused notes on `shell-guard`, `state-sentinel`, and
+              `godot-secrets-scan`: why each tool exists, what gap it filled, and
+              how it reflects the broader operating model.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="https://github.com/EspressoGuardian" rel="me">
+            <div class="entry-label">Live Tooling</div>
+            <h3>EspressoGuardian Repositories</h3>
+            <p>
+              Public tooling artifacts that reinforce the candidate story with
+              working evidence, not just claims.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/learning-lab.html">
+            <div class="entry-label">Daily Fluency</div>
+            <h3>Learning Lab</h3>
+            <p>
+              A private study loop that turns Hubsays concepts into repeatable recall for architecture interviews.
+            </p>
+          </a>
+        </article>
+
+        <article class="entry">
+          <a class="entry-link" href="/amber-state/">
+            <div class="entry-label">Current Medium</div>
+            <h3>The Amber State</h3>
+            <p>
+              Games are our first medium for testing constraint-driven system design,
+              explainable consequences, and long-horizon product thinking.
+            </p>
+          </a>
+        </article>
+      </section>
+
+      <div class="foot">© <span id="y"></span> Brendan Davies · <a href="/">brendan-davies.dev</a></div>
     </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+      <script defer src="/assets/ui/theme-toggle.js"></script>
   </body>
 </html>
