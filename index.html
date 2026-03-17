@@ -358,6 +358,48 @@
         border-radius: 14px;
         padding: 18px;
       }
+      .ecosystem-strip {
+        margin-top: 22px;
+        border: 1px solid #21343a;
+        background: linear-gradient(180deg, rgba(11, 17, 20, 0.96), rgba(9, 13, 16, 0.98));
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .ecosystem-strip h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+      .ecosystem-strip p {
+        margin: 0;
+        color: #c8d5d8;
+        max-width: 66ch;
+      }
+      .ecosystem-grid {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .ecosystem-card {
+        border: 1px solid #223238;
+        border-radius: 12px;
+        background: #0b1214;
+        padding: 14px;
+      }
+      .ecosystem-card h3 {
+        font-size: 0.94rem;
+        margin-bottom: 8px;
+      }
+      .ecosystem-card p {
+        margin: 0;
+        color: #b9c4c7;
+        font-size: 0.92rem;
+        line-height: 1.58;
+      }
+      .ecosystem-card a {
+        color: var(--accent);
+        text-decoration: none;
+      }
       .current-brief h2 {
         font-size: 1rem;
         margin-bottom: 10px;
@@ -493,6 +535,39 @@
           <a href="/decision-latency-systems.html">Read: Decision Latency</a>
           <a href="/learning-lab.html">See: Learning Lab</a>
           <a href="/architecture/index.html">Systems Architecture Diagrams</a>
+        </div>
+      </section>
+      <section class="ecosystem-strip" aria-label="Current mission">
+        <h2>Current Mission</h2>
+        <p>
+          I am actively looking for the right senior employee role while
+          building in public. That means the work itself has to prove value:
+          one clean personal proof surface, one umbrella directory, and one live
+          product that shows product and systems judgment in practice.
+        </p>
+        <div class="ecosystem-grid">
+          <article class="ecosystem-card">
+            <h3><a href="https://hubsays.com/">hubsays.com</a></h3>
+            <p>
+              The umbrella directory. It keeps the product and studio story in
+              one place without turning the personal site into a mixed signal.
+            </p>
+          </article>
+          <article class="ecosystem-card">
+            <h3><a href="https://jobs.hubsays.media/">jobs.hubsays.media</a></h3>
+            <p>
+              The live product surface. It is where I test trust-first UX,
+              practical data use, and low-complexity delivery in public.
+            </p>
+          </article>
+          <article class="ecosystem-card">
+            <h3><a href="https://hubsays.media/">hubsays.media</a></h3>
+            <p>
+              Reserved for the later media lane: video, soundtrack work, game
+              devlogs, and public experiments once that track earns its own
+              identity.
+            </p>
+          </article>
         </div>
       </section>
       <section class="project-strip" aria-label="Current operator projects">
@@ -805,7 +880,12 @@
         </article>
       </section>
 
-      <div class="foot">© <span id="y"></span> Brendan Davies · <a href="/">brendan-davies.dev</a></div>
+      <div class="foot">
+        © <span id="y"></span> Brendan Davies · <a href="/">brendan-davies.dev</a> ·
+        <a href="https://hubsays.com/">hubsays.com</a> ·
+        <a href="https://jobs.hubsays.media/">jobs.hubsays.media</a> ·
+        <a href="https://hubsays.media/">hubsays.media</a>
+      </div>
     </div>
 
     <script>
