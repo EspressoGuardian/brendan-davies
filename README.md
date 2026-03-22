@@ -5,7 +5,7 @@ Static site for `brendan-davies.dev`.
 - `/` -> Brendan Davies public proof of work
 - `/brendan-davies/` -> deeper profile and background
 - `/blog/` -> writing and case-study archive
-- live companion surface -> `https://jobs.hubsays.media/`
+- active studio surface -> `https://hubsays.com/`
 
 ## Stack
 
