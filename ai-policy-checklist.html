@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A one-page AI policy checklist for small teams that need usable operational rules, not governance theater."
+    />
+    <meta name="theme-color" content="#101418" />
+    <meta property="og:title" content="AI Policy Checklist" />
+    <meta
+      property="og:description"
+      content="A one-page checklist for small teams tightening AI usage around data, review, logging, and approvals."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brendan-davies.dev/ai-policy-checklist.html" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta property="og:image:alt" content="AI policy checklist social preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Policy Checklist" />
+    <meta
+      name="twitter:description"
+      content="A one-page checklist for small teams tightening AI usage around data, review, logging, and approvals."
+    />
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <title>AI Policy Checklist | Brendan Davies</title>
+    <style>
+      :root {
+        color-scheme: dark light;
+        --bg: #0f1418;
+        --surface: #171d21;
+        --surface-2: #11171b;
+        --text-main: #edf4f7;
+        --text-dim: #b1c0c7;
+        --line: #2b373e;
+        --accent: #7ff6d5;
+        --font-sans: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+        --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
+      }
+      html[data-theme="light"] {
+        --bg: #f5f4ef;
+        --surface: #ffffff;
+        --surface-2: #f1eee6;
+        --text-main: #182126;
+        --text-dim: #55636c;
+        --line: #d8d8cf;
+        --accent: #0f8b73;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.65;
+      }
+      .shell {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 28px 20px 84px;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 28px;
+        font-family: var(--font-mono);
+      }
+      .crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .crumbs a,
+      .toggle {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .crumbs a {
+        color: var(--text-dim);
+        text-decoration: none;
+      }
+      .crumbs a:hover,
+      .crumbs a:focus-visible {
+        color: var(--accent);
+      }
+      .toggle {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 14px;
+        background: var(--surface);
+        color: var(--text-main);
+        font-family: var(--font-mono);
+        cursor: pointer;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .hero,
+      .checklist,
+      .footer-card {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: color-mix(in srgb, var(--surface) 96%, transparent);
+        padding: 24px;
+      }
+      h1, h2 {
+        margin: 0;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.05;
+        margin-bottom: 14px;
+      }
+      h2 {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+      }
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      p {
+        margin: 0 0 16px;
+        color: var(--text-dim);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 22px;
+      }
+      .checklist {
+        min-height: 100%;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      .footer-card {
+        margin-top: 20px;
+      }
+      .footer-card a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      @media (max-width: 720px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .shell {
+          padding: 20px 14px 72px;
+        }
+        .hero,
+        .checklist,
+        .footer-card {
+          border-radius: 18px;
+          padding: 20px;
+        }
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/ui/theme.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Start Here</a>
+          <a href="/practical-ai-policy-small-teams.html">Practical AI Policy</a>
+          <a href="/ai-policy-checklist.html" aria-current="page">Checklist</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">One-page asset</p>
+        <h1>AI Policy Checklist</h1>
+        <p>
+          This is the short version for small teams. If the answer to any item
+          below is "not sure", that is usually the next policy gap to close.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section class="checklist">
+          <h2>Data and tooling</h2>
+          <ul>
+            <li>Can the team classify data as public, internal, sensitive, or regulated?</li>
+            <li>Is there a clear rule for what may be sent to hosted models?</li>
+            <li>Is there a local or isolated path for sensitive work?</li>
+            <li>Are approved tools named, instead of implied?</li>
+            <li>Does each tool have a clear job instead of vague all-purpose access?</li>
+          </ul>
+        </section>
+
+        <section class="checklist">
+          <h2>Review and approvals</h2>
+          <ul>
+            <li>Is customer-facing output always reviewed by a named human?</li>
+            <li>Are legal, policy, and pricing claims explicitly gated?</li>
+            <li>Are production changes separated from drafting or research lanes?</li>
+            <li>Does the team know who approves exceptions?</li>
+            <li>Can someone explain the policy in plain English in under two minutes?</li>
+          </ul>
+        </section>
+
+        <section class="checklist">
+          <h2>Evidence and operations</h2>
+          <ul>
+            <li>Do you keep a lightweight record of model, task, operator, and outcome?</li>
+            <li>Can you reconstruct how a risky output was produced?</li>
+            <li>Is there a short incident path when the model gets something badly wrong?</li>
+            <li>Do repeat exceptions trigger a policy update instead of a shrug?</li>
+          </ul>
+        </section>
+
+        <section class="checklist">
+          <h2>Practical first month target</h2>
+          <ul>
+            <li>One shared page of rules.</li>
+            <li>One named owner for changes.</li>
+            <li>One weekly review of exceptions and tool sprawl.</li>
+            <li>One public-output lane with explicit sign-off.</li>
+            <li>One sensitive-data lane that stays local or isolated.</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="footer-card">
+        <p>
+          Want the fuller argument and the operating logic behind this list?
+          Read <a href="/practical-ai-policy-small-teams.html">Practical AI Policy for Small Teams</a>.
+        </p>
+      </section>
+    </div>
+    <script defer src="/assets/ui/theme-toggle.js"></script>
+  </body>
+</html>

@@ -18,9 +18,12 @@ Hubsays is Brendan Davies' public proof of work for senior employee roles in sys
 - Evidence: https://brendan-davies.dev/evidence/
 - Architecture: https://brendan-davies.dev/architecture/index.html
 - Learning Lab: https://brendan-davies.dev/learning-lab.html
+- Practical AI Policy: https://brendan-davies.dev/practical-ai-policy-small-teams.html
+- AI Policy Checklist: https://brendan-davies.dev/ai-policy-checklist.html
 
 ## Flagship Writing
 
+- Practical AI Policy: https://brendan-davies.dev/practical-ai-policy-small-teams.html
 - The Trust Tax: https://brendan-davies.dev/trust-tax-marketplace-conversion.html
 - Decision Latency: https://brendan-davies.dev/decision-latency-systems.html
 - AI Orchestration Reliability: https://brendan-davies.dev/ai-orchestration-reliability.html

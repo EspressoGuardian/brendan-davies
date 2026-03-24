@@ -5,55 +5,348 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Resume request page for Brendan Davies with links to architecture and proof-first work."
-    />    <meta property="og:title" content="Resume | Hubsays" />
+      content="Living resume for Brendan Davies: systems architect focused on local-first AI orchestration, workflow reliability, Cloudflare-adjacent edge thinking, and trust-driven operations."
+    />
+    <meta property="og:title" content="Living Resume | Brendan Davies" />
     <meta
       property="og:description"
-      content="Resume request page for Brendan Davies with links to architecture and proof-first work."
+      content="Recruiter-safe living resume with role fit, operating model, evidence, and direct links into the strongest public proof."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://brendan-davies.dev/resume.html" />
-    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
+    <meta property="og:image" content="https://brendan-davies.dev/assets/social/brendan-social-card.png" />
     <meta property="og:image:width" content="1280" />
     <meta property="og:image:height" content="640" />
-    <meta property="og:image:alt" content="Hubsays Studio social preview" />
+    <meta property="og:image:alt" content="Brendan Davies living resume social preview" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Resume | Hubsays" />
+    <meta name="twitter:title" content="Living Resume | Brendan Davies" />
     <meta
       name="twitter:description"
-      content="Resume request page for Brendan Davies with links to architecture and proof-first work."
+      content="Systems architecture, local-first AI orchestration, risk-aware operations, and recruiter-safe public proof."
     />
-    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
-
-    <title>Resume | Hubsays</title>
+    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/brendan-social-card.png" />
+    <title>Living Resume | Brendan Davies</title>
     <style>
-      :root { --bg:#050505; --text:#e0e0e0; --dim:#888; --line:#222; --accent:#00f2ff; --mono:"JetBrains Mono","Fira Code","IBM Plex Mono",monospace; --sans:"IBM Plex Sans","Inter",-apple-system,sans-serif; }
-      *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);display:flex;justify-content:center;line-height:1.72}
-      .wrap{max-width:760px;width:100%;padding:72px 24px 92px} nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
-      nav a{color:var(--dim);text-decoration:none;font-family:var(--mono);font-size:.9rem} nav a:hover{color:var(--accent)}
-      h1{margin:0;font-family:var(--mono);font-size:clamp(1.8rem,4vw,2.4rem)} p{color:var(--dim)}
-      .card{margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:14px;background:#111}
-      a{color:var(--accent);text-decoration:none}
+      :root {
+        --bg: #050505;
+        --surface: #111111;
+        --text-main: #e0e0e0;
+        --text-dim: #909090;
+        --line: #242424;
+        --accent: #00f2ff;
+        --accent-soft: rgba(0, 242, 255, 0.08);
+        --focus-ring: #8bf8ff;
+        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
+        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(0, 242, 255, 0.08), transparent 26%),
+          #050505;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        line-height: 1.7;
+        display: flex;
+        justify-content: center;
+      }
+      .wrap {
+        max-width: 940px;
+        width: 100%;
+        padding: 64px 20px 92px;
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 48px;
+      }
+      nav a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+      }
+      nav a:hover { color: var(--accent); }
+      a:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      .hero,
+      .panel,
+      .card,
+      .cta {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+      }
+      .hero,
+      .cta {
+        padding: 24px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.9fr);
+        gap: 18px;
+      }
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1, h2, h3 {
+        margin: 0;
+        color: #ffffff;
+        font-family: var(--font-mono);
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        max-width: 16ch;
+      }
+      h2 {
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+      }
+      h3 {
+        font-size: 0.96rem;
+        margin-bottom: 10px;
+      }
+      p {
+        margin: 0 0 16px;
+        color: var(--text-dim);
+      }
+      .lead {
+        font-size: 1.08rem;
+        max-width: 58ch;
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .chip {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 10px;
+        background: #0c1315;
+        color: #cdeef1;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+      }
+      .side {
+        display: grid;
+        gap: 16px;
+      }
+      .panel {
+        padding: 18px;
+      }
+      .panel p:last-child,
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+      .grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .card {
+        padding: 18px;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li {
+        color: var(--text-dim);
+        margin-bottom: 10px;
+      }
+      .cta {
+        margin-top: 20px;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .cta-actions a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        text-decoration: none;
+        color: #ffffff;
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        background: #0c1315;
+      }
+      .cta-actions a:hover { border-color: var(--accent); color: var(--accent); }
+      .stack {
+        margin-top: 24px;
+        display: grid;
+        gap: 16px;
+      }
+      .role-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .foot {
+        margin-top: 28px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--text-dim);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+      .foot a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      @media (max-width: 900px) {
+        .hero,
+        .grid,
+        .role-list {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 52px 14px 72px;
+        }
+      }
     </style>
-      <link rel="stylesheet" href="/assets/ui/theme.css" />
+    <link rel="stylesheet" href="/assets/ui/theme.css" />
   </head>
   <body>
     <div class="wrap">
       <nav>
         <a href="/index.html">Index</a>
-        <a href="/brendan-davies/">Brendan</a>
+        <a href="/brendan-davies/">Bio</a>
+        <a href="/availability.html">Availability</a>
+        <a href="/evidence/">Evidence</a>
         <a href="/architecture/index.html">Architecture</a>
+        <a href="https://www.linkedin.com/in/brendan-davies/" rel="me">LinkedIn</a>
       </nav>
-      <h1>Resume</h1>
-      <section class="card">
-        <p>Latest resume package is available on request.</p>
-        <p>Email <a href="mailto:support@hubsays.com">support@hubsays.com</a> and include the target role/company for a tailored version.</p>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Living Resume</p>
+          <h1>Systems architecture, AI orchestration, and trust-driven operations.</h1>
+          <p class="lead">
+            I build local-first operating environments, recruiter-safe proof surfaces, and bounded AI systems that stay readable under real pressure. The value is not “using AI.” The value is the operating model around it: contracts, validation, risk control, and public proof that holds up.
+          </p>
+          <div class="meta">
+            <span class="chip">local-first AI orchestration</span>
+            <span class="chip">workflow reliability</span>
+            <span class="chip">Cloudflare-adjacent edge thinking</span>
+            <span class="chip">platform and internal ops</span>
+          </div>
+        </div>
+        <div class="side">
+          <section class="panel">
+            <h2>Best fit</h2>
+            <ul>
+              <li>Senior or staff systems architecture</li>
+              <li>Platform and internal ops</li>
+              <li>AI workflow reliability and governance</li>
+              <li>Cloudflare / Zero Trust advisory support</li>
+            </ul>
+          </section>
+          <section class="panel">
+            <h2>Current posture</h2>
+            <p>
+              Public version is intentionally redacted. Open to employee roles, with selective advisory conversations only where the work is architecture-led, risk-aware, and clearly bounded.
+            </p>
+          </section>
+        </div>
       </section>
-      <section class="card">
-        <p>For live proof, see:</p>
-        <p><a href="/brendan-davies/">Commercial profile</a> · <a href="/architecture/index.html">Architecture diagrams</a> · <a href="https://github.com/EspressoGuardian" rel="me">Public tooling</a></p>
+
+      <section class="cta">
+        <h2>Fastest route to fit</h2>
+        <p>
+          Start with the PDF if you need the standard version. Then use the living pages for the operating model and the deeper proof.
+        </p>
+        <div class="cta-actions">
+          <a href="https://www.linkedin.com/in/brendan-davies/" rel="me">Request private resume PDF via LinkedIn</a>
+          <a href="/master-os-operating-model.html">Read the Master OS operating model</a>
+          <a href="/cloudflare-zero-trust-migration-advisory.html">Read the Cloudflare advisory case study</a>
+          <a href="/availability.html">Open availability note</a>
+        </div>
       </section>
+
+      <section class="grid" aria-label="Proof snapshot">
+        <article class="card">
+          <h3>Commercial proof</h3>
+          <p>$6.8M net-new ARR generated at Atlassian, representing 27% of team output.</p>
+        </article>
+        <article class="card">
+          <h3>Operational proof</h3>
+          <p>22% faster Time-to-Value through onboarding and workflow redesign at CleverTap.</p>
+        </article>
+        <article class="card">
+          <h3>Current build</h3>
+          <p>A local-first operating environment with bounded agent lanes, public proof pages, and deterministic publication rules.</p>
+        </article>
+      </section>
+
+      <section class="stack">
+        <article class="card">
+          <h2>Current operating model</h2>
+          <p>
+            I run a governed local-first system for work, publishing, research, and operational follow-through. It uses queues, handoffs, bounded agents, and validation gates instead of vague “AI assistant” claims. Public pages expose the useful architecture and redact the risky part.
+          </p>
+          <p>
+            That same operating model is what powers the website work, the case studies, the architecture notes, and the more technical writing on AI orchestration, privacy, and workflow reliability.
+          </p>
+        </article>
+
+        <div class="role-list">
+          <article class="card">
+            <h2>What employers usually care about</h2>
+            <ul>
+              <li>turning ambiguous systems problems into clear operating models</li>
+              <li>architecture and reliability thinking, not only feature shipping</li>
+              <li>commercial awareness alongside technical judgment</li>
+              <li>public proof that is clear, inspectable, and employer-safe</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Relevant public pages</h2>
+            <ul>
+              <li><a href="/ai-orchestration-reliability.html">AI orchestration reliability</a></li>
+              <li><a href="/ai-privacy-enterprise.html">AI privacy and hybrid systems</a></li>
+              <li><a href="/evidence/">Evidence and quantified outcomes</a></li>
+              <li><a href="/architecture/index.html">Architecture notes and diagrams</a></li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card">
+          <h2>Experience snapshot</h2>
+          <ul>
+            <li><strong>Hubsays Studio:</strong> systems design, public proof, local-first AI workflows, architecture writing, and recruiter-safe operating surfaces.</li>
+            <li><strong>CleverTap:</strong> EUR 1.5M ARR portfolio ownership across 40+ enterprise accounts with onboarding and retention improvement work.</li>
+            <li><strong>Atlassian:</strong> $6.8M net-new ARR, 750+ EMEA accounts, and repeated cross-functional problem solving across adoption and expansion.</li>
+            <li><strong>Insurance underwriting:</strong> background in exposure analysis, pricing discipline, and structured risk thinking that now shapes architecture work.</li>
+          </ul>
+        </article>
+      </section>
+
+      <div class="foot">
+        Living resume for Brendan Davies. Tailored versions are still available on request if a role needs a tighter angle.
+      </div>
     </div>
-      <script defer src="/assets/ui/theme-toggle.js"></script>
+    <script defer src="/assets/ui/theme-toggle.js"></script>
   </body>
 </html>

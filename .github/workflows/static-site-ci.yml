@@ -1,0 +1,68 @@
+name: Static Site CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Validate local links in HTML
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import sys
+
+          root = Path(".").resolve()
+          html_files = sorted(root.rglob("*.html"))
+          problems = []
+
+          class LinkParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.refs = []
+
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  for key in ("href", "src"):
+                      value = attrs.get(key)
+                      if value:
+                          self.refs.append(value)
+
+          def should_skip(ref: str) -> bool:
+              prefixes = ("http://", "https://", "mailto:", "tel:", "data:", "javascript:")
+              return ref.startswith(prefixes) or ref.startswith("#")
+
+          def resolve_target(ref: str, current_file: Path):
+              clean = ref.split("#", 1)[0].split("?", 1)[0]
+              if not clean or should_skip(clean):
+                  return None
+              if clean.startswith("/"):
+                  return (root / clean.lstrip("/")).resolve()
+              return (current_file.parent / clean).resolve()
+
+          for html_file in html_files:
+              parser = LinkParser()
+              parser.feed(html_file.read_text(encoding="utf-8"))
+              for ref in parser.refs:
+                  target = resolve_target(ref, html_file)
+                  if target is None:
+                      continue
+                  if not target.exists():
+                      problems.append(f"{html_file.relative_to(root)} -> {ref}")
+
+          if problems:
+              print("Broken local references found:")
+              for item in problems:
+                  print(f" - {item}")
+              sys.exit(1)
+
+          print(f"Validated {len(html_files)} HTML files with no broken local references.")
+          PY
