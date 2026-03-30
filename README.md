@@ -4,7 +4,7 @@ Static site for `brendan-davies.dev`.
 
 - `/` -> Brendan Davies public proof of work
 - `/brendan-davies/` -> deeper profile and background
-- `/blog/` -> writing and case-study archive
+- `/blog/` -> retired archive landing for legacy long-form posts
 - active studio surface -> `https://hubsays.com/`
 
 ## Stack
@@ -26,8 +26,8 @@ python -m http.server 8080
 
 - `index.html` - personal landing page
 - `brendan-davies/index.html` - deeper profile page
-- `blog/index.html` - Blog index
-- `blog/posts/*.html` - Post pages
+- `blog/index.html` - retired archive landing
+- `blog/posts/*.html` - legacy archive pages kept live by direct link
 
 ## Deployment Notes
 

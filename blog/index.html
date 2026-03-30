@@ -1,314 +1,175 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,follow" />
     <meta
       name="description"
-      content="Archive of older Brendan Davies notes and build history. Primary recruiter-safe proof now lives on the profile, evidence, and architecture surfaces."
+      content="The Brendan Davies blog has been retired. The primary public surface now routes through proof, systems, and Hubsays."
     />
-    <meta name="robots" content="noindex,follow" />
-    <meta property="og:title" content="Brendan Davies | Writing Archive" />
-    <meta
-      property="og:description"
-      content="Archive of older Brendan Davies notes and build history. Primary recruiter-safe proof now lives on the profile, evidence, and architecture surfaces."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://brendan-davies.dev/blog/index.html" />
-    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:image:alt" content="Hubsays Studio social preview" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brendan Davies | Writing Archive" />
-    <meta
-      name="twitter:description"
-      content="Archive of older Brendan Davies notes and build history. Primary recruiter-safe proof now lives on the profile, evidence, and architecture surfaces."
-    />
-    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
-
-    <title>Brendan Davies | Writing Archive</title>
+    <title>Archive Retired | Brendan Davies</title>
     <style>
       :root {
-        --bg: #050505;
-        --surface: #111111;
-        --text-main: #e0e0e0;
-        --text-dim: #888888;
-        --accent: #00f2ff;
-        --line: #222222;
-        --font-mono: "JetBrains Mono", "Fira Code", "IBM Plex Mono", monospace;
-        --font-sans: "IBM Plex Sans", "Inter", -apple-system, sans-serif;
+        --bg: #111315;
+        --bg-soft: #171a1d;
+        --line: rgba(168, 195, 176, 0.2);
+        --line-strong: rgba(217, 179, 106, 0.34);
+        --text: #f5f0e8;
+        --muted: #b6b0a6;
+        --accent: #a8c3b0;
+        --accent-strong: #d9b36a;
+        --font-body: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+        --font-display: "IBM Plex Mono", "JetBrains Mono", monospace;
       }
-      * { box-sizing: border-box; }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
-        background: var(--bg);
-        color: var(--text-main);
-        font-family: var(--font-sans);
-        line-height: 1.72;
-        display: flex;
-        justify-content: center;
-      }
-      .wrapper {
-        max-width: 780px;
-        width: 100%;
-        padding: 72px 24px 92px;
-      }
-      nav {
-        margin-bottom: 72px;
-        display: flex;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-      nav a {
-        color: var(--text-dim);
-        text-decoration: none;
-        font-family: var(--font-mono);
-        font-size: 0.92rem;
-      }
-      nav a:hover { color: var(--accent); }
-      h1, h2, h3 {
-        font-family: var(--font-mono);
-        font-weight: 700;
-        color: #ffffff;
-        margin: 0;
-      }
-      h1 {
-        font-size: clamp(2rem, 5vw, 2.8rem);
-        line-height: 1.15;
-        letter-spacing: -0.6px;
-      }
-      .sub {
-        color: var(--accent);
-        font-family: var(--font-mono);
-        font-size: 0.84rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin: 0 0 14px;
-      }
-      .lead {
-        color: var(--text-dim);
-        font-size: 1.1rem;
-        margin: 20px 0 0;
-        max-width: 64ch;
-      }
-      .entries {
-        margin-top: 64px;
+        min-height: 100vh;
         display: grid;
-        gap: 34px;
+        place-items: center;
+        padding: 24px;
+        color: var(--text);
+        font-family: var(--font-body);
+        background:
+          radial-gradient(circle at top left, rgba(168, 195, 176, 0.12), transparent 28%),
+          radial-gradient(circle at top right, rgba(217, 179, 106, 0.12), transparent 24%),
+          linear-gradient(180deg, var(--bg) 0%, #0b0d10 100%);
       }
-      .entry {
-        border-left: 1px solid var(--line);
-        padding-left: 20px;
-        transition: border-color 0.2s ease;
+
+      .shell {
+        width: min(760px, 100%);
+        padding: 32px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(23, 26, 29, 0.92);
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(16px);
       }
-      .entry:hover { border-left-color: var(--accent); }
-      .entry-date {
-        font-family: var(--font-mono);
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--accent);
+        font-family: var(--font-display);
         font-size: 0.78rem;
-        color: var(--text-dim);
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
-      .entry-title {
-        display: inline-block;
-        margin-top: 8px;
-        font-family: var(--font-mono);
-        font-size: 1.24rem;
-        color: #ffffff;
+
+      h1 {
+        margin: 22px 0 14px;
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+      }
+
+      p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .note {
+        margin-top: 22px;
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(217, 179, 106, 0.2);
+        background: rgba(217, 179, 106, 0.07);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .actions a {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 14px;
+        border: 1px solid var(--line-strong);
         text-decoration: none;
-        line-height: 1.35;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
       }
-      .entry-title:hover { color: var(--accent); }
-      .entry p {
-        margin: 10px 0 0;
-        color: var(--text-dim);
-        max-width: 62ch;
+
+      .actions a:hover,
+      .actions a:focus-visible {
+        transform: translateY(-1px);
       }
-      .foot {
-        margin-top: 60px;
-        padding-top: 16px;
-        border-top: 1px solid var(--line);
-        color: var(--text-dim);
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
+
+      .actions .primary {
+        background: linear-gradient(135deg, var(--accent-strong), #e6d0a2);
+        color: #111315;
+      }
+
+      .actions .secondary {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+      }
+
+      ul {
+        margin: 18px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        font-family: var(--font-display);
+        font-size: 0.9em;
       }
     </style>
-      <link rel="stylesheet" href="/assets/ui/theme.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <nav>
-        <a href="/index.html">Home</a>
-        <a href="/brendan-davies/">Profile</a>
-        <a href="/evidence/">Evidence</a>
-        <a href="/architecture/index.html">Architecture</a>
-        <a href="/master-os-operating-model.html">Master OS</a>
-        <a href="/amber-state/">Amber State</a>
-        <a href="/glossary/index.html">Glossary</a>
-      </nav>
-
-      <p class="sub">Archive</p>
-      <h1>Older Notes and Build History</h1>
-      <p class="lead">
-        This route stays online as an archive for older writing and build notes.
-        The main recruiter-safe surfaces now live on the profile, evidence, and
-        architecture pages.
+    <main class="shell">
+      <div class="eyebrow">Archive Retired</div>
+      <h1>The blog is no longer the front door.</h1>
+      <p>
+        Brendan-davies.dev now routes through proof, systems, and operator context
+        first. The old blog index has been retired as part of the site rebuild.
       </p>
-
-      <div class="foot" style="margin-top: 24px; margin-bottom: 0;">
-        Start here instead:
-        <a href="/brendan-davies/">Profile</a> /
-        <a href="/evidence/">Evidence</a> /
-        <a href="/architecture/index.html">Architecture</a>
+      <p>
+        Legacy long-form posts still exist where they are useful, but they are now
+        supporting references rather than the main structure of the site.
+      </p>
+      <div class="note">
+        <p>
+          If you arrived here from an old link, use the updated surfaces below. They
+          are faster to scan and closer to how the work is actually presented now.
+        </p>
+        <ul>
+          <li><code>/</code> for the operator surface and selected proof</li>
+          <li><code>/evidence/</code> for compact reference material</li>
+          <li><code>https://hubsays.com/</code> for the active public studio surface</li>
+        </ul>
       </div>
-
-      <main class="entries">
-        <article class="entry">
-          <div class="entry-date">2026-03-15</div>
-          <a class="entry-title" href="posts/015-what-my-prusa-core-one-taught-me-about-technical-support-engineering.html">What My Prusa Core One Taught Me About Technical Support Engineering</a>
-          <p>
-            A build-log from my first printer week: USB troubleshooting,
-            filtration install friction, documentation gaps, and why it all maps
-            cleanly to print support engineering.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-03-01</div>
-          <a class="entry-title" href="posts/014-should-job-radar-be-open-source.html">Should Job Radar Be Open Source?</a>
-          <p>
-            Why the architecture and case study should be public now, while the
-            production implementation stays private for the moment.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-28</div>
-          <a class="entry-title" href="posts/013-ai-orchestration-privacy-and-hybrid-systems.html">AI Orchestration, Privacy, and Hybrid Systems</a>
-          <p>
-            A direct answer to the privacy, guardrail, and architecture-tradeoff
-            questions that increasingly show up in AI systems interviews.
-          </p>
-        </article>
-
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/012-multi-agent-chess-and-systems-thinking.html">Multi-Agent Chess and Systems Thinking</a>
-          <p>
-            Why 4-player chess acts as cognitive cross-training for architecture:
-            constraint navigation, probabilistic reasoning, and adaptive decisions.
-          </p>
-        </article>
-
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/011-cybersecurity-letsdefend-and-the-architecture-of-defense.html">Cybersecurity, Let’sDefend, and the Architecture of Defense</a>
-          <p>
-            Why cybersecurity training pushed me toward architecture-first defense:
-            layered risk reduction, proportional hardening, and blast-radius design.
-          </p>
-        </article>
-
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/010-non-linear-learning-why-i-chose-experience-over-a-degree.html">Non-Linear Learning: Why I Chose Experience Over a Degree</a>
-          <p>
-            Why a question-driven, experience-first path built resilience,
-            systems thinking, and cross-domain pattern recognition.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/009-architecture-vs-system-design-where-i-sit.html">Architecture vs System Design: Where I Sit</a>
-          <p>
-            How I operate architecture-first with system design fluency, and why
-            that clarity improves role fit and decision quality.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/008-demo-philosophy-structural-thinking.html">Demo Philosophy + Structural Thinking</a>
-          <p>
-            Why durable adoption comes from trial design, enablement systems, and
-            structural onboarding, not presentation-heavy workflows.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/007-how-i-evaluate-a-saas-vendor-in-60-minutes.html">How I Evaluate a SaaS Vendor in 60 Minutes</a>
-          <p>
-            A practical vendor diligence framework covering ownership, compliance,
-            data portability, sentiment signals, licensing, and pricing reality.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/006-designing-onboarding-systems-that-do-not-break-at-scale.html">Designing Onboarding Systems That Do Not Break at Scale</a>
-          <p>
-            Why recurring support friction is usually an alignment problem between
-            support, product, and engineering, not just a tooling problem.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-27</div>
-          <a class="entry-title" href="posts/005-from-gamer-to-systems-architect-linux-migration.html">From Gamer to Systems Architect: Why I Migrated to Linux</a>
-          <p>
-            How AI lowered the cognitive barrier to Linux, and why the move became
-            an architectural choice about control, automation, and systems design.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-26</div>
-          <a class="entry-title" href="posts/004-architecture-first-scalable-security.html">Architecture First: Scalable Security for Fast-Moving Teams</a>
-          <p>
-            How to make secure delivery the default path using constrained AI
-            orchestration, scoped permissions, and deterministic verification.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-02-26</div>
-          <a class="entry-title" href="posts/003-origin-story-systems-over-linearity.html">Origin Story: Systems Over Linearity</a>
-          <p>
-            Why a non-linear path from hospitality to SaaS architecture became
-            the foundation for deterministic engineering and automation work.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-01-29</div>
-          <a class="entry-title" href="posts/002-the-crossroads.html">The Crossroads</a>
-          <p>
-            Thinking smarter in a changing market through intentional job search,
-            continuous systems building, and dual-path execution.
-          </p>
-        </article>
-
-        <article class="entry">
-          <div class="entry-date">2026-01-29</div>
-          <a class="entry-title" href="posts/001-vibe-coding.html">Vibe Coding and System Integrity</a>
-          <p>
-            How constraints, guardrails, and deterministic checks turn AI speed
-            into reliable output.
-          </p>
-        </article>
-      </main>
-
-      <div class="foot">© <span id="y"></span> Hubsays Studio</div>
-    </div>
-
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
-      <script defer src="/assets/ui/theme-toggle.js"></script>
+      <div class="actions">
+        <a class="primary" href="/">Open the operator surface</a>
+        <a class="secondary" href="/evidence/">View evidence</a>
+        <a class="secondary" href="https://hubsays.com/">Open Hubsays</a>
+      </div>
+    </main>
   </body>
 </html>
