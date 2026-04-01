@@ -8,11 +8,13 @@ const COMMAND_CONFIG = {
     },
     routes: {
       live: "live-systems.html",
+      desk: "live-systems.html",
       "master-os": "agents/index.html",
       brendan: "brendan-davies/index.html",
+      availability: "availability.html",
     },
     status:
-      "nodes=2 | browser packets=review-first | queue=watch | home lane=quiet | audio=vinyl-ready",
+      "desk=live | workflows=review-first | queue=watch | home=quiet | room=vinyl + espresso",
     extras: {
       "play radio": "Vinyl on. Espresso close. Focus up.",
       "sudo hire brendan": { route: "brendan-davies/contact.html", note: "Opening the contact lane." },
@@ -30,9 +32,10 @@ const COMMAND_CONFIG = {
       contact: "contact.html",
       studio: "https://hubsays.com/",
       proof: "proof.html",
+      availability: "availability.html",
     },
     status:
-      "focus=architecture + automation | posture=local-first | recruiter mode=ready | roles=NL/EU/ANZ",
+      "focus=systems + AI workflow design | posture=local-first | recruiter mode=ready | availability=open",
     extras: {
       "sudo hire brendan": { route: "contact.html", note: "Permission accepted. Opening contact." },
     },
