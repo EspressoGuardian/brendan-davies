@@ -184,8 +184,6 @@ function initWindows() {
 
   const windows = [...zone.querySelectorAll("[data-window-id]")];
   const launchers = [...document.querySelectorAll("[data-open-window]")];
-  let highestZ = 20;
-
   const byId = new Map(windows.map((node) => [node.getAttribute("data-window-id"), node]));
 
   const setLauncherState = (id) => {
@@ -197,19 +195,27 @@ function initWindows() {
     });
   };
 
-  const bringToFront = (node) => {
-    highestZ += 1;
-    node.style.zIndex = String(highestZ);
-  };
-
-  const activateWindow = (id) => {
+  const activateWindow = (id, { scroll = true } = {}) => {
     const node = byId.get(id);
     if (!node) return false;
-    node.classList.remove("is-hidden");
-    bringToFront(node);
+
+    windows.forEach((windowNode) => {
+      windowNode.classList.toggle("is-active", windowNode === node);
+      windowNode.setAttribute(
+        "aria-selected",
+        windowNode === node ? "true" : "false",
+      );
+    });
     setLauncherState(id);
-    if (window.innerWidth <= 1180) {
-      node.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (scroll) {
+      node.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: window.innerWidth <= 1180 ? "nearest" : "center",
+        inline: "center",
+      });
     }
     return true;
   };
@@ -228,53 +234,17 @@ function initWindows() {
     });
   });
 
-  document.querySelectorAll("[data-window-handle]").forEach((handle) => {
-    const node = handle.closest("[data-window-id]");
-    if (!node) return;
-
-    handle.addEventListener("pointerdown", (event) => {
-      if (window.innerWidth <= 1180) return;
-
-      const parentRect = zone.getBoundingClientRect();
-      const rect = node.getBoundingClientRect();
-      const startLeft = rect.left - parentRect.left;
-      const startTop = rect.top - parentRect.top;
-      const offsetX = event.clientX - rect.left;
-      const offsetY = event.clientY - rect.top;
-
-      node.style.left = `${startLeft}px`;
-      node.style.top = `${startTop}px`;
-      bringToFront(node);
-
-      const onMove = (moveEvent) => {
-        const maxLeft = Math.max(parentRect.width - rect.width, 0);
-        const maxTop = Math.max(parentRect.height - rect.height, 0);
-        const left = Math.min(
-          Math.max(moveEvent.clientX - parentRect.left - offsetX, 0),
-          maxLeft,
-        );
-        const top = Math.min(
-          Math.max(moveEvent.clientY - parentRect.top - offsetY, 0),
-          maxTop,
-        );
-        node.style.left = `${left}px`;
-        node.style.top = `${top}px`;
-      };
-
-      const onUp = () => {
-        document.removeEventListener("pointermove", onMove);
-        document.removeEventListener("pointerup", onUp);
-      };
-
-      document.addEventListener("pointermove", onMove);
-      document.addEventListener("pointerup", onUp);
-    });
-  });
-
   windows.forEach((node) => {
-    node.addEventListener("mousedown", () => bringToFront(node));
+    const id = node.getAttribute("data-window-id");
+    if (!id) return;
+    node.addEventListener("click", () => activateWindow(id, { scroll: false }));
   });
 
+  const firstId =
+    windows.find((node) => node.classList.contains("is-active"))?.getAttribute("data-window-id") ||
+    windows[0]?.getAttribute("data-window-id");
+
+  if (firstId) activateWindow(firstId, { scroll: false });
   window.activateWindow = activateWindow;
 }
 
