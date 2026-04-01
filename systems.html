@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brendan Davies | Systems</title>
+    <meta
+      name="description"
+      content="Selected systems, workflow lanes, and design principles from Brendan Davies."
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="site-shell nav-row">
+        <a class="brand-mark" href="index.html">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Brendan Davies</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a class="is-active" href="systems.html">Systems</a>
+          <a href="proof.html">Proof</a>
+          <a href="contact.html">Contact</a>
+          <a class="is-accent" href="https://hubsays.com/">Hubsays</a>
+        </nav>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="systems-menu"
+          data-menu-toggle="systems-menu"
+        >
+          Menu
+        </button>
+      </div>
+      <div class="site-shell mobile-panel" id="systems-menu">
+        <a href="index.html">Home</a>
+        <a class="is-active" href="systems.html">Systems</a>
+        <a href="proof.html">Proof</a>
+        <a href="contact.html">Contact</a>
+        <a class="is-accent" href="https://hubsays.com/">Hubsays</a>
+      </div>
+    </header>
+
+    <main id="main" class="site-shell page-wrap">
+      <section class="page-hero">
+        <div class="page-hero-grid">
+          <div>
+            <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Systems</span>
+            <h1 class="display-title">Systems worth talking about.</h1>
+            <p class="hero-copy">
+              The common thread is simple. I build environments that reduce ambiguity, show state
+              clearly, and keep automation inside boundaries people can trust.
+            </p>
+          </div>
+          <aside class="page-hero-panel">
+            <p class="kicker">Current public slices</p>
+            <ul class="micro-list">
+              <li>Master OS, the flagship operating model</li>
+              <li>BrowserOS, the review-first browser lane</li>
+              <li>Career workflows, packet prep and follow-up discipline</li>
+              <li>Smaller automations that remove repeated friction</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="flagship">
+        <div class="section-head">
+          <h2 id="flagship">Flagship</h2>
+          <p>The flagship matters because it shows how the operating logic holds together under real use.</p>
+        </div>
+        <div class="architecture-grid">
+          <article class="panel">
+            <p class="kicker">Master OS</p>
+            <h3>A local-first operating model</h3>
+            <p class="muted">
+              Requests, notes, queue pressure, and evidence all move through the same shape:
+              packet, helper pass, review, output. That keeps the work readable even when the tools
+              multiply.
+            </p>
+            <ul class="micro-list">
+              <li>reduces drift and context loss</li>
+              <li>keeps approvals visible where risk is real</li>
+              <li>turns messy work into reviewable outputs</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <p class="kicker">Operating loop</p>
+            <div class="architecture-stack">
+              <div class="node">
+                <strong>Signal intake</strong>
+                <span class="muted">Capture the actual request with constraints attached.</span>
+              </div>
+              <div class="node">
+                <strong>Helper passes</strong>
+                <span class="muted">Draft, critique, compress, and stage the next useful move.</span>
+              </div>
+              <div class="node">
+                <strong>Review gate</strong>
+                <span class="muted">Stop, approve, or redirect before sensitive motion.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="other-systems">
+        <div class="section-head">
+          <h2 id="other-systems">Other systems</h2>
+          <p>Smaller lanes matter because they show pattern discipline, not because they need big claims around them.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <p class="kicker">BrowserOS</p>
+            <h3>Review-first browser work</h3>
+            <p class="muted">
+              Research, job packets, and evidence capture without pretending the browser should run wild.
+            </p>
+          </article>
+          <article class="card">
+            <p class="kicker">Career lane</p>
+            <h3>Packet prep and visible state</h3>
+            <p class="muted">
+              Track roles, prepare tailored artifacts, and keep follow-ups from disappearing into tabs.
+            </p>
+          </article>
+          <article class="card">
+            <p class="kicker">Automation support</p>
+            <h3>Quiet systems work</h3>
+            <p class="muted">
+              The valuable stuff is often small: fewer repeated checks, clearer handoffs, less hidden work.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="principles">
+        <div class="section-head">
+          <h2 id="principles">Design principles</h2>
+          <p>The rules stay simple on purpose.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="panel">
+            <ul class="micro-list">
+              <li>local-first where control and privacy matter</li>
+              <li>visible state instead of hidden automation drama</li>
+              <li>human review at the point of real risk</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <ul class="micro-list">
+              <li>proof from working systems, not slide-deck theatre</li>
+              <li>commercial reality kept close to architecture decisions</li>
+              <li>simple language when the system gets complicated</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="site-shell footer-row">
+        <p>Systems page, focused on operating logic and live patterns.</p>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="proof.html">Proof</a>
+          <a href="contact.html">Contact</a>
+          <a href="https://hubsays.com/">Hubsays</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

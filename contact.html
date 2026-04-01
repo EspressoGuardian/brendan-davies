@@ -1,59 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brendan Davies | Contact And Fit</title>
     <meta
       name="description"
-      content="Contact Hubsays Studio for hiring, consulting, or architecture discussions."
-    />    <meta property="og:title" content="Contact | Hubsays" />
-    <meta
-      property="og:description"
-      content="Contact Hubsays Studio for hiring, consulting, or architecture discussions."
+      content="Role fit, first-contact guidance, and public links for Brendan Davies."
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://brendan-davies.dev/contact.html" />
-    <meta property="og:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="640" />
-    <meta property="og:image:alt" content="Hubsays Studio social preview" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Contact | Hubsays" />
-    <meta
-      name="twitter:description"
-      content="Contact Hubsays Studio for hiring, consulting, or architecture discussions."
-    />
-    <meta name="twitter:image" content="https://brendan-davies.dev/assets/social/hubsays-social-card.png" />
-
-    <title>Contact | Hubsays</title>
-    <style>
-      :root { --bg:#050505; --text:#e0e0e0; --dim:#888; --line:#222; --accent:#00f2ff; --mono:"JetBrains Mono","Fira Code","IBM Plex Mono",monospace; --sans:"IBM Plex Sans","Inter",-apple-system,sans-serif; }
-      *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);display:flex;justify-content:center;line-height:1.72}
-      .wrap{max-width:760px;width:100%;padding:72px 24px 92px} nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
-      nav a{color:var(--dim);text-decoration:none;font-family:var(--mono);font-size:.9rem} nav a:hover{color:var(--accent)}
-      h1{margin:0;font-family:var(--mono);font-size:clamp(1.8rem,4vw,2.4rem)} p{color:var(--dim)}
-      .card{margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:14px;background:#111}
-      a{color:var(--accent);text-decoration:none}
-    </style>
-      <link rel="stylesheet" href="/assets/ui/theme.css" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
   </head>
   <body>
-    <div class="wrap">
-      <nav>
-        <a href="/index.html">Index</a>
-        <a href="/brendan-davies/">Brendan</a>
-        <a href="/architecture/index.html">Architecture</a>
-      </nav>
-      <h1>Contact</h1>
-      <section class="card">
-        <p>Hiring, consulting, or architecture discussions:</p>
-        <p><a href="mailto:support@hubsays.com">support@hubsays.com</a></p>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="site-shell nav-row">
+        <a class="brand-mark" href="index.html">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Brendan Davies</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="systems.html">Systems</a>
+          <a href="proof.html">Proof</a>
+          <a class="is-active" href="contact.html">Contact</a>
+          <a class="is-accent" href="https://hubsays.com/">Hubsays</a>
+        </nav>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="contact-menu"
+          data-menu-toggle="contact-menu"
+        >
+          Menu
+        </button>
+      </div>
+      <div class="site-shell mobile-panel" id="contact-menu">
+        <a href="index.html">Home</a>
+        <a href="systems.html">Systems</a>
+        <a href="proof.html">Proof</a>
+        <a class="is-active" href="contact.html">Contact</a>
+        <a class="is-accent" href="https://hubsays.com/">Hubsays</a>
+      </div>
+    </header>
+
+    <main id="main" class="site-shell page-wrap">
+      <section class="page-hero">
+        <div class="page-hero-grid">
+          <div>
+            <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Contact</span>
+            <h1 class="display-title">Clear fit saves time.</h1>
+            <p class="hero-copy">
+              The fastest useful conversation starts with scope, ownership, location expectations,
+              and the real problem behind the role. I am most interested in work where the system
+              itself can still be improved.
+            </p>
+          </div>
+          <aside class="page-hero-panel">
+            <p class="kicker">Best first message</p>
+            <ul class="micro-list">
+              <li>role title and real ownership</li>
+              <li>core systems problem to solve</li>
+              <li>location and remote expectations</li>
+              <li>salary or rate range</li>
+            </ul>
+          </aside>
+        </div>
       </section>
-      <section class="card">
-        <p>Public tooling and code:</p>
-        <p><a href="https://github.com/EspressoGuardian" rel="me">github.com/EspressoGuardian</a></p>
+
+      <section class="section" aria-labelledby="fit-grid">
+        <div class="grid grid-2">
+          <article class="panel">
+            <p class="kicker" id="fit-grid">Strong fit</p>
+            <ul class="micro-list">
+              <li>AI systems architecture</li>
+              <li>platform engineering with tooling scope</li>
+              <li>workflow design and internal automation</li>
+              <li>hands-on architecture with real implementation authority</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <p class="kicker">Poor fit</p>
+            <ul class="micro-list">
+              <li>pure endpoint administration</li>
+              <li>low-agency support environments</li>
+              <li>architecture roles with no route to execution</li>
+              <li>heavy bureaucracy around obvious system fixes</li>
+            </ul>
+          </article>
+        </div>
       </section>
-    </div>
-      <script defer src="/assets/ui/theme-toggle.js"></script>
+
+      <section class="section" aria-labelledby="contact-path">
+        <div class="section-head">
+          <h2 id="contact-path">Public links</h2>
+          <p>LinkedIn is the easiest starting point. GitHub and Hubsays help with the technical and systems context.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card">
+            <p class="kicker">LinkedIn</p>
+            <h3><a href="https://www.linkedin.com/in/brendan-davies/">brendan-davies</a></h3>
+            <p class="muted">Best first route for roles, projects, and recruiter conversations.</p>
+          </article>
+          <article class="card">
+            <p class="kicker">GitHub</p>
+            <h3><a href="https://github.com/EspressoGuardian">EspressoGuardian</a></h3>
+            <p class="muted">Public code, experiments, and tooling context.</p>
+          </article>
+          <article class="card">
+            <p class="kicker">Hubsays</p>
+            <h3><a href="https://hubsays.com/">Operating system for life</a></h3>
+            <p class="muted">The public-facing surface for the broader working environment.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="site-shell footer-row">
+        <p>Contact page, tuned for strong-fit conversations.</p>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="systems.html">Systems</a>
+          <a href="proof.html">Proof</a>
+          <a href="https://hubsays.com/">Hubsays</a>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>
