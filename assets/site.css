@@ -559,38 +559,28 @@ textarea {
 }
 
 .window-frame {
-  --note-angle: -1deg;
-  --note-accent: rgba(195, 111, 61, 0.24);
+  --tile-accent: rgba(127, 156, 118, 0.14);
   position: relative;
   overflow: hidden;
   border-radius: 22px;
-  border: 1px solid rgba(128, 110, 93, 0.36);
+  border: 1px solid rgba(128, 110, 93, 0.24);
   background:
-    linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(242, 231, 214, 0.94)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0));
-  color: #34281e;
+    radial-gradient(circle at 100% 0%, var(--tile-accent), transparent 42%),
+    linear-gradient(180deg, rgba(29, 24, 20, 0.95), rgba(20, 16, 13, 0.93));
+  color: var(--text);
   box-shadow:
-    0 22px 38px rgba(0, 0, 0, 0.22),
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-  transform: rotate(var(--note-angle));
+    0 22px 38px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  transform: translateY(0);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 .window-frame::before {
-  content: "";
-  position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  width: 5.4rem;
-  height: 1rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(127, 156, 118, 0.25), rgba(205, 223, 189, 0.32));
-  opacity: 0.9;
-  transform: rotate(-6deg);
+  content: none;
 }
 
 .window-frame:nth-child(even) {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .window-frame.is-hidden {
@@ -598,7 +588,7 @@ textarea {
 }
 
 .window-frame.is-active {
-  transform: rotate(0deg) translateY(-0.35rem);
+  transform: translateY(-0.3rem);
   border-color: rgba(127, 156, 118, 0.45);
   box-shadow:
     0 28px 46px rgba(0, 0, 0, 0.28),
@@ -610,9 +600,9 @@ textarea {
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 1rem 1.1rem 0.35rem;
-  border-bottom: 0;
-  background: transparent;
+  padding: 0.95rem 1.1rem 0.7rem;
+  border-bottom: 1px solid rgba(128, 110, 93, 0.16);
+  background: rgba(255, 255, 255, 0.02);
   cursor: default;
   user-select: none;
 }
@@ -631,8 +621,8 @@ textarea {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 999px;
-  background: rgba(73, 58, 44, 0.18);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
 }
 
 .window-lights span:nth-child(1) {
@@ -652,31 +642,18 @@ textarea {
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #2e241b;
+  color: var(--text);
 }
 
 .window-body {
   padding: 1.1rem 1.15rem 1.2rem;
 }
 
-.window-frame .kicker,
-.window-frame .window-subtitle,
-.window-frame .small-note,
-.window-frame .muted,
-.window-frame .link-panel span {
-  color: rgba(54, 40, 30, 0.72);
-}
-
-.window-frame .window-list li,
-.window-frame .micro-list li {
-  color: #34281e;
-}
-
 .window-frame .card,
 .window-frame .panel,
 .window-frame .link-panel {
-  border-color: rgba(122, 99, 78, 0.18);
-  background: rgba(255, 255, 255, 0.34);
+  border-color: rgba(128, 110, 93, 0.18);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .window-grid {
@@ -748,14 +725,14 @@ textarea {
   font-size: 0.92rem;
 }
 
-.window-life { --note-angle: -1.8deg; --note-accent: rgba(127, 156, 118, 0.24); }
-.window-workflows { --note-angle: 1.3deg; --note-accent: rgba(144, 163, 170, 0.22); }
-.window-operator { --note-angle: -0.9deg; --note-accent: rgba(195, 111, 61, 0.24); }
-.window-daybook { --note-angle: 1.9deg; --note-accent: rgba(215, 167, 102, 0.24); }
-.window-proof { --note-angle: -1.6deg; --note-accent: rgba(195, 111, 61, 0.24); }
-.window-stack { --note-angle: 1.2deg; --note-accent: rgba(144, 163, 170, 0.22); }
-.window-notes { --note-angle: -0.8deg; --note-accent: rgba(127, 156, 118, 0.24); }
-.window-fit { --note-angle: 1.7deg; --note-accent: rgba(215, 167, 102, 0.24); }
+.window-life { --tile-accent: rgba(127, 156, 118, 0.16); }
+.window-workflows { --tile-accent: rgba(144, 163, 170, 0.14); }
+.window-operator { --tile-accent: rgba(195, 111, 61, 0.14); }
+.window-daybook { --tile-accent: rgba(215, 167, 102, 0.14); }
+.window-proof { --tile-accent: rgba(195, 111, 61, 0.14); }
+.window-stack { --tile-accent: rgba(144, 163, 170, 0.14); }
+.window-notes { --tile-accent: rgba(127, 156, 118, 0.16); }
+.window-fit { --tile-accent: rgba(215, 167, 102, 0.14); }
 
 .terminal-drawer {
   position: fixed;
